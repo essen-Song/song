@@ -1,0 +1,53 @@
+# Tailwind CSS 配置
+tailwind.config.js
+
+# 环境变量
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 依赖目录
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 构建输出
+build/
+dist/
+.vercel
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 日志文件
+logs/
+*.log
+
+# 上传文件
+uploads/
+!uploads/.gitkeep
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 测试覆盖率
+coverage/
+.nyc_output/
+
+# 缓存
+.cache/
+.parcel-cache/
+
+# 锁文件（根据团队偏好决定是否忽略）
+# package-lock.json
+# yarn.lock

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeFlow - AI智能求职平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-color: #5a67d8;
+        }
+        
+        .upload-area.dragover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #4c51bf;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-group input,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input:focus,
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .results {
+            background: #f7fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .results h4 {
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        
+        .version-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .success {
+            color: #38a169;
+        }
+        
+        .error {
+            color: #e53e3e;
+        }
+        
+        .warning {
+            color: #d69e2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 ResumeFlow</h1>
+            <p>AI驱动的智能求职平台 - 让求职更简单，让成功更近</p>
+        </div>
+        
+        <div class="dashboard">
+            <!-- 简历上传卡片 -->
+            <div class="card">
+                <h3>📄 简历上传与解析</h3>
+                <div class="upload-area" id="uploadArea">
+                    <div id="uploadContent">
+                        <p style="font-size: 1.2rem; margin-bottom: 10px;">📎</p>
+                        <p>拖拽简历文件到此处</p>
+                        <p style="font-size: 0.9rem; color: #718096;">支持 PDF、Word 格式</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.doc" style="display: none;">
+                </div>
+                <button class="btn" onclick="document.getElementById('fileInput').click()">选择文件</button>
+                <div id="uploadResult" class="results hidden"></div>
+            </div>
+            
+            <!-- 简历优化卡片 -->
+            <div class="card">
+                <h3>🤖 AI简历优化</h3>
+                <div class="input-group">
+                    <label for="jobDescription">目标职位JD：</label>
+                    <textarea id="jobDescription" rows="4" placeholder="请输入目标职位的职位描述..."></textarea>
+                </div>
+                <button class="btn" id="optimizeBtn" onclick="optimizeResume()">开始优化</button>
+                <div id="optimizeResult" class="results hidden"></div>
+            </div>
+            
+            <!-- 自动投递卡片 -->
+            <div class="card">
+                <h3>🎯 智能投递</h3>
+                <div class="input-group">
+                    <label for="keywords">职位关键词：</label>
+                    <input type="text" id="keywords" placeholder="如：前端工程师, React开发">
+                </div>
+                <div class="input-group">
+                    <label for="location">工作地点：</label>
+                    <input type="text" id="location" placeholder="如：北京, 上海">
+                </div>
+                <button class="btn" id="deliverBtn" onclick="autoDeliver()">开始投递</button>
+                <div id="deliverResult" class="results hidden"></div>
+            </div>
+            
+            <!-- 面试教练卡片 -->
+            <div class="card">
+                <h3>🎤 AI面试教练</h3>
+                <div class="input-group">
+                    <label for="interviewQuestion">面试问题：</label>
+                    <input type="text" id="interviewQuestion" placeholder="请输入面试问题">
+                </div>
+                <div class="input-group">
+                    <label for="interviewAnswer">你的回答：</label>
+                    <textarea id="interviewAnswer" rows="3" placeholder="请输入你的回答..."></textarea>
+                </div>
+                <button class="btn" id="evaluateBtn" onclick="evaluateInterview()">获取评估</button>
+                <div id="interviewResult" class="results hidden"></div>
+            </div>
+        </div>
+        
+        <!-- 系统状态 -->
+        <div class="card">
+            <h3>📊 系统状态</h3>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="apiStatus">🟢</div>
+                    <div class="stat-label">API状态</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="resumeCount">0</div>
+                    <div class="stat-label">已处理简历</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="optimizeCount">0</div>
+                    <div class="stat-label">优化次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="deliverCount">0</div>
+                    <div class="stat-label">投递次数</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API基础配置
+        const API_BASE_URL = 'http://localhost:3001';
+        
+        // 全局状态
+        let currentResume = null;
+        let stats = {
+            resumes: 0,
+            optimizations: 0,
+            deliveries: 0
+        };
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAPIStatus();
+            setupFileUpload();
+            setInterval(checkAPIStatus, 30000); // 每30秒检查一次API状态
+        });
+        
+        // 检查API状态
+        async function checkAPIStatus() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                document.getElementById('apiStatus').textContent = '🟢';
+                console.log('API状态正常:', data);
+            } catch (error) {
+                document.getElementById('apiStatus').textContent = '🔴';
+                console.error('API连接失败:', error);
+            }
+        }
+        
+        // 设置文件上传
+        function setupFileUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            
+            // 拖拽上传
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileUpload(files[0]);
+                }
+            });
+            
+            // 文件选择
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleFileUpload(e.target.files[0]);
+                }
+            });
+        }
+        
+        // 处理文件上传
+        async function handleFileUpload(file) {
+            if (!file) return;
+            
+            // 验证文件类型
+            const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'];
+            if (!allowedTypes.includes(file.type)) {
+                alert('请上传PDF或Word格式的文件');
+                return;
+            }
+            
+            // 验证文件大小（5MB限制）
+            if (file.size > 5 * 1024 * 1024) {
+                alert('文件大小不能超过5MB');
+                return;
+            }
+            
+            const uploadContent = document.getElementById('uploadContent');
+            const resultDiv = document.getElementById('uploadResult');
+            
+            uploadContent.innerHTML = '<div class="loading"></div><p>正在解析简历...</p>';
+            
+            try {
+                // 模拟文件内容读取（实际项目中需要真正的文件解析）
+                const mockContent = `
+                    姓名：张三
+                    邮箱：zhangsan@example.com
+                    电话：13800000000
+                    
+                    教育背景：
+                    某某大学 计算机科学 本科 2018-2022
+                    
+                    工作经历：
+                    某某科技公司 前端开发工程师 2022-至今
+                    负责前端开发和维护工作
+                    
+                    技能：
+                    JavaScript, React, Node.js, Vue.js
+                `;
+                
+                // 发送到后端进行解析
+                const response = await fetch(`${API_BASE_URL}/api/resume/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        filename: file.name,
+                        content: mockContent
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    currentResume = result.data.parsedData;
+                    stats.resumes++;
+                    updateStats();
+                    
+                    uploadContent.innerHTML = `
+                        <p style="color: #38a169; font-weight: bold;">✅ 简历解析成功</p>
+                        <p>文件名：${file.name}</p>
+                        <p>姓名：${result.data.parsedData.name}</p>
+                        <p>邮箱：${result.data.parsedData.email}</p>
+                    `;
+                    
+                    resultDiv.innerHTML = `
+                        <h4>解析结果：</h4>
+                        <div style="background: white; padding: 15px; border-radius: 8px;">
+                            <p><strong>姓名：</strong>${result.data.parsedData.name}</p>
+                            <p><strong>邮箱：</strong>${result.data.parsedData.email}</p>
+                            <p><strong>电话：</strong>${result.data.parsedData.phone}</p>
+                            <p><strong>技能：</strong>${result.data.parsedData.skills.join(', ')}</p>
+                        </div>
+                    `;
+                    resultDiv.classList.remove('hidden');
+                } else {
+                    throw new Error(result.error || '解析失败');
+                }
+            } catch (error) {
+                uploadContent.innerHTML = `
+                    <p style="color: #e53e3e; font-weight: bold;">❌ 解析失败</p>
+                    <p>${error.message}</p>
+                `;
+                console.error('简历解析失败:', error);
+            }
+        }
+        
+        // 简历优化
+        async function optimizeResume() {
+            if (!currentResume) {
+                alert('请先上传简历');
+                return;
+            }
+            
+            const jobDescription = document.getElementById('jobDescription').value;
+            if (!jobDescription.trim()) {
+                alert('请输入目标职位JD');
+                return;
+            }
+            
+            const optimizeBtn = document.getElementById('optimizeBtn');
+            const resultDiv = document.getElementById('optimizeResult');
+            
+            optimizeBtn.disabled = true;
+            optimizeBtn.innerHTML = '优化中<span class="loading"></span>';
+            
+            try {
+                const resumeText = `
+                    姓名：${currentResume.name}
+                    邮箱：${currentResume.email}
+                    电话：${currentResume.phone}
+                    教育背景：${currentResume.education.map(e => `${e.school} ${e.major} ${e.year}`).join(', ')}
+                    工作经历：${currentResume.workExperience.map(w => `${w.company} ${w.position} ${w.duration}`).join(', ')}
+                    技能：${currentResume.skills.join(', ')}
+                `;
+                
+                const response = await fetch(`${API_BASE_URL}/api/optimize/resume`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        resumeText,
+                        jobDescription
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    stats.optimizations++;
+                    updateStats();
+                    
+                    resultDiv.innerHTML = `
+                        <h4>优化结果：</h4>
+                        <p class="success">✅ 关键词匹配率：${result.data.keywordMatchRate}%</p>
+                        <p class="warning">⚠️ 缺失关键词：${result.data.missingKeywords.join(', ')}</p>
+                        
+                        <h5 style="margin-top: 20px;">优化版本：</h5>
+                        ${result.data.versions.map(version => `
+                            <div class="version-card">
+                                <h6 style="color: #667eea; margin-bottom: 10px;">${version.name}</h6>
+                                <p>${version.content}</p>
+                                <small style="color: #38a169;">匹配度：${version.keywordMatchRate}%</small>
+                            </div>
+                        `).join('')}
+                    `;
+                    
+                    optimizeBtn.innerHTML = '✅ 优化完成';
+                    setTimeout(() => {
+                        optimizeBtn.disabled = false;
+                        optimizeBtn.innerHTML = '开始优化';
+                    }, 2000);
+                } else {
+                    throw new Error(result.error || '优化失败');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ 优化失败：${error.message}</p>`;
+                optimizeBtn.disabled = false;
+                optimizeBtn.innerHTML = '开始优化';
+                console.error('简历优化失败:', error);
+            }
+            
+            resultDiv.classList.remove('hidden');
+        }
+        
+        // 自动投递
+        async function autoDeliver() {
+            if (!currentResume) {
+                alert('请先上传简历');
+                return;
+            }
+            
+            const keywords = document.getElementById('keywords').value;
+            const location = document.getElementById('location').value;
+            
+            if (!keywords.trim()) {
+                alert('请输入职位关键词');
+                return;
+            }
+            
+            const deliverBtn = document.getElementById('deliverBtn');
+            const resultDiv = document.getElementById('deliverResult');
+            
+            deliverBtn.disabled = true;
+            deliverBtn.innerHTML = '投递中<span class="loading"></span>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/deliver/auto`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: 'demo_user',
+                        resumeId: 'demo_resume',
+                        jobFilters: {
+                            keywords,
+                            location,
+                            maxApplications: 5,
+                            minMatchScore: 60
+                        }
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    stats.deliveries++;
+                    updateStats();
+                    
+                    const platforms = result.data.results;
+                    const totalJobs = Object.values(platforms).reduce((sum, p) => sum + (p.appliedJobs?.length || 0), 0);
+                    
+                    resultDiv.innerHTML = `
+                        <h4>投递结果：</h4>
+                        <p class="success">✅ 投递成功率：${result.data.stats.successRate}%</p>
+                        <p>总计投递：${result.data.stats.total} 个平台</p>
+                        <p>成功投递：${result.data.stats.success} 个平台</p>
+                        <p>投递职位：${totalJobs} 个</p>
+                        
+                        <h5 style="margin-top: 20px;">平台详情：</h5>
+                        ${Object.entries(platforms).map(([platform, data]) => `
+                            <div class="version-card">
+                                <h6 style="color: ${data.success ? '#38a169' : '#e53e3e'};">
+                                    ${platform === 'boss' ? 'BOSS直聘' : platform === 'zhilian' ? '智联招聘' : '前程无忧'}
+                                    ${data.success ? '✅' : '❌'}
+                                </h6>
+                                <p>${data.message}</p>
+                                ${data.appliedJobs && data.appliedJobs.length > 0 ? `
+                                    <small>投递职位：</small>
+                                    ${data.appliedJobs.map(job => `<div>• ${job.jobTitle} @ ${job.company}</div>`).join('')}
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    `;
+                    
+                    deliverBtn.innerHTML = '✅ 投递完成';
+                    setTimeout(() => {
+                        deliverBtn.disabled = false;
+                        deliverBtn.innerHTML = '开始投递';
+                    }, 2000);
+                } else {
+                    throw new Error(result.error || '投递失败');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ 投递失败：${error.message}</p>`;
+                deliverBtn.disabled = false;
+                deliverBtn.innerHTML = '开始投递';
+                console.error('自动投递失败:', error);
+            }
+            
+            resultDiv.classList.remove('hidden');
+        }
+        
+        // 面试评估
+        async function evaluateInterview() {
+            const question = document.getElementById('interviewQuestion').value;
+            const answer = document.getElementById('interviewAnswer').value;
+            
+            if (!question.trim() || !answer.trim()) {
+                alert('请输入面试问题和回答');
+                return;
+            }
+            
+            const evaluateBtn = document.getElementById('evaluateBtn');
+            const resultDiv = document.getElementById('interviewResult');
+            
+            evaluateBtn.disabled = true;
+            evaluateBtn.innerHTML = '评估中<span class="loading"></span>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/interview/evaluate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question,
+                        answer
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    const data = result.data;
+                    
+                    resultDiv.innerHTML = `
+                        <h4>评估结果：</h4>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">${data.score}</div>
+                                <div class="stat-label">总分</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.starAnalysis.situation}</div>
+                                <div class="stat-label">情境</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.starAnalysis.task}</div>
+                                <div class="stat-label">任务</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.starAnalysis.action}</div>
+                                <div class="stat-label">行动</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">${data.starAnalysis.result}</div>
+                                <div class="stat-label">结果</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <h5>反馈建议：</h5>
+                            <p>${data.feedback}</p>
+                        </div>
+                    `;
+                    
+                    evaluateBtn.innerHTML = '✅ 评估完成';
+                    setTimeout(() => {
+                        evaluateBtn.disabled = false;
+                        evaluateBtn.innerHTML = '获取评估';
+                    }, 2000);
+                } else {
+                    throw new Error(result.error || '评估失败');
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ 评估失败：${error.message}</p>`;
+                evaluateBtn.disabled = false;
+                evaluateBtn.innerHTML = '获取评估';
+                console.error('面试评估失败:', error);
+            }
+            
+            resultDiv.classList.remove('hidden');
+        }
+        
+        // 更新统计
+        function updateStats() {
+            document.getElementById('resumeCount').textContent = stats.resumes;
+            document.getElementById('optimizeCount').textContent = stats.optimizations;
+            document.getElementById('deliverCount').textContent = stats.deliveries;
+        }
+    </script>
+</body>
+</html>

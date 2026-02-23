@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型配置 - 智聘AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1890ff;
+            --primary-hover: #40a9ff;
+            --success-color: #52c41a;
+            --warning-color: #faad14;
+            --error-color: #f5222d;
+            --text-primary: #262626;
+            --text-secondary: #8c8c8c;
+            --border-color: #d9d9d9;
+            --background-color: #f0f2f5;
+            --card-background: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --sidebar-width: 240px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar-nav {
+            width: var(--sidebar-width);
+            background: var(--card-background);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+        }
+        
+        .sidebar-logo {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sidebar-logo h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu {
+            flex: 1;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .sidebar-item {
+            padding: 14px 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+        
+        .sidebar-item:hover, .sidebar-item.active {
+            color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+            border-left-color: var(--primary-color);
+        }
+        
+        .sidebar-item .icon {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        
+        .main-wrapper {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 24px;
+        }
+        
+        .page-header {
+            margin-bottom: 24px;
+        }
+        
+        .page-header h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-header h2 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--card-background);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+        
+        .btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            color: #fff;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            transition: border-color 0.2s;
+            background: var(--card-background);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-online {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-offline {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .model-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        
+        .model-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+        
+        .model-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(24, 144, 255, 0.1);
+        }
+        
+        .model-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .model-card-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .model-card-body {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .model-card-body p {
+            margin-bottom: 6px;
+        }
+        
+        .model-card-footer {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .switch {
+            position: relative;
+            width: 44px;
+            height: 22px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 22px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+        
+        .alert {
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+        
+        .alert-info {
+            background: #e6f7ff;
+            color: #1890ff;
+            border: 1px solid #91d5ff;
+        }
+        
+        .alert-success {
+            background: #f6ffed;
+            color: #52c41a;
+            border: 1px solid #b7eb8f;
+        }
+        
+        .alert-warning {
+            background: #fffbe6;
+            color: #faad14;
+            border: 1px solid #ffe58f;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 4px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 10px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            color: var(--primary-color);
+        }
+        
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar-nav">
+            <div class="sidebar-logo">
+                <span style="font-size: 20px;">🎯</span>
+                <h1>智聘AI</h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" onclick="window.location.href='enterprise-app.html'">
+                    <span class="icon">🏠</span>
+                    首页
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'resume'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📄</span>
+                    简历上传
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'jobs'); window.location.href='enterprise-app.html'">
+                    <span class="icon">🎯</span>
+                    职位匹配
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'delivery'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📤</span>
+                    智能投递
+                </li>
+                <li class="sidebar-item" onclick="window.location.href='interview-video.html'">
+                    <span class="icon">🎬</span>
+                    视频面试
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'interview'); window.location.href='enterprise-app.html'">
+                    <span class="icon">🎤</span>
+                    面试教练
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'analytics'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📈</span>
+                    数据分析
+                </li>
+                <li class="sidebar-item active" onclick="window.location.href='model-config.html'">
+                    <span class="icon">⚙️</span>
+                    系统设置
+                </li>
+                <li class="sidebar-item" onclick="openChat()">
+                    <span class="icon">💬</span>
+                    站内信
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                © 2024 智聘AI
+            </div>
+        </div>
+        
+        <div class="main-wrapper">
+            <div class="page-header">
+                <h1>⚙️ 模型配置</h1>
+                <p>管理AI大模型的接入参数，配置完成后平台将自动选择可用的模型进行服务</p>
+            </div>
+            
+            <div class="alert alert-info">
+                💡 提示：模型配置用于管理AI大模型的接入参数。配置完成后，平台将自动选择可用的模型进行服务。
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>模型状态</h2>
+                    <button class="btn" onclick="checkAllModels()">检测连接</button>
+                </div>
+                <div class="card-body">
+                    <div class="model-list" id="modelList">
+                        <div class="model-card">
+                            <div class="model-card-header">
+                                <h3>🤖 Ollama 本地模型</h3>
+                                <span class="status-badge status-offline" id="ollama-status">未连接</span>
+                            </div>
+                            <div class="model-card-body">
+                                <p>本地部署，完全免费，数据安全</p>
+                                <p>地址: <code>http://localhost:11434</code></p>
+                            </div>
+                            <div class="model-card-footer">
+                                <label class="switch">
+                                    <input type="checkbox" id="ollama-enabled" onchange="toggleModel('ollama')">
+                                    <span class="slider"></span>
+                                </label>
+                                <span style="font-size: 12px; color: var(--text-secondary);">启用</span>
+                            </div>
+                        </div>
+                        
+                        <div class="model-card">
+                            <div class="model-card-header">
+                                <h3>🔥 DeepSeek</h3>
+                                <span class="status-badge status-offline" id="deepseek-status">未配置</span>
+                            </div>
+                            <div class="model-card-body">
+                                <p>500万tokens免费额度</p>
+                                <p>中文效果好，推理能力强</p>
+                            </div>
+                            <div class="model-card-footer">
+                                <label class="switch">
+                                    <input type="checkbox" id="deepseek-enabled" onchange="toggleModel('deepseek')">
+                                    <span class="slider"></span>
+                                </label>
+                                <span style="font-size: 12px; color: var(--text-secondary);">启用</span>
+                            </div>
+                        </div>
+                        
+                        <div class="model-card">
+                            <div class="model-card-header">
+                                <h3>🎯 豆包</h3>
+                                <span class="status-badge status-offline" id="doubao-status">未配置</span>
+                            </div>
+                            <div class="model-card-body">
+                                <p>字节跳动大模型</p>
+                                <p>100万tokens免费额度</p>
+                            </div>
+                            <div class="model-card-footer">
+                                <label class="switch">
+                                    <input type="checkbox" id="doubao-enabled" onchange="toggleModel('doubao')">
+                                    <span class="slider"></span>
+                                </label>
+                                <span style="font-size: 12px; color: var(--text-secondary);">启用</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>详细配置</h2>
+                    <button class="btn btn-primary" onclick="saveAllConfigs()">保存配置</button>
+                </div>
+                <div class="card-body">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('ollama-config', this)">Ollama</button>
+                        <button class="tab" onclick="showTab('deepseek-config', this)">DeepSeek</button>
+                        <button class="tab" onclick="showTab('doubao-config', this)">豆包</button>
+                        <button class="tab" onclick="showTab('custom-config', this)">自定义API</button>
+                    </div>
+                    
+                    <div id="ollama-config" class="tab-content active">
+                        <div class="alert alert-success">
+                            ✅ Ollama无需额外配置，安装后自动可用。确保Ollama服务已启动。
+                        </div>
+                        <div class="form-group">
+                            <label>Ollama服务地址</label>
+                            <input type="text" id="ollama-baseUrl" value="http://localhost:11434" placeholder="http://localhost:11434">
+                        </div>
+                        <div class="form-group">
+                            <label>默认模型</label>
+                            <select id="ollama-model">
+                                <option value="qwen2.5:7b">qwen2.5:7b (推荐)</option>
+                                <option value="llama3.2">llama3.2</option>
+                                <option value="deepseek-r1:7b">deepseek-r1:7b</option>
+                                <option value="custom">自定义</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="deepseek-config" class="tab-content">
+                        <div class="alert alert-warning">
+                            🔥 需要API Key，请前往 <a href="https://platform.deepseek.com" target="_blank" style="color: #faad14;">DeepSeek开放平台</a> 获取
+                        </div>
+                        <div class="form-group">
+                            <label>API Key</label>
+                            <input type="password" id="deepseek-apiKey" placeholder="sk-xxxxxxxxxxxxxxxx">
+                        </div>
+                        <div class="form-group">
+                            <label>模型</label>
+                            <select id="deepseek-model">
+                                <option value="deepseek-chat">deepseek-chat</option>
+                                <option value="deepseek-coder">deepseek-coder</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="doubao-config" class="tab-content">
+                        <div class="alert alert-warning">
+                            🎯 需要API Key和Endpoint ID，请前往 <a href="https://console.volcengine.com/ark" target="_blank" style="color: #faad14;">火山引擎方舟</a> 获取
+                        </div>
+                        <div class="form-group">
+                            <label>API Key</label>
+                            <input type="password" id="doubao-apiKey" placeholder="输入API Key">
+                        </div>
+                        <div class="form-group">
+                            <label>Endpoint ID</label>
+                            <input type="text" id="doubao-endpointId" placeholder="输入Endpoint ID">
+                        </div>
+                        <div class="form-group">
+                            <label>模型</label>
+                            <input type="text" id="doubao-model" value="doubao-pro-32k" placeholder="doubao-pro-32k">
+                        </div>
+                    </div>
+                    
+                    <div id="custom-config" class="tab-content">
+                        <div class="alert alert-info">
+                            ⚙️ 支持任何兼容OpenAI格式的API服务
+                        </div>
+                        <div class="form-group">
+                            <label>配置名称</label>
+                            <input type="text" id="custom-name" placeholder="如：智谱AI、通义千问">
+                        </div>
+                        <div class="form-group">
+                            <label>Base URL</label>
+                            <input type="text" id="custom-baseUrl" placeholder="https://api.example.com/v1">
+                        </div>
+                        <div class="form-group">
+                            <label>API Key</label>
+                            <input type="password" id="custom-apiKey" placeholder="输入API Key">
+                        </div>
+                        <div class="form-group">
+                            <label>模型名称</label>
+                            <input type="text" id="custom-model" placeholder="gpt-3.5-turbo">
+                        </div>
+                        <button class="btn btn-primary" onclick="addCustomAPI()">添加自定义API</button>
+                        
+                        <div id="custom-api-list" style="margin-top: 20px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = window.location.origin;
+        
+        function showTab(tabId, tabEl) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            tabEl.classList.add('active');
+        }
+        
+        function toggleModel(type) {
+            const enabled = document.getElementById(`${type}-enabled`).checked;
+            console.log(`${type} enabled: ${enabled}`);
+        }
+        
+        function checkAllModels() {
+            alert('正在检测模型连接...');
+        }
+        
+        function saveAllConfigs() {
+            alert('配置已保存');
+        }
+        
+        function addCustomAPI() {
+            const name = document.getElementById('custom-name').value;
+            const baseUrl = document.getElementById('custom-baseUrl').value;
+            const apiKey = document.getElementById('custom-apiKey').value;
+            const model = document.getElementById('custom-model').value;
+            
+            if (!name || !baseUrl || !apiKey || !model) {
+                alert('请填写完整的配置信息');
+                return;
+            }
+            
+            alert(`已添加自定义API: ${name}`);
+        }
+        
+        function openChat() {
+            window.location.href = 'enterprise-app.html?tab=chat';
+        }
+    </script>
+</body>
+</html>

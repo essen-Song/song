@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试智能职位投递</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .sidebar {
+            width: 200px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-item {
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .sidebar-item.active {
+            background-color: #e6f7ff;
+            color: #1890ff;
+        }
+        
+        .page {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #1890ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>测试智能职位投递</h1>
+        
+        <div class="sidebar">
+            <div class="sidebar-item active" onclick="showPage('home')">首页</div>
+            <div class="sidebar-item" onclick="showPage('resume')">简历管理</div>
+            <div class="sidebar-item" onclick="showPage('delivery')">智能职位投递</div>
+            <div class="sidebar-item" onclick="showPage('analytics')">数据分析</div>
+        </div>
+        
+        <div id="home" class="page active">
+            <h2>首页</h2>
+            <p>欢迎使用智能求职平台</p>
+        </div>
+        
+        <div id="resume" class="page">
+            <h2>简历管理</h2>
+            <p>简历管理功能</p>
+        </div>
+        
+        <div id="delivery" class="page">
+            <h2>智能职位投递</h2>
+            <div>
+                <label>目标职位:</label>
+                <input type="text" placeholder="请输入目标职位">
+            </div>
+            <br>
+            <div>
+                <label>投递平台:</label><br>
+                <input type="checkbox" checked> 智联招聘<br>
+                <input type="checkbox" checked> 前程无忧<br>
+                <input type="checkbox" checked> Boss直聘
+            </div>
+            <br>
+            <button onclick="startDelivery()">开始智能投递</button>
+            <div id="deliveryResult"></div>
+        </div>
+        
+        <div id="analytics" class="page">
+            <h2>数据分析</h2>
+            <p>数据分析功能</p>
+        </div>
+    </div>
+    
+    <script>
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示选中页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新侧边栏激活状态
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            console.log('显示页面:', pageId);
+        }
+        
+        function startDelivery() {
+            const resultDiv = document.getElementById('deliveryResult');
+            resultDiv.innerHTML = '<div><div class="loading"></div> 正在准备智能投递...</div>';
+            
+            setTimeout(() => {
+                resultDiv.innerHTML = '<div>智能投递已开始！</div>';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

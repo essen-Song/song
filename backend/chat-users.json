@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "豆包",
+    "role": "ai",
+    "avatar": "🤖",
+    "online": true,
+    "lastSeen": null
+  },
+  {
+    "id": 2,
+    "name": "文学",
+    "role": "user",
+    "avatar": "👔",
+    "online": true,
+    "lastSeen": "2026-02-22T09:36:47.711Z"
+  }
+]

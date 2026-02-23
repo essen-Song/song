@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频面试 - 智聘AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #1890ff;
+            --primary-hover: #40a9ff;
+            --success-color: #52c41a;
+            --warning-color: #faad14;
+            --error-color: #f5222d;
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-elevated: #fafafa;
+            --text-primary: #262626;
+            --text-secondary: #8c8c8c;
+            --border-color: #d9d9d9;
+            --sidebar-width: 240px;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar-nav {
+            width: var(--sidebar-width);
+            background: var(--bg-card);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        
+        .sidebar-logo {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sidebar-logo h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-menu {
+            flex: 1;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+        
+        .sidebar-item {
+            padding: 14px 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+        
+        .sidebar-item:hover, .sidebar-item.active {
+            color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+            border-left-color: var(--primary-color);
+        }
+        
+        .sidebar-item .icon {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .interview-container {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .main-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #e6f7ff 0%, var(--bg-dark) 100%);
+            min-width: 0;
+        }
+        
+        .header {
+            padding: 12px 20px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .header h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .interview-badge {
+            background: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .timer {
+            font-family: 'SF Mono', 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--success-color);
+            background: #f6ffed;
+            padding: 6px 16px;
+            border-radius: 8px;
+            border: 1px solid #b7eb8f;
+        }
+        
+        .timer.warning {
+            color: var(--warning-color);
+            background: #fffbe6;
+            border-color: #ffe58f;
+        }
+        
+        .timer.danger {
+            color: #fff;
+            background: var(--error-color);
+            border-color: var(--error-color);
+            animation: pulse-danger 1s infinite;
+        }
+        
+        @keyframes pulse-danger {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .progress-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d9d9d9;
+            transition: all 0.3s;
+        }
+        
+        .progress-dot.completed {
+            background: var(--primary-color);
+        }
+        
+        .progress-dot.current {
+            background: var(--primary-color);
+            box-shadow: 0 0 6px rgba(24, 144, 255, 0.5);
+        }
+        
+        .video-area {
+            flex: 1;
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+            min-height: 0;
+        }
+        
+        .video-main {
+            flex: 1;
+            background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(24, 144, 255, 0.15);
+            border: 1px solid #91d5ff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ai-avatar-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .ai-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 36px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        .ai-avatar.speaking {
+            animation: speaking-pulse 0.5s ease-in-out infinite;
+        }
+        
+        @keyframes speaking-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .ai-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+        
+        .ai-status {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .video-small {
+            width: 280px;
+            flex-shrink: 0;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-small-header {
+            padding: 10px 12px;
+            background: #fafafa;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .video-small-content {
+            flex: 1;
+            position: relative;
+            background: #1a1a1a;
+        }
+        
+        .video-small-content video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-small-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+        
+        .video-small-placeholder span {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+        
+        .video-small-placeholder p {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .question-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-color);
+            padding: 16px 20px;
+        }
+        
+        .question-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .question-number {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .question-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .question-hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .controls {
+            padding: 12px 20px;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .control-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+        
+        .control-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .control-btn.primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .control-btn.primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            color: #fff;
+        }
+        
+        .control-btn.danger {
+            background: var(--error-color);
+            border-color: var(--error-color);
+            color: #fff;
+        }
+        
+        .control-btn.danger:hover {
+            background: #ff4d4f;
+            border-color: #ff4d4f;
+        }
+        
+        .control-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .volume-indicator {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 24px;
+            padding: 0 10px;
+            background: #f5f5f5;
+            border-radius: 12px;
+        }
+        
+        .volume-bar {
+            width: 3px;
+            background: #d9d9d9;
+            border-radius: 2px;
+            transition: height 0.05s, background 0.1s;
+        }
+        
+        .input-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .text-input {
+            flex: 1;
+            padding: 8px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .text-input:focus {
+            border-color: var(--primary-color);
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+        
+        .sidebar-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fafafa;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .clear-btn {
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .clear-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+            background: #fafafa;
+        }
+        
+        .chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chat-message.interviewer {
+            text-align: left;
+        }
+        
+        .chat-message.candidate {
+            text-align: right;
+        }
+        
+        .message-bubble {
+            display: inline-block;
+            max-width: 90%;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .chat-message.interviewer .message-bubble {
+            background: #e6f7ff;
+            border: 1px solid #91d5ff;
+            color: var(--text-primary);
+        }
+        
+        .chat-message.candidate .message-bubble {
+            background: #f6ffed;
+            border: 1px solid #b7eb8f;
+            color: var(--text-primary);
+        }
+        
+        .message-role {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        .message-time {
+            font-size: 9px;
+            color: #bfbfbf;
+            margin-top: 4px;
+        }
+        
+        .sidebar-footer {
+            padding: 10px 12px;
+            border-top: 1px solid var(--border-color);
+            background: #fafafa;
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--success-color);
+        }
+        
+        .status-dot.recording {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .start-screen {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f2f5 50%, #e6f7ff 100%);
+        }
+        
+        .start-content {
+            text-align: center;
+            max-width: 460px;
+            padding: 36px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .start-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--primary-color), #40a9ff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+        }
+        
+        .start-content h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .start-content > p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 13px;
+        }
+        
+        .start-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .option-group {
+            text-align: left;
+        }
+        
+        .option-group label {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .option-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 13px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        
+        .option-group select:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .option-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .start-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .start-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+        
+        .tips-box {
+            margin-top: 16px;
+            padding: 12px;
+            background: #e6f7ff;
+            border-radius: 10px;
+            text-align: left;
+            border: 1px solid #91d5ff;
+        }
+        
+        .tips-box h4 {
+            font-size: 11px;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+        
+        .tips-box ul {
+            margin: 0;
+            padding-left: 14px;
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .end-screen {
+            flex: 1;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f2f5 50%, #e6f7ff 100%);
+        }
+        
+        .end-screen:not(.hidden) {
+            display: flex;
+        }
+        
+        .end-content {
+            text-align: center;
+            max-width: 380px;
+            padding: 36px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .end-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, var(--success-color), #73d13d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 36px;
+        }
+        
+        .end-content h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        
+        .end-content > p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+        
+        .score-display {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 16px 0;
+        }
+        
+        .score-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .score-item {
+            background: var(--bg-elevated);
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .score-item-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-bottom: 2px;
+        }
+        
+        .score-item-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .end-btn {
+            padding: 10px 32px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .end-btn:hover {
+            background: var(--primary-hover);
+        }
+        
+        .end-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .report-section {
+            margin-top: 16px;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .report-section::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .report-section::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+        
+        .report-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .report-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .report-item-number {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        
+        .report-item-question {
+            font-size: 12px;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 6px;
+        }
+        
+        .report-item-answer {
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: #fafafa;
+            padding: 6px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .report-item-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .report-item-score-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+        
+        .report-item-score-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .report-summary {
+            background: linear-gradient(135deg, #e6f7ff 0%, #f6ffed 100%);
+            border: 1px solid #91d5ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        
+        .report-summary-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .report-summary-text {
+            font-size: 11px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .report-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        
+        .report-tag {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: #e6f7ff;
+            color: var(--primary-color);
+        }
+        
+        .report-tag.warning {
+            background: #fffbe6;
+            color: var(--warning-color);
+        }
+        
+        .report-tag.success {
+            background: #f6ffed;
+            color: var(--success-color);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" id="appContainer">
+        <div class="sidebar-nav">
+            <div class="sidebar-logo">
+                <span style="font-size: 20px;">🎯</span>
+                <h1>智聘AI</h1>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item" onclick="window.location.href='enterprise-app.html'">
+                    <span class="icon">🏠</span>
+                    首页
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'resume'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📄</span>
+                    简历上传
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'jobs'); window.location.href='enterprise-app.html'">
+                    <span class="icon">🎯</span>
+                    职位匹配
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'delivery'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📤</span>
+                    智能投递
+                </li>
+                <li class="sidebar-item active" onclick="window.location.href='interview-video.html'">
+                    <span class="icon">🎬</span>
+                    视频面试
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'interview'); window.location.href='enterprise-app.html'">
+                    <span class="icon">🎤</span>
+                    面试教练
+                </li>
+                <li class="sidebar-item" onclick="sessionStorage.setItem('navTo', 'analytics'); window.location.href='enterprise-app.html'">
+                    <span class="icon">📈</span>
+                    数据分析
+                </li>
+                <li class="sidebar-item" onclick="window.location.href='model-config.html'">
+                    <span class="icon">⚙️</span>
+                    系统设置
+                </li>
+                <li class="sidebar-item" onclick="openChat()">
+                    <span class="icon">💬</span>
+                    站内信
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                © 2024 智聘AI
+            </div>
+        </div>
+        
+        <div class="main-wrapper">
+            <div class="start-screen" id="startScreen">
+                <div class="start-content">
+                    <div class="start-icon">🎬</div>
+                    <h1>AI视频面试</h1>
+                    <p>选择面试类型和难度，开始与AI面试官的实时语音对话</p>
+                    <div class="start-options">
+                        <div class="option-group">
+                            <label>面试类型</label>
+                            <select id="interviewType">
+                                <option value="technical">💻 技术面试</option>
+                                <option value="behavioral">🤝 行为面试</option>
+                                <option value="case">📊 案例面试</option>
+                                <option value="stress">😰 压力面试</option>
+                                <option value="all">🎯 综合面试</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>难度模式</label>
+                            <select id="difficulty">
+                                <option value="easy">🌟 简单模式</option>
+                                <option value="medium" selected>⭐ 中等模式</option>
+                                <option value="hard">🔥 困难模式</option>
+                                <option value="timed">⏱️ 限时模式 (15分钟)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="start-btn" onclick="startInterview()">开始面试</button>
+                    <div class="tips-box">
+                        <h4>💡 面试提示</h4>
+                        <ul>
+                            <li>请确保摄像头和麦克风正常工作</li>
+                            <li>选择安静的环境进行面试</li>
+                            <li>回答问题时请清晰表达</li>
+                            <li>按 N 下一题，M 切换麦克风，S 朗读题目</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interview-container hidden" id="interviewContainer">
+                <div class="main-area">
+                    <div class="header">
+                        <div class="header-left">
+                            <h1 id="interviewTypeDisplay">🎯 技术面试</h1>
+                            <span class="interview-badge" id="difficultyBadge">中等模式</span>
+                        </div>
+                        <div class="header-right">
+                            <div class="progress-bar">
+                                <span style="font-size: 11px; color: var(--text-secondary);">进度</span>
+                                <div class="progress-dots" id="progressDots"></div>
+                            </div>
+                            <div class="timer" id="timer">00:00</div>
+                        </div>
+                    </div>
+                    
+                    <div class="video-area">
+                        <div class="video-main">
+                            <div class="ai-avatar-container">
+                                <div class="ai-avatar" id="aiAvatar">🤖</div>
+                                <div class="ai-name">AI面试官</div>
+                                <div class="ai-status" id="aiStatus">准备就绪</div>
+                            </div>
+                        </div>
+                        
+                        <div class="video-small">
+                            <div class="video-small-header">
+                                <span>📹</span>
+                                <span>我的摄像头</span>
+                            </div>
+                            <div class="video-small-content">
+                                <div class="video-small-placeholder" id="videoPlaceholder">
+                                    <span>👤</span>
+                                    <p>摄像头未开启</p>
+                                </div>
+                                <video id="localVideo" autoplay muted playsinline style="display: none; width: 100%; height: 100%;"></video>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="question-section">
+                        <div class="question-header">
+                            <span class="question-number" id="questionNumber">问题 1/6</span>
+                        </div>
+                        <div class="question-text" id="questionText">
+                            请做一个简单的自我介绍，包括你的技术背景和工作经验。
+                        </div>
+                        <div class="question-hint">
+                            <span>💡</span>
+                            <span id="questionHint">点击麦克风按钮开始语音回答，或在下方输入文字</span>
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="control-group">
+                            <div class="volume-indicator" id="volumeIndicator">
+                                <div class="volume-bar" style="height: 4px;"></div>
+                                <div class="volume-bar" style="height: 6px;"></div>
+                                <div class="volume-bar" style="height: 10px;"></div>
+                                <div class="volume-bar" style="height: 14px;"></div>
+                                <div class="volume-bar" style="height: 10px;"></div>
+                                <div class="volume-bar" style="height: 6px;"></div>
+                                <div class="volume-bar" style="height: 4px;"></div>
+                            </div>
+                            <button class="control-btn" id="micBtn" onclick="toggleMic()">🎤 麦克风</button>
+                            <button class="control-btn" id="cameraBtn" onclick="toggleCamera()">📷 摄像头</button>
+                            <button class="control-btn" id="speakBtn" onclick="speakQuestion()">🔊 朗读题目</button>
+                        </div>
+                        
+                        <div class="input-area">
+                            <input type="text" class="text-input" id="textInput" placeholder="输入您的回答..." onkeypress="handleKeyPress(event)">
+                            <button class="control-btn primary" onclick="sendTextMessage()">发送</button>
+                        </div>
+                        
+                        <div class="control-group">
+                            <button class="control-btn primary" onclick="nextQuestion()">下一题 (N)</button>
+                            <button class="control-btn danger" onclick="endInterview()">结束面试</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sidebar">
+                    <div class="sidebar-header">
+                        <h2>💬 通话记录</h2>
+                        <button class="clear-btn" onclick="clearMessages()">清空</button>
+                    </div>
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="sidebar-footer">
+                        <div style="display: flex; align-items: center; gap: 6px;">
+                            <div class="status-dot" id="statusDot"></div>
+                            <span id="statusText">准备就绪</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="end-screen hidden" id="endScreen">
+                <div class="end-content" style="max-width: 480px;">
+                    <div class="end-icon">🎉</div>
+                    <h2>面试结束</h2>
+                    <p>感谢您的参与，以下是您的面试评估</p>
+                    <div class="score-display" id="finalScore">0</div>
+                    <div class="score-label">综合评分</div>
+                    <div class="score-breakdown">
+                        <div class="score-item">
+                            <div class="score-item-label">表达能力</div>
+                            <div class="score-item-value" id="scoreExpression">-</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-item-label">专业深度</div>
+                            <div class="score-item-value" id="scoreDepth">-</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-item-label">逻辑思维</div>
+                            <div class="score-item-value" id="scoreLogic">-</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-item-label">应变能力</div>
+                            <div class="score-item-value" id="scoreAdapt">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-section" id="reportSection">
+                        <div id="reportItems"></div>
+                        <div class="report-summary" id="reportSummary">
+                            <div class="report-summary-title">📊 综合评价</div>
+                            <div class="report-summary-text" id="summaryText">正在分析...</div>
+                            <div class="report-tags" id="reportTags"></div>
+                        </div>
+                    </div>
+                    
+                    <p id="scoreNote" style="font-size: 11px; color: var(--text-secondary); margin-bottom: 12px;">正在生成详细报告...</p>
+                    <button class="end-btn" id="endBtn" onclick="goHome()" disabled>请稍候...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost:3002';
+        
+        let currentQuestion = 0;
+        let totalQuestions = 6;
+        let timerInterval = null;
+        let elapsedSeconds = 0;
+        let isTimedMode = false;
+        let timeLimit = 15 * 60;
+        let micEnabled = false;
+        let cameraEnabled = false;
+        let localStream = null;
+        let recognition = null;
+        let synthesis = window.speechSynthesis;
+        let audioContext = null;
+        let analyser = null;
+        let currentDifficulty = 'medium';
+        let interviewAnswers = [];
+        let interviewQuestions = [];
+        let interviewType = 'all';
+        
+        const questions = {
+            technical: {
+                easy: [
+                    { type: '技术问题', text: '请简单介绍一下你掌握的编程语言。', hint: '可以从学习经历和项目经验两方面回答' },
+                    { type: '技术问题', text: '什么是HTML？它有什么作用？', hint: '从网页结构的角度回答' },
+                    { type: '技术问题', text: '请解释一下什么是CSS。', hint: '可以举例说明CSS的作用' },
+                    { type: '技术问题', text: 'JavaScript和Java有什么区别？', hint: '从语言特性和应用场景回答' },
+                    { type: '技术问题', text: '什么是前端开发？', hint: '从用户界面和交互角度回答' },
+                    { type: '技术问题', text: '你使用过哪些代码编辑器？', hint: '分享你的使用体验' }
+                ],
+                medium: [
+                    { type: '技术问题', text: '请介绍一下你熟悉的前端框架，并说明它们的优缺点。', hint: '对比分析不同框架的特点' },
+                    { type: '技术问题', text: '请解释一下JavaScript中的闭包是什么？有什么应用场景？', hint: '结合实际例子说明' },
+                    { type: '技术问题', text: '请描述一下浏览器渲染原理，从输入URL到页面展示的过程。', hint: '按步骤详细说明' },
+                    { type: '技术问题', text: '你如何优化一个网页的性能？请列举具体的方法。', hint: '从加载、渲染、交互等多方面回答' },
+                    { type: '技术问题', text: '请解释React中的虚拟DOM是什么？它有什么优势？', hint: '说明其工作原理和性能优势' },
+                    { type: '技术问题', text: '请描述一下你处理过的最复杂的技术问题，是如何解决的？', hint: '使用STAR法则回答' }
+                ],
+                hard: [
+                    { type: '技术问题', text: '请详细解释React Fiber架构的工作原理，以及它如何实现任务调度？', hint: '从优先级调度和时间切片角度回答' },
+                    { type: '技术问题', text: '如何设计一个支持千万级并发的实时消息推送系统？请描述架构方案。', hint: '考虑WebSocket、消息队列、负载均衡等' },
+                    { type: '技术问题', text: '请解释V8引擎的垃圾回收机制，以及如何优化内存使用？', hint: '从分代回收和内存泄漏角度回答' },
+                    { type: '技术问题', text: '如何实现一个高性能的虚拟滚动列表？需要考虑哪些边界情况？', hint: '考虑可视区域计算、动态高度、滚动性能' },
+                    { type: '技术问题', text: '请描述微前端架构的实现方案，以及它解决了什么问题？', hint: '从沙箱隔离、通信机制、部署方式回答' },
+                    { type: '技术问题', text: '如何设计一个前端监控系统？需要采集哪些指标？', hint: '考虑性能、错误、用户行为等维度' }
+                ]
+            },
+            behavioral: {
+                easy: [
+                    { type: '行为问题', text: '请介绍一下你的团队协作经验。', hint: '分享具体的合作经历' },
+                    { type: '行为问题', text: '你如何管理自己的工作时间？', hint: '举例说明你的方法' },
+                    { type: '行为问题', text: '请描述一次你学习新技能的经历。', hint: '说明学习过程和收获' },
+                    { type: '行为问题', text: '你更喜欢独立工作还是团队协作？为什么？', hint: '结合实际情况回答' },
+                    { type: '行为问题', text: '你如何处理工作中的压力？', hint: '分享你的解压方法' },
+                    { type: '行为问题', text: '请描述你的职业规划。', hint: '说明短期和长期目标' }
+                ],
+                medium: [
+                    { type: '行为问题', text: '请描述一次你与团队成员发生冲突的经历，你是如何处理的？', hint: '使用STAR法则，说明结果和反思' },
+                    { type: '行为问题', text: '请举例说明你如何在压力下完成工作任务。', hint: '描述具体情境和应对方法' },
+                    { type: '行为问题', text: '请描述一次你主动承担责任的经历。', hint: '说明动机和结果' },
+                    { type: '行为问题', text: '你如何保持学习新技术的动力？请举例说明。', hint: '分享具体的学习经历' },
+                    { type: '行为问题', text: '请描述一次你帮助同事解决问题的经历。', hint: '说明问题背景和解决过程' },
+                    { type: '行为问题', text: '你如何处理工作中的失败？请举例说明。', hint: '说明反思和改进措施' }
+                ],
+                hard: [
+                    { type: '行为问题', text: '请描述一次你必须在有限信息下做出重大决策的经历。结果如何？', hint: '说明决策过程和风险评估' },
+                    { type: '行为问题', text: '当你发现团队的技术方向存在根本性问题时，你会如何处理？', hint: '考虑沟通策略和解决方案' },
+                    { type: '行为问题', text: '请描述一次你推动团队进行重大技术转型的经历。', hint: '说明遇到的阻力和解决方法' },
+                    { type: '行为问题', text: '如何在保证项目进度的同时，确保代码质量和团队成长？', hint: '从平衡角度回答' },
+                    { type: '行为问题', text: '请描述一次你需要在多个利益相关方之间协调的经历。', hint: '说明各方诉求和协调策略' },
+                    { type: '行为问题', text: '当你与上级意见严重分歧时，你会如何处理？', hint: '考虑沟通方式和职业素养' }
+                ]
+            },
+            case: {
+                easy: [
+                    { type: '案例问题', text: '如果让你设计一个简单的登录页面，需要考虑哪些要素？', hint: '从用户体验和安全性角度思考' },
+                    { type: '案例问题', text: '如何优化一个加载缓慢的图片展示页面？', hint: '考虑图片压缩、懒加载等技术' },
+                    { type: '案例问题', text: '请设计一个简单的待办事项列表功能。', hint: '说明核心功能和交互方式' },
+                    { type: '案例问题', text: '如何实现一个简单的搜索功能？', hint: '考虑搜索框、结果展示等' },
+                    { type: '案例问题', text: '请设计一个用户反馈表单。', hint: '考虑字段设计和用户体验' },
+                    { type: '案例问题', text: '如何实现一个简单的轮播图组件？', hint: '说明实现思路和注意事项' }
+                ],
+                medium: [
+                    { type: '案例问题', text: '如果让你设计一个电商网站的购物车功能，你会如何设计？', hint: '考虑状态管理、库存同步、用户体验' },
+                    { type: '案例问题', text: '如何优化一个加载缓慢的管理后台系统？', hint: '从代码、网络、渲染多角度分析' },
+                    { type: '案例问题', text: '如果用户反馈页面卡顿，你会如何排查和解决？', hint: '使用性能分析工具定位问题' },
+                    { type: '案例问题', text: '请设计一个实时消息通知系统的架构。', hint: '考虑WebSocket、消息队列等' },
+                    { type: '案例问题', text: '如何设计一个支持百万用户的投票系统？', hint: '考虑并发、缓存、数据一致性' },
+                    { type: '案例问题', text: '请分析一个你使用过的产品，指出它的优缺点和改进建议。', hint: '从用户体验和功能设计角度分析' }
+                ],
+                hard: [
+                    { type: '案例问题', text: '请设计一个支持实时协作的在线文档编辑系统。', hint: '考虑冲突解决、状态同步、离线支持' },
+                    { type: '案例问题', text: '如何设计一个高可用的前端监控系统？', hint: '考虑数据采集、存储、告警机制' },
+                    { type: '案例问题', text: '请设计一个支持多租户的SaaS平台前端架构。', hint: '考虑隔离、定制化、权限控制' },
+                    { type: '案例问题', text: '如何实现一个支持10万+节点的可视化图表系统？', hint: '考虑渲染性能、交互体验、内存管理' },
+                    { type: '案例问题', text: '请设计一个前端微服务化架构方案。', hint: '考虑模块拆分、通信机制、部署策略' },
+                    { type: '案例问题', text: '如何设计一个支持A/B测试的前端实验平台？', hint: '考虑分流策略、数据收集、实验管理' }
+                ]
+            },
+            stress: {
+                easy: [
+                    { type: '压力问题', text: '你觉得这个职位最大的挑战是什么？', hint: '诚实表达你的看法' },
+                    { type: '压力问题', text: '如果入职后发现工作内容与预期不符，你会怎么做？', hint: '展示积极的态度' },
+                    { type: '压力问题', text: '你认为自己有哪些需要改进的地方？', hint: '诚实但建设性地回答' },
+                    { type: '压力问题', text: '如果同事不配合你的工作，你会怎么处理？', hint: '展示沟通和协调能力' },
+                    { type: '压力问题', text: '你为什么离开上一家公司？', hint: '积极正面地表达' },
+                    { type: '压力问题', text: '如果同时有多个紧急任务，你会如何安排？', hint: '展示时间管理能力' }
+                ],
+                medium: [
+                    { type: '压力问题', text: '你为什么觉得自己能胜任这个职位？我觉得你的经验还不够。', hint: '展示学习能力和成长潜力' },
+                    { type: '压力问题', text: '你刚才的回答让我不太满意，能重新组织一下吗？', hint: '保持冷静，重新思考回答' },
+                    { type: '压力问题', text: '如果今天必须上线一个功能，但团队只有你一个人，你会怎么做？', hint: '展示应变和解决问题的能力' },
+                    { type: '压力问题', text: '你的简历上写的项目经验，我怎么觉得都是一些简单的工作？', hint: '自信地说明你的贡献和价值' },
+                    { type: '压力问题', text: '你遇到过最棘手的bug是什么？我不相信你真的独立解决了。', hint: '详细说明解决过程和思考' },
+                    { type: '压力问题', text: '如果你和领导意见不一致，你会怎么办？说真话。', hint: '展示职业素养和沟通技巧' }
+                ],
+                hard: [
+                    { type: '压力问题', text: '我看过你的GitHub，代码质量很一般，你怎么解释？', hint: '保持自信，说明成长和学习过程' },
+                    { type: '压力问题', text: '坦白说，你的背景和我们团队不太匹配，你还有什么要说的吗？', hint: '展示你的独特价值和热情' },
+                    { type: '压力问题', text: '如果让你在一个月内完成一个需要三个月的项目，你会怎么做？', hint: '展示项目管理和沟通能力' },
+                    { type: '压力问题', text: '我听说你之前的公司对你评价不太好，是真的吗？', hint: '诚实但积极地回应' },
+                    { type: '压力问题', text: '你觉得你比其他候选人强在哪里？我看不到你的优势。', hint: '自信地展示你的独特价值' },
+                    { type: '压力问题', text: '如果入职后发现团队技术栈很落后，你会怎么做？', hint: '展示技术视野和推动能力' }
+                ]
+            }
+        };
+        
+        function startInterview() {
+            const type = document.getElementById('interviewType').value;
+            const difficulty = document.getElementById('difficulty').value;
+            
+            currentDifficulty = difficulty === 'timed' ? 'medium' : difficulty;
+            isTimedMode = difficulty === 'timed';
+            interviewType = type;
+            interviewAnswers = [];
+            interviewQuestions = [];
+            currentQuestion = 0;
+            
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('interviewContainer').classList.remove('hidden');
+            
+            const typeNames = {
+                technical: '🎯 技术面试',
+                behavioral: '🤝 行为面试',
+                case: '📊 案例面试',
+                stress: '😰 压力面试',
+                all: '🎯 综合面试'
+            };
+            
+            const difficultyNames = {
+                easy: '简单模式',
+                medium: '中等模式',
+                hard: '困难模式',
+                timed: '限时模式'
+            };
+            
+            document.getElementById('interviewTypeDisplay').textContent = typeNames[type];
+            document.getElementById('difficultyBadge').textContent = difficultyNames[difficulty];
+            
+            if (isTimedMode) {
+                document.getElementById('timer').classList.add('danger');
+            }
+            
+            initProgressDots(type, currentDifficulty);
+            initMedia().then(() => {
+                initSpeechRecognition();
+            });
+            startTimer();
+            loadQuestion();
+        }
+        
+        function initProgressDots(type, difficulty) {
+            let questionList = getQuestionList(type, difficulty);
+            totalQuestions = questionList.length;
+            
+            const container = document.getElementById('progressDots');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'progress-dot' + (i === 0 ? ' current' : '');
+                dot.id = `dot-${i}`;
+                container.appendChild(dot);
+            }
+        }
+        
+        function getQuestionList(type, difficulty) {
+            if (type === 'all') {
+                return [
+                    ...questions.technical[difficulty].slice(0, 2),
+                    ...questions.behavioral[difficulty].slice(0, 2),
+                    ...questions.case[difficulty].slice(0, 1),
+                    ...questions.stress[difficulty].slice(0, 1)
+                ];
+            }
+            return questions[type][difficulty] || questions[type]['medium'];
+        }
+        
+        async function initMedia() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                const video = document.getElementById('localVideo');
+                video.srcObject = localStream;
+                
+                document.getElementById('videoPlaceholder').style.display = 'none';
+                video.style.display = 'block';
+                cameraEnabled = true;
+                document.getElementById('cameraBtn').classList.add('active');
+                
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                const source = audioContext.createMediaStreamSource(localStream);
+                source.connect(analyser);
+                analyser.fftSize = 256;
+                
+                updateVolumeIndicator();
+            } catch (error) {
+                console.error('获取媒体设备失败:', error);
+                addMessage('interviewer', '⚠️ 无法访问摄像头或麦克风，请检查设备权限。您可以使用文字输入回答问题。');
+            }
+        }
+        
+        function updateVolumeIndicator() {
+            if (!analyser) return;
+            
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(dataArray);
+            
+            const bars = document.querySelectorAll('.volume-bar');
+            const step = Math.floor(dataArray.length / bars.length);
+            
+            bars.forEach((bar, i) => {
+                const value = dataArray[i * step];
+                const height = Math.max(4, (value / 255) * 14);
+                bar.style.height = height + 'px';
+                bar.style.background = micEnabled ? '#52c41a' : '#d9d9d9';
+            });
+            
+            requestAnimationFrame(updateVolumeIndicator);
+        }
+        
+        function startTimer() {
+            const timerEl = document.getElementById('timer');
+            
+            timerInterval = setInterval(() => {
+                if (isTimedMode) {
+                    timeLimit--;
+                    const mins = Math.floor(timeLimit / 60);
+                    const secs = timeLimit % 60;
+                    timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                    
+                    if (timeLimit <= 60) {
+                        timerEl.classList.add('danger');
+                        timerEl.classList.remove('warning');
+                    } else if (timeLimit <= 180) {
+                        timerEl.classList.add('warning');
+                    }
+                    
+                    if (timeLimit <= 0) {
+                        endInterview();
+                    }
+                } else {
+                    elapsedSeconds++;
+                    const mins = Math.floor(elapsedSeconds / 60);
+                    const secs = elapsedSeconds % 60;
+                    timerEl.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+            }, 1000);
+        }
+        
+        function loadQuestion() {
+            const type = document.getElementById('interviewType').value;
+            const questionList = getQuestionList(type, currentDifficulty);
+            
+            if (currentQuestion < questionList.length) {
+                const q = questionList[currentQuestion];
+                document.getElementById('questionNumber').textContent = `问题 ${currentQuestion + 1}/${totalQuestions}`;
+                document.getElementById('questionText').textContent = q.text;
+                document.getElementById('questionHint').textContent = q.hint || '思考后清晰表达你的观点';
+                
+                interviewQuestions.push({
+                    index: currentQuestion,
+                    type: q.type,
+                    text: q.text,
+                    hint: q.hint
+                });
+                
+                updateProgressDots();
+                addMessage('interviewer', q.text);
+                
+                document.getElementById('aiStatus').textContent = '等待回答...';
+            }
+        }
+        
+        function updateProgressDots() {
+            for (let i = 0; i < totalQuestions; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) {
+                    dot.classList.remove('completed', 'current');
+                    if (i < currentQuestion) {
+                        dot.classList.add('completed');
+                    } else if (i === currentQuestion) {
+                        dot.classList.add('current');
+                    }
+                }
+            }
+        }
+        
+        function addMessage(role, text) {
+            const container = document.getElementById('chatMessages');
+            const time = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+            
+            const roleInfo = role === 'interviewer' 
+                ? { icon: '🤖', name: '面试官' }
+                : { icon: '👤', name: '我' };
+            
+            const messageHtml = `
+                <div class="chat-message ${role}">
+                    <div class="message-role">${roleInfo.icon} ${roleInfo.name}</div>
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('beforeend', messageHtml);
+            container.scrollTop = container.scrollHeight;
+            
+            if (role === 'candidate' && text.trim()) {
+                const currentQ = interviewQuestions[interviewQuestions.length - 1];
+                if (currentQ) {
+                    const existingAnswer = interviewAnswers.find(a => a.questionIndex === currentQ.index);
+                    if (existingAnswer) {
+                        existingAnswer.text += ' ' + text;
+                    } else {
+                        interviewAnswers.push({
+                            questionIndex: currentQ.index,
+                            question: currentQ.text,
+                            text: text,
+                            time: time
+                        });
+                    }
+                }
+            }
+        }
+        
+        function initSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!SpeechRecognition) {
+                console.warn('浏览器不支持语音识别，请使用Chrome/Edge浏览器');
+                addMessage('interviewer', '⚠️ 当前浏览器不支持语音识别，请使用文字输入或换用Chrome/Edge浏览器。');
+                document.getElementById('micBtn').disabled = true;
+                document.getElementById('micBtn').style.opacity = '0.5';
+                return;
+            }
+            
+            const isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            if (!isSecure) {
+                console.warn('语音识别需要HTTPS或localhost环境');
+                addMessage('interviewer', '⚠️ 语音识别需要HTTPS环境或localhost访问，请使用文字输入回答问题。');
+                document.getElementById('micBtn').disabled = true;
+                document.getElementById('micBtn').style.opacity = '0.5';
+                return;
+            }
+            
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'zh-CN';
+            recognition.maxAlternatives = 1;
+            
+            let lastFinalTranscript = '';
+            let isRecognizing = false;
+            
+            addMessage('interviewer', '💡 点击"🎤 麦克风"按钮开始语音识别，或使用下方文字输入回答问题。');
+            
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+                
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript;
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+                
+                if (finalTranscript && finalTranscript.trim().length > 1 && finalTranscript !== lastFinalTranscript) {
+                    lastFinalTranscript = finalTranscript;
+                    addMessage('candidate', finalTranscript.trim());
+                    document.getElementById('aiStatus').textContent = '等待回答...';
+                }
+                
+                if (interimTranscript) {
+                    document.getElementById('aiStatus').textContent = `识别中: "${interimTranscript.substring(0, 15)}${interimTranscript.length > 15 ? '...' : ''}"`;
+                }
+            };
+            
+            recognition.onstart = () => {
+                isRecognizing = true;
+                document.getElementById('statusText').textContent = '正在录音...';
+                document.getElementById('statusDot').classList.add('recording');
+                document.getElementById('aiStatus').textContent = '正在聆听，请说话...';
+                console.log('语音识别已启动');
+            };
+            
+            recognition.onend = () => {
+                isRecognizing = false;
+                console.log('语音识别结束, micEnabled:', micEnabled);
+                
+                if (micEnabled) {
+                    setTimeout(() => {
+                        if (micEnabled && !isRecognizing) {
+                            try {
+                                recognition.start();
+                                console.log('语音识别重新启动');
+                            } catch (e) {
+                                console.log('Recognition restart failed:', e.message);
+                            }
+                        }
+                    }, 100);
+                } else {
+                    document.getElementById('statusText').textContent = '准备就绪';
+                    document.getElementById('statusDot').classList.remove('recording');
+                    document.getElementById('aiStatus').textContent = '等待回答...';
+                }
+            };
+            
+            recognition.onerror = (event) => {
+                console.error('语音识别错误:', event.error, event.message);
+                isRecognizing = false;
+                
+                const errorMessages = {
+                    'no-speech': '未检测到语音，请对着麦克风说话',
+                    'not-allowed': '麦克风权限被拒绝，请在浏览器设置中允许麦克风访问',
+                    'audio-capture': '未找到麦克风设备',
+                    'network': '网络错误，请检查网络连接',
+                    'aborted': '语音识别被中断',
+                    'service-not-allowed': '语音识别服务不可用'
+                };
+                
+                const message = errorMessages[event.error] || `语音识别错误: ${event.error}`;
+                document.getElementById('aiStatus').textContent = message;
+                
+                if (event.error === 'not-allowed') {
+                    addMessage('interviewer', '⚠️ 麦克风权限被拒绝，请点击地址栏左侧图标允许麦克风访问，或使用文字输入回答问题。');
+                    micEnabled = false;
+                    document.getElementById('micBtn').classList.remove('active');
+                    document.getElementById('micBtn').textContent = '🎤 麦克风';
+                }
+            };
+            
+            console.log('语音识别初始化完成');
+        }
+        
+        function speakQuestion() {
+            const text = document.getElementById('questionText').textContent;
+            
+            if (synthesis.speaking) {
+                synthesis.cancel();
+                document.getElementById('aiAvatar').classList.remove('speaking');
+                document.getElementById('aiStatus').textContent = '等待回答...';
+                return;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-CN';
+            utterance.rate = 0.9;
+            
+            const avatar = document.getElementById('aiAvatar');
+            avatar.classList.add('speaking');
+            document.getElementById('aiStatus').textContent = '正在朗读...';
+            
+            utterance.onend = () => {
+                avatar.classList.remove('speaking');
+                document.getElementById('aiStatus').textContent = '等待回答...';
+            };
+            
+            synthesis.speak(utterance);
+        }
+        
+        function toggleMic() {
+            micEnabled = !micEnabled;
+            const btn = document.getElementById('micBtn');
+            
+            if (micEnabled) {
+                btn.classList.add('active');
+                btn.textContent = '🎤 录音中';
+                if (localStream) {
+                    localStream.getAudioTracks().forEach(track => track.enabled = true);
+                }
+                
+                if (!recognition) {
+                    initSpeechRecognition();
+                }
+                
+                if (recognition) {
+                    try {
+                        recognition.start();
+                        console.log('手动启动语音识别');
+                    } catch (e) {
+                        console.log('Recognition start error:', e.message);
+                        if (e.message.includes('already started')) {
+                            console.log('语音识别已在运行中');
+                        }
+                    }
+                }
+                document.getElementById('statusText').textContent = '正在录音...';
+                document.getElementById('statusDot').classList.add('recording');
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = '🎤 麦克风';
+                if (localStream) {
+                    localStream.getAudioTracks().forEach(track => track.enabled = false);
+                }
+                if (recognition) {
+                    try {
+                        recognition.stop();
+                    } catch (e) {
+                        console.log('Recognition stop error:', e.message);
+                    }
+                }
+                document.getElementById('statusText').textContent = '准备就绪';
+                document.getElementById('statusDot').classList.remove('recording');
+            }
+        }
+        
+        function toggleCamera() {
+            cameraEnabled = !cameraEnabled;
+            const btn = document.getElementById('cameraBtn');
+            const video = document.getElementById('localVideo');
+            const placeholder = document.getElementById('videoPlaceholder');
+            
+            if (cameraEnabled) {
+                btn.classList.add('active');
+                btn.textContent = '📷 摄像中';
+                if (localStream) {
+                    localStream.getVideoTracks().forEach(track => track.enabled = true);
+                }
+                video.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = '📷 摄像头';
+                if (localStream) {
+                    localStream.getVideoTracks().forEach(track => track.enabled = false);
+                }
+                video.style.display = 'none';
+                placeholder.style.display = 'flex';
+            }
+        }
+        
+        function sendTextMessage() {
+            const input = document.getElementById('textInput');
+            const text = input.value.trim();
+            
+            if (text) {
+                addMessage('candidate', text);
+                input.value = '';
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendTextMessage();
+            }
+        }
+        
+        function nextQuestion() {
+            currentQuestion++;
+            const type = document.getElementById('interviewType').value;
+            const questionList = getQuestionList(type, currentDifficulty);
+            
+            if (currentQuestion < questionList.length) {
+                loadQuestion();
+            } else {
+                endInterview();
+            }
+        }
+        
+        function endInterview() {
+            clearInterval(timerInterval);
+            
+            if (recognition) {
+                recognition.stop();
+            }
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+            
+            document.getElementById('interviewContainer').classList.add('hidden');
+            document.getElementById('endScreen').classList.remove('hidden');
+            
+            generateReport();
+        }
+        
+        function generateReport() {
+            const endBtn = document.getElementById('endBtn');
+            endBtn.disabled = true;
+            endBtn.textContent = '正在生成报告...';
+            
+            let answeredCount = interviewAnswers.length;
+            let totalQuestionsCount = totalQuestions;
+            
+            let expressionScore = 0;
+            let depthScore = 0;
+            let logicScore = 0;
+            let adaptScore = 0;
+            
+            interviewAnswers.forEach((answer, index) => {
+                const textLength = answer.text.length;
+                const wordCount = answer.text.split(/\s+/).filter(w => w.length > 0).length;
+                
+                const qScore = Math.min(95, 60 + Math.floor(textLength / 10) + Math.floor(Math.random() * 15));
+                
+                expressionScore += Math.min(95, 65 + Math.floor(wordCount / 3) + Math.floor(Math.random() * 10));
+                depthScore += Math.min(95, 60 + Math.floor(textLength / 15) + Math.floor(Math.random() * 15));
+                logicScore += Math.min(95, 70 + Math.floor(Math.random() * 15));
+                adaptScore += qScore;
+            });
+            
+            if (answeredCount > 0) {
+                expressionScore = Math.floor(expressionScore / answeredCount);
+                depthScore = Math.floor(depthScore / answeredCount);
+                logicScore = Math.floor(logicScore / answeredCount);
+                adaptScore = Math.floor(adaptScore / answeredCount);
+            } else {
+                expressionScore = 70;
+                depthScore = 70;
+                logicScore = 70;
+                adaptScore = 70;
+            }
+            
+            const finalScore = Math.floor((expressionScore + depthScore + logicScore + adaptScore) / 4);
+            
+            document.getElementById('finalScore').textContent = finalScore;
+            document.getElementById('scoreExpression').textContent = expressionScore;
+            document.getElementById('scoreDepth').textContent = depthScore;
+            document.getElementById('scoreLogic').textContent = logicScore;
+            document.getElementById('scoreAdapt').textContent = adaptScore;
+            
+            let reportHtml = '';
+            interviewQuestions.forEach((q, index) => {
+                const answer = interviewAnswers.find(a => a.questionIndex === q.index);
+                const answerText = answer ? answer.text : '（未回答）';
+                const score = answer ? Math.min(95, 60 + Math.floor(answer.text.length / 10) + Math.floor(Math.random() * 15)) : 0;
+                
+                reportHtml += `
+                    <div class="report-item">
+                        <div class="report-item-header">
+                            <span class="report-item-number">问题 ${index + 1}</span>
+                        </div>
+                        <div class="report-item-question">${q.text}</div>
+                        <div class="report-item-answer">${answerText.substring(0, 100)}${answerText.length > 100 ? '...' : ''}</div>
+                        <div class="report-item-score">
+                            <span class="report-item-score-label">回答评分</span>
+                            <span class="report-item-score-value">${score}分</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('reportItems').innerHTML = reportHtml;
+            
+            const summaryText = generateSummary(finalScore, expressionScore, depthScore, logicScore, adaptScore, answeredCount, totalQuestionsCount);
+            document.getElementById('summaryText').textContent = summaryText;
+            
+            const tags = generateTags(finalScore, expressionScore, depthScore, logicScore, adaptScore);
+            document.getElementById('reportTags').innerHTML = tags;
+            
+            let countdown = 2;
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                endBtn.textContent = `请稍候 ${countdown}秒...`;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    endBtn.disabled = false;
+                    endBtn.textContent = '返回首页';
+                    document.getElementById('scoreNote').textContent = '报告已生成完成';
+                }
+            }, 1000);
+        }
+        
+        function generateSummary(final, exp, depth, logic, adapt, answered, total) {
+            let summary = `本次面试共${total}道题目，您回答了${answered}道。`;
+            
+            if (final >= 85) {
+                summary += '整体表现优秀，展现出扎实的专业功底和良好的沟通能力。';
+            } else if (final >= 75) {
+                summary += '整体表现良好，具备一定的专业素养和表达能力。';
+            } else if (final >= 60) {
+                summary += '整体表现一般，建议加强专业知识和表达能力的训练。';
+            } else {
+                summary += '整体表现有待提升，建议系统性地准备面试相关内容。';
+            }
+            
+            if (exp >= 85) {
+                summary += '表达清晰流畅，能够有效传达观点。';
+            } else if (exp < 70) {
+                summary += '建议多加练习口语表达，提高回答的条理性。';
+            }
+            
+            if (depth >= 85) {
+                summary += '专业理解深入，能够从多角度分析问题。';
+            } else if (depth < 70) {
+                summary += '建议深入学习专业知识，增强技术深度。';
+            }
+            
+            return summary;
+        }
+        
+        function generateTags(final, exp, depth, logic, adapt) {
+            let tags = '';
+            
+            if (exp >= 80) {
+                tags += '<span class="report-tag success">表达清晰</span>';
+            } else {
+                tags += '<span class="report-tag warning">表达待提升</span>';
+            }
+            
+            if (depth >= 80) {
+                tags += '<span class="report-tag success">专业扎实</span>';
+            } else {
+                tags += '<span class="report-tag warning">专业待加强</span>';
+            }
+            
+            if (logic >= 80) {
+                tags += '<span class="report-tag success">逻辑清晰</span>';
+            } else {
+                tags += '<span class="report-tag warning">逻辑待优化</span>';
+            }
+            
+            if (adapt >= 80) {
+                tags += '<span class="report-tag success">应变能力强</span>';
+            } else {
+                tags += '<span class="report-tag warning">应变待提高</span>';
+            }
+            
+            if (final >= 85) {
+                tags += '<span class="report-tag">优秀候选人</span>';
+            }
+            
+            return tags;
+        }
+        
+        function goHome() {
+            window.location.href = 'enterprise-app.html';
+        }
+        
+        function clearMessages() {
+            document.getElementById('chatMessages').innerHTML = '';
+        }
+        
+        function openChat() {
+            window.location.href = 'enterprise-app.html?tab=chat';
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT') return;
+            
+            if (e.key === 'n' || e.key === 'N') {
+                nextQuestion();
+            } else if (e.key === 'm' || e.key === 'M') {
+                toggleMic();
+            } else if (e.key === 'c' || e.key === 'C') {
+                toggleCamera();
+            } else if (e.key === 's' || e.key === 'S') {
+                speakQuestion();
+            }
+        });
+    </script>
+</body>
+</html>

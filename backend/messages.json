@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1771722128337",
+    "fromUserId": 1,
+    "fromUserName": "老板",
+    "fromUserAvatar": "👔",
+    "toUserId": "all",
+    "toUserName": "所有人",
+    "content": "大家好，我是老板，站内信系统上线了！",
+    "mention": null,
+    "readBy": [
+      1
+    ],
+    "createdAt": "2026-02-22T01:02:08.337Z"
+  }
+]

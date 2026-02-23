@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI开发助手 - ResumeFlow Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow: hidden;
+        }
+        
+        .assistant-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px 20px 0 0;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header h1::before {
+            content: "🤖";
+            font-size: 1.5em;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2ecc71;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .chat-panel {
+            flex: 2;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message.assistant {
+            align-self: flex-start;
+            background: #f8f9fa;
+            color: #2c3e50;
+            border-bottom-left-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .message.system {
+            align-self: center;
+            background: #fff3cd;
+            color: #856404;
+            border-radius: 10px;
+            font-size: 0.9em;
+            text-align: center;
+            max-width: 90%;
+        }
+        
+        .message-time {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+        
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .chat-input input:focus {
+            border-color: #3498db;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .btn-voice {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            justify-content: center;
+        }
+        
+        .btn-voice.listening {
+            animation: listening 1s infinite;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        @keyframes listening {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .tools-panel {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tool-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+        }
+        
+        .tool-section h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .quick-btn {
+            padding: 10px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        
+        .quick-btn:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .task-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .task-item {
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-left: 3px solid #3498db;
+        }
+        
+        .task-item.completed {
+            border-left-color: #2ecc71;
+            opacity: 0.7;
+        }
+        
+        .task-item.error {
+            border-left-color: #e74c3c;
+        }
+        
+        .voice-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .voice-wave {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .wave-bar {
+            width: 4px;
+            background: #3498db;
+            border-radius: 2px;
+            animation: wave 1.5s infinite;
+        }
+        
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.6s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes wave {
+            0%, 100% { height: 10px; }
+            50% { height: 30px; }
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .tools-panel {
+                order: -1;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="assistant-container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>AI开发助手</h1>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>在线 - 准备为您服务</span>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="main-content">
+            <!-- 聊天面板 -->
+            <div class="chat-panel">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message assistant">
+                        🤖 您好！我是您的AI开发助手，我可以帮助您：
+                        <br>• 分析代码结构和问题
+                        <br>• 执行开发任务和测试
+                        <br>• 管理项目进度和配置
+                        <br>• 提供技术建议和优化
+                        <div class="message-time">刚刚</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="输入您的问题或指令..." autocomplete="off">
+                    <button class="btn btn-voice" id="voiceBtn" title="语音输入">🎤</button>
+                    <button class="btn btn-primary" id="sendBtn">发送</button>
+                </div>
+            </div>
+
+            <!-- 工具面板 -->
+            <div class="tools-panel">
+                <div class="tool-section">
+                    <h3>🚀 快速操作</h3>
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="quickAction('analyze')">分析代码</button>
+                        <button class="quick-btn" onclick="quickAction('test')">运行测试</button>
+                        <button class="quick-btn" onclick="quickAction('deploy')">部署系统</button>
+                        <button class="quick-btn" onclick="quickAction('config')">查看配置</button>
+                        <button class="quick-btn" onclick="quickAction('status')">系统状态</button>
+                        <button class="quick-btn" onclick="quickAction('help')">使用帮助</button>
+                    </div>
+                </div>
+                
+                <div class="tool-section">
+                    <h3>📋 任务队列</h3>
+                    <div class="task-list" id="taskList">
+                        <div class="task-item">
+                            <span class="loading"></span> 初始化助手系统
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tool-section">
+                    <h3>🔧 系统工具</h3>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn btn-secondary" onclick="openProject()">📁 打开项目</button>
+                        <button class="btn btn-secondary" onclick="openConfig()">⚙️ 模型配置</button>
+                        <button class="btn btn-secondary" onclick="openDatabase()">🗄️ 查看数据库</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 语音识别指示器 -->
+    <div class="voice-indicator" id="voiceIndicator">
+        <div class="voice-wave">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+        <div>正在聆听...请说话</div>
+        <div style="font-size: 0.8em; margin-top: 10px;">点击任意位置停止</div>
+    </div>
+
+    <script>
+        // 全局变量
+        let isListening = false;
+        let recognition = null;
+        let currentTasks = [];
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAssistant();
+            setupEventListeners();
+            loadInitialTasks();
+        });
+
+        // 初始化助手
+        function initializeAssistant() {
+            console.log('🤖 AI助手初始化完成');
+            
+            // 初始化语音识别（如果浏览器支持）
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'zh-CN';
+                
+                recognition.onstart = function() {
+                    isListening = true;
+                    document.getElementById('voiceIndicator').style.display = 'block';
+                    document.getElementById('voiceBtn').classList.add('listening');
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('messageInput').value = transcript;
+                    sendMessage();
+                };
+                
+                recognition.onend = function() {
+                    isListening = false;
+                    document.getElementById('voiceIndicator').style.display = 'none';
+                    document.getElementById('voiceBtn').classList.remove('listening');
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('语音识别错误:', event.error);
+                    addMessage('system', `语音识别失败: ${event.error}`);
+                };
+            } else {
+                console.warn('浏览器不支持语音识别');
+                document.getElementById('voiceBtn').style.display = 'none';
+            }
+        }
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 发送消息
+            document.getElementById('sendBtn').addEventListener('click', sendMessage);
+            
+            // 回车发送
+            document.getElementById('messageInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // 语音按钮
+            document.getElementById('voiceBtn').addEventListener('click', toggleVoiceRecognition);
+            
+            // 点击任意位置停止语音识别
+            document.addEventListener('click', function(e) {
+                if (isListening && e.target.id !== 'voiceBtn') {
+                    recognition.stop();
+                }
+            });
+        }
+
+        // 发送消息
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // 添加用户消息
+            addMessage('user', message);
+            input.value = '';
+            
+            // 处理消息
+            processMessage(message);
+        }
+
+        // 添加消息到聊天界面
+        function addMessage(type, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const time = new Date().toLocaleTimeString('zh-CN', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            messageDiv.innerHTML = `${content}<div class="message-time">${time}</div>`;
+            messagesContainer.appendChild(messageDiv);
+            
+            // 滚动到底部
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // 处理消息逻辑
+        function processMessage(message) {
+            // 显示正在输入
+            const loadingMessage = document.createElement('div');
+            loadingMessage.className = 'message assistant';
+            loadingMessage.innerHTML = '<span class="loading"></span> 正在思考...';
+            document.getElementById('chatMessages').appendChild(loadingMessage);
+            
+            // 调用后端API处理消息
+            callAssistantAPI(message).then(response => {
+                // 移除加载消息
+                loadingMessage.remove();
+                
+                // 显示AI响应
+                addMessage('assistant', response.message);
+                
+                // 执行相关任务
+                if (response.data) {
+                    executeTask(message, response.data);
+                }
+            }).catch(error => {
+                // 移除加载消息
+                loadingMessage.remove();
+                
+                // 显示错误信息
+                addMessage('assistant', `❌ 处理失败: ${error.message}\n🔧 请检查AI助手服务是否正常运行`);
+                
+                // 回退到本地处理
+                const fallbackResponse = generateFallbackResponse(message);
+                addMessage('assistant', fallbackResponse);
+            });
+        }
+
+        // 调用AI助手API
+        async function callAssistantAPI(message) {
+            const response = await fetch('http://localhost:3003/api/assistant/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            return data.data;
+        }
+
+        // 回退响应生成
+        function generateFallbackResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('你好') || lowerMessage.includes('hello')) {
+                return '👋 您好！我是您的AI开发助手（离线模式），随时为您提供技术支持！';
+            } else if (lowerMessage.includes('分析') || lowerMessage.includes('analyze')) {
+                return '🔍 离线分析模式...\n⚠️ 建议启动AI助手服务获得完整功能';
+            } else if (lowerMessage.includes('测试') || lowerMessage.includes('test')) {
+                return '🧪 离线测试模式...\n⚠️ 建议启动AI助手服务获得完整功能';
+            } else if (lowerMessage.includes('部署') || lowerMessage.includes('deploy')) {
+                return '🚀 离线部署模式...\n⚠️ 建议启动AI助手服务获得完整功能';
+            } else if (lowerMessage.includes('状态') || lowerMessage.includes('status')) {
+                return '📊 离线状态检查...\n⚠️ 建议启动AI助手服务获得完整功能';
+            } else {
+                return `🤖 收到您的指令："${message}"（离线模式）\n\n⚠️ AI助手服务未连接，部分功能受限\n💡 请启动AI助手服务获得完整智能支持`;
+            }
+        }
+
+        // 执行任务
+        function executeTask(message, data = null) {
+            const taskId = 'task_' + Date.now();
+            
+            // 添加到任务队列
+            addTask(taskId, message, 'pending');
+            
+            // 根据消息类型执行不同任务
+            if (message.includes('分析') || message.includes('analyze')) {
+                handleAnalysisTask(taskId, data);
+            } else if (message.includes('测试') || message.includes('test')) {
+                handleTestTask(taskId, data);
+            } else if (message.includes('状态') || message.includes('status')) {
+                handleStatusTask(taskId, data);
+            } else {
+                // 默认任务处理
+                setTimeout(() => {
+                    updateTask(taskId, 'completed', '任务执行成功');
+                }, 2000);
+            }
+        }
+
+        // 处理分析任务
+        function handleAnalysisTask(taskId, data) {
+            if (data && data.type === 'analysis') {
+                const analysis = data.data;
+                let details = '';
+                
+                if (analysis.success) {
+                    details = `发现 ${analysis.data.issues.length} 个问题，${analysis.data.recommendations.length} 条建议`;
+                } else {
+                    details = `分析失败: ${analysis.error}`;
+                }
+                
+                updateTask(taskId, 'completed', details);
+            } else {
+                updateTask(taskId, 'completed', '分析任务完成');
+            }
+        }
+
+        // 处理测试任务
+        function handleTestTask(taskId, data) {
+            if (data && data.type === 'test') {
+                const testResult = data.data;
+                let details = testResult.success ? '所有测试通过' : `测试失败: ${testResult.error}`;
+                updateTask(taskId, 'completed', details);
+            } else {
+                updateTask(taskId, 'completed', '测试任务完成');
+            }
+        }
+
+        // 处理状态检查任务
+        function handleStatusTask(taskId, data) {
+            if (data && data.type === 'status') {
+                const status = data.data;
+                let details = `健康状态: ${status.health}`;
+                updateTask(taskId, 'completed', details);
+            } else {
+                updateTask(taskId, 'completed', '状态检查完成');
+            }
+        }
+
+        // 语音识别切换
+        function toggleVoiceRecognition() {
+            if (!recognition) {
+                addMessage('system', '您的浏览器不支持语音识别功能');
+                return;
+            }
+            
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        // 快速操作
+        function quickAction(action) {
+            let message = '';
+            
+            switch(action) {
+                case 'analyze':
+                    message = '分析当前项目代码结构';
+                    break;
+                case 'test':
+                    message = '运行系统测试';
+                    break;
+                case 'deploy':
+                    message = '部署到生产环境';
+                    break;
+                case 'config':
+                    message = '查看系统配置';
+                    break;
+                case 'status':
+                    message = '检查系统状态';
+                    break;
+                case 'help':
+                    message = '显示使用帮助';
+                    break;
+            }
+            
+            document.getElementById('messageInput').value = message;
+            sendMessage();
+        }
+
+        // 添加任务到队列
+        function addTask(id, description, status) {
+            currentTasks.push({ id, description, status, progress: 0 });
+            updateTaskList();
+        }
+
+        // 更新任务状态
+        function updateTask(id, status, message = '') {
+            const task = currentTasks.find(t => t.id === id);
+            if (task) {
+                task.status = status;
+                if (message) task.message = message;
+                updateTaskList();
+            }
+        }
+
+        // 更新任务列表显示
+        function updateTaskList() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = '';
+            
+            currentTasks.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.className = `task-item ${task.status}`;
+                
+                let statusIcon = '';
+                if (task.status === 'pending') statusIcon = '<span class="loading"></span>';
+                else if (task.status === 'completed') statusIcon = '✅';
+                else if (task.status === 'error') statusIcon = '❌';
+                
+                taskItem.innerHTML = `${statusIcon} ${task.description}`;
+                if (task.message) {
+                    taskItem.innerHTML += `<br><small>${task.message}</small>`;
+                }
+                
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        // 加载初始任务
+        function loadInitialTasks() {
+            addTask('init_1', '初始化AI助手系统', 'completed');
+            addTask('init_2', '连接后端服务', 'completed');
+            addTask('init_3', '准备语音识别', currentTasks.length > 0 ? 'completed' : 'pending');
+        }
+
+        // 系统工具函数
+        function openProject() {
+            window.open('enterprise-app.html', '_blank');
+        }
+
+        function openConfig() {
+            window.open('model-config.html', '_blank');
+        }
+
+        function openDatabase() {
+            addMessage('assistant', '📊 正在打开数据库查看器...');
+            // 这里可以添加打开数据库界面的逻辑
+            setTimeout(() => {
+                addMessage('system', '数据库查看器功能开发中...');
+            }, 1000);
+        }
+
+        // 系统通知
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `message system ${type}`;
+            notification.textContent = message;
+            document.getElementById('chatMessages').appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

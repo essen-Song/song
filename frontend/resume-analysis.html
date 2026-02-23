@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历分析 - 智聘AI</title>
+    <style>
+        /* 企业级CSS重置和基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 企业级色彩系统 */
+            --primary-color: #1890ff;
+            --primary-hover: #40a9ff;
+            --success-color: #52c41a;
+            --warning-color: #faad14;
+            --error-color: #f5222d;
+            --text-primary: #262626;
+            --text-secondary: #595959;
+            --text-tertiary: #8c8c8c;
+            --border-color: #d9d9d9;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --header-height: 64px;
+            --sidebar-width: 240px;
+            --border-radius: 6px;
+            --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* 企业级头部导航 */
+        .header {
+            height: var(--header-height);
+            background: var(--card-background);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 主内容区域 */
+        .main-container {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--card-background);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: var(--header-height);
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            flex: 1;
+            padding: 0;
+        }
+
+        .sidebar-item {
+            padding: 14px 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+            border-left-color: var(--primary-color);
+        }
+
+        .sidebar-item .icon {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+            background: var(--background-color);
+        }
+
+        .sidebar-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--error-color);
+        }
+
+        .status-indicator.online {
+            background: var(--success-color);
+        }
+
+        .content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 24px;
+        }
+
+        /* 企业级卡片设计 */
+        .card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            margin-bottom: 24px;
+        }
+
+        .card:hover {
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .card-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* 企业级表单控件 */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: all 0.3s;
+            background: var(--card-background);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* 企业级按钮 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 网格布局 */
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .col-full {
+            grid-column: 1 / -1;
+        }
+
+        /* 状态指示器 */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(82, 196, 26, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-warning {
+            background: rgba(250, 173, 20, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-error {
+            background: rgba(245, 34, 45, 0.1);
+            color: var(--error-color);
+        }
+
+        /* 标签样式 */
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background: rgba(24, 144, 255, 0.1);
+            color: var(--primary-color);
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* 列表样式 */
+        .list-group {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-group-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .list-group-item:hover {
+            background: rgba(24, 144, 255, 0.05);
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 通知样式 */
+        .notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            min-width: 300px;
+            border-left: 4px solid #1890ff;
+        }
+
+        .notification-success { border-left-color: #52c41a; }
+        .notification-warning { border-left-color: #faad14; }
+        .notification-error { border-left-color: #f5222d; }
+        .notification-content {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        /* 标签页样式 */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            box-shadow: var(--box-shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .skill-card h4 {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .skill-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 企业级头部导航 -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">智</div>
+            <span>智聘AI</span>
+        </div>
+        
+        <div class="user-info">
+            <div class="status status-success">
+                <span class="loading"></span>
+                服务正常
+            </div>
+            <div>管理员</div>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+        <!-- 侧边栏菜单 -->
+        <aside class="sidebar">
+            <div class="sidebar-header" onclick="navigateTo('home')">
+                <h3 style="cursor: pointer;">首页</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item">
+                    <span class="icon">📁</span>
+                    简历管理
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">📄</span>
+                    简历优化
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🎯</span>
+                    职位匹配
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">📤</span>
+                    智能投递
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🎤</span>
+                    面试教练
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🎯</span>
+                    视频面试
+                </li>
+                <li class="sidebar-item active">
+                    <span class="icon">🔍</span>
+                    简历分析
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">📊</span>
+                    数据分析
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">⚙️</span>
+                    模型配置
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🔧</span>
+                    系统设置
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="sidebar-status">
+                    <div class="status-indicator online"></div>
+                    <span>服务正常</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主要内容 -->
+        <main class="content">
+            <!-- 页面标题 -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>🔍 简历分析</h2>
+                    <p>深度分析简历内容，提供面试准备策略</p>
+                </div>
+                <div class="card-body">
+                    <!-- 标签页导航 -->
+                    <div class="tabs">
+                        <div class="tab active" onclick="switchTab('skills')">面试技巧</div>
+                        <div class="tab" onclick="switchTab('questions')">行业问题库</div>
+                        <div class="tab" onclick="switchTab('plan')">准备计划</div>
+                        <div class="tab" onclick="switchTab('match')">匹配分析</div>
+                    </div>
+
+                    <!-- 面试技巧和建议库 -->
+                    <div id="skills" class="tab-content active">
+                        <div class="row">
+                            <div class="col-full">
+                                <h3 style="margin-bottom: 24px; font-size: 18px; font-weight: 600;">面试技巧和建议库</h3>
+                                <p style="margin-bottom: 24px; color: var(--text-secondary);">浏览以下面试技巧和建议，帮助您在面试中脱颖而出</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- 通用面试技巧 -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">通用面试技巧</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card-grid">
+                                        <div class="skill-card">
+                                            <h4>STAR法则</h4>
+                                            <p>使用情境(Situation)、任务(Task)、行动(Action)、结果(Result)结构来回答行为问题</p>
+                                        </div>
+                                        <div class="skill-card">
+                                            <h4>自我介绍</h4>
+                                            <p>准备一个简洁有力的自我介绍，突出您的核心优势和成就</p>
+                                        </div>
+                                        <div class="skill-card">
+                                            <h4>问题准备</h4>
+                                            <p>提前准备常见面试问题的答案，包括您的优点、缺点和职业目标</p>
+                                        </div>
+                                        <div class="skill-card">
+                                            <h4>公司研究</h4>
+                                            <p>深入了解面试公司的业务、文化和最新动态，展示您的诚意</p>
+                                        </div>
+                                        <div class="skill-card">
+                                            <h4>非语言沟通</h4>
+                                            <p>注意肢体语言、眼神接触和面部表情，展现自信和专业</p>
+                                        </div>
+                                        <div class="skill-card">
+                                            <h4>提问准备</h4>
+                                            <p>准备几个有深度的问题，展示您对职位和公司的兴趣</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 行业特定技巧 -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">行业特定技巧</div>
+                                    <div>
+                                        <select class="form-control" id="industrySelect" style="width: 200px;" onchange="loadIndustrySkills()">
+                                            <option value="tech">技术行业</option>
+                                            <option value="finance">金融行业</option>
+                                            <option value="marketing">市场营销</option>
+                                            <option value="hr">人力资源</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="industrySkills">
+                                        <div class="card-grid">
+                                            <div class="skill-card">
+                                                <h4>技术面试</h4>
+                                                <p>准备技术栈相关问题，练习算法和编程题，展示您的问题解决能力</p>
+                                            </div>
+                                            <div class="skill-card">
+                                                <h4>项目经验</h4>
+                                                <p>准备详细的项目案例，包括技术挑战、解决方案和成果</p>
+                                            </div>
+                                            <div class="skill-card">
+                                                <h4>技术趋势</h4>
+                                                <p>了解行业最新技术趋势和工具，展示您的学习能力和前瞻性</p>
+                                            </div>
+                                            <div class="skill-card">
+                                                <h4>代码质量</h4>
+                                                <p>强调代码可读性、可维护性和性能优化的重要性</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 行业特定面试问题库 -->
+                    <div id="questions" class="tab-content">
+                        <div class="row">
+                            <div class="col-full">
+                                <h3 style="margin-bottom: 24px; font-size: 18px; font-weight: 600;">行业特定面试问题库</h3>
+                                <p style="margin-bottom: 24px; color: var(--text-secondary);">浏览以下行业特定问题，提前准备您的答案</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">选择行业</div>
+                                    <div>
+                                        <select class="form-control" id="questionIndustrySelect" style="width: 200px;" onchange="loadIndustryQuestions()">
+                                            <option value="frontend">前端开发</option>
+                                            <option value="backend">后端开发</option>
+                                            <option value="data">数据分析</option>
+                                            <option value="product">产品经理</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="industryQuestions">
+                                        <h4 style="margin-bottom: 16px;">前端开发常见问题</h4>
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <strong>请解释一下CSS盒模型</strong>
+                                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">标准盒模型和IE盒模型的区别，以及如何通过CSS切换</p>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong>什么是闭包？闭包有什么作用？</strong>
+                                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">闭包的定义、特性和实际应用场景</p>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong>请解释一下事件冒泡和事件捕获</strong>
+                                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">DOM事件流的两个阶段，以及如何控制事件传播</p>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong>如何优化前端性能？</strong>
+                                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">从加载速度、渲染性能、运行时性能等方面进行优化</p>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <strong>请解释一下React的虚拟DOM</strong>
+                                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">虚拟DOM的工作原理和优势</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 面试准备计划生成器 -->
+                    <div id="plan" class="tab-content">
+                        <div class="row">
+                            <div class="col-full">
+                                <h3 style="margin-bottom: 24px; font-size: 18px; font-weight: 600;">面试准备计划生成器</h3>
+                                <p style="margin-bottom: 24px; color: var(--text-secondary);">输入您的面试日期和职位信息，生成个性化的面试准备计划</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">准备计划设置</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">目标职位</label>
+                                        <input type="text" class="form-control" id="targetJob" placeholder="请输入目标职位，例如：前端开发工程师">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">面试日期</label>
+                                        <input type="date" class="form-control" id="interviewDate">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">面试类型</label>
+                                        <select class="form-control" id="interviewType">
+                                            <option value="technical">技术面试</option>
+                                            <option value="behavioral">行为面试</option>
+                                            <option value="case">案例面试</option>
+                                            <option value="panel">Panel面试</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">准备时间（小时）</label>
+                                        <input type="number" class="form-control" id="prepHours" value="20" min="5" max="100">
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" onclick="generatePlan()">生成准备计划</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">准备计划</div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="planContent">
+                                        <div style="text-align: center; padding: 40px;">
+                                            <div style="font-size: 32px; margin-bottom: 16px;">📅</div>
+                                            <h4>暂无准备计划</h4>
+                                            <p style="margin-top: 8px; color: var(--text-secondary);">填写左侧信息并点击生成按钮</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 简历与面试问题匹配度分析 -->
+                    <div id="match" class="tab-content">
+                        <div class="row">
+                            <div class="col-full">
+                                <h3 style="margin-bottom: 24px; font-size: 18px; font-weight: 600;">简历与面试问题匹配度分析</h3>
+                                <p style="margin-bottom: 24px; color: var(--text-secondary);">上传您的简历，分析可能被问到的面试问题</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">选择简历</div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">简历选择</label>
+                                        <select class="form-control" id="resumeSelect">
+                                            <option value="">请选择要分析的简历</option>
+                                            <option value="resume1">简历1.pdf</option>
+                                            <option value="resume2">简历2.pdf</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="form-label">目标职位描述</label>
+                                        <textarea class="form-control" id="jobDescription" placeholder="请粘贴目标职位的详细描述"></textarea>
+                                    </div>
+                                    
+                                    <button class="btn btn-primary" onclick="analyzeResume()">分析简历</button>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="card-title">分析结果</div>
+                                </div>
+                                <div class="card-body">
+                                    <div id="analysisResult">
+                                        <div style="text-align: center; padding: 40px;">
+                                            <div style="font-size: 32px; margin-bottom: 16px;">🔍</div>
+                                            <h4>暂无分析结果</h4>
+                                            <p style="margin-top: 8px; color: var(--text-secondary);">选择简历并点击分析按钮</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 导航功能
+        function navigateTo(page) {
+            switch(page) {
+                case 'home':
+                    window.location.href = 'enterprise-app.html';
+                    break;
+                case 'interview':
+                    window.location.href = 'enterprise-app.html#interview';
+                    break;
+                case 'video':
+                    window.location.href = 'interview-video.html';
+                    break;
+            }
+        }
+
+        // 切换标签页
+        function switchTab(tabId) {
+            // 隐藏所有标签内容
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 移除所有标签的活动状态
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的标签内容
+            document.getElementById(tabId).classList.add('active');
+            
+            // 激活选中的标签
+            event.target.classList.add('active');
+        }
+
+        // 加载行业特定技巧
+        function loadIndustrySkills() {
+            const industry = document.getElementById('industrySelect').value;
+            const skillsContainer = document.getElementById('industrySkills');
+            
+            let skillsHTML = '';
+            
+            switch(industry) {
+                case 'tech':
+                    skillsHTML = `
+                        <div class="card-grid">
+                            <div class="skill-card">
+                                <h4>技术面试</h4>
+                                <p>准备技术栈相关问题，练习算法和编程题，展示您的问题解决能力</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>项目经验</h4>
+                                <p>准备详细的项目案例，包括技术挑战、解决方案和成果</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>技术趋势</h4>
+                                <p>了解行业最新技术趋势和工具，展示您的学习能力和前瞻性</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>代码质量</h4>
+                                <p>强调代码可读性、可维护性和性能优化的重要性</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'finance':
+                    skillsHTML = `
+                        <div class="card-grid">
+                            <div class="skill-card">
+                                <h4>市场知识</h4>
+                                <p>了解金融市场趋势、产品和服务，展示您的行业洞察力</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>数据分析</h4>
+                                <p>准备数据分析案例，展示您的量化分析能力</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>客户服务</h4>
+                                <p>强调您的客户服务理念和沟通技巧</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>合规意识</h4>
+                                <p>展示您对金融法规和合规要求的了解</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'marketing':
+                    skillsHTML = `
+                        <div class="card-grid">
+                            <div class="skill-card">
+                                <h4>数字营销</h4>
+                                <p>准备数字营销案例，包括SEO、社交媒体和内容营销</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>数据分析</h4>
+                                <p>展示您使用数据驱动决策的能力</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>品牌策略</h4>
+                                <p>准备品牌建设和推广的案例</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>创意能力</h4>
+                                <p>展示您的创意思维和营销创意案例</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'hr':
+                    skillsHTML = `
+                        <div class="card-grid">
+                            <div class="skill-card">
+                                <h4>人才招聘</h4>
+                                <p>准备招聘策略和候选人评估的案例</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>员工发展</h4>
+                                <p>展示您的员工培训和发展计划经验</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>企业文化</h4>
+                                <p>准备企业文化建设和员工 engagement 的案例</p>
+                            </div>
+                            <div class="skill-card">
+                                <h4>合规管理</h4>
+                                <p>展示您对劳动法规和人力资源政策的了解</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            skillsContainer.innerHTML = skillsHTML;
+        }
+
+        // 加载行业特定问题
+        function loadIndustryQuestions() {
+            const industry = document.getElementById('questionIndustrySelect').value;
+            const questionsContainer = document.getElementById('industryQuestions');
+            
+            let questionsHTML = '';
+            
+            switch(industry) {
+                case 'frontend':
+                    questionsHTML = `
+                        <h4 style="margin-bottom: 16px;">前端开发常见问题</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>请解释一下CSS盒模型</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">标准盒模型和IE盒模型的区别，以及如何通过CSS切换</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>什么是闭包？闭包有什么作用？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">闭包的定义、特性和实际应用场景</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下事件冒泡和事件捕获</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">DOM事件流的两个阶段，以及如何控制事件传播</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>如何优化前端性能？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">从加载速度、渲染性能、运行时性能等方面进行优化</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下React的虚拟DOM</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">虚拟DOM的工作原理和优势</p>
+                            </li>
+                        </ul>
+                    `;
+                    break;
+                case 'backend':
+                    questionsHTML = `
+                        <h4 style="margin-bottom: 16px;">后端开发常见问题</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>请解释一下RESTful API的设计原则</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">RESTful API的核心设计原则和最佳实践</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>什么是数据库索引？索引有什么作用？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">数据库索引的工作原理、类型和使用场景</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下缓存机制</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">缓存的类型、实现方式和使用场景</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>如何处理并发请求？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">并发控制的方法和技术</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下微服务架构</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">微服务架构的特点、优势和挑战</p>
+                            </li>
+                        </ul>
+                    `;
+                    break;
+                case 'data':
+                    questionsHTML = `
+                        <h4 style="margin-bottom: 16px;">数据分析常见问题</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>请解释一下数据清洗的过程</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">数据清洗的步骤、技术和工具</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>什么是数据可视化？有哪些常用工具？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">数据可视化的原则和常用工具</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下SQL中的 JOIN 操作</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">不同类型的 JOIN 操作及其使用场景</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>如何处理缺失数据？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">缺失数据的处理方法和策略</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下机器学习的基本流程</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">机器学习项目的完整流程和关键步骤</p>
+                            </li>
+                        </ul>
+                    `;
+                    break;
+                case 'product':
+                    questionsHTML = `
+                        <h4 style="margin-bottom: 16px;">产品经理常见问题</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>请解释一下产品开发的流程</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">产品开发的完整流程和关键步骤</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>什么是用户故事？如何编写好的用户故事？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">用户故事的编写原则和最佳实践</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>如何进行需求优先级排序？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">需求优先级排序的方法和框架</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>如何处理用户反馈？</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">用户反馈的收集、分析和处理流程</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>请解释一下产品路线图的制定过程</strong>
+                                <p style="margin-top: 8px; font-size: 13px; color: var(--text-secondary);">产品路线图的制定方法和最佳实践</p>
+                            </li>
+                        </ul>
+                    `;
+                    break;
+            }
+            
+            questionsContainer.innerHTML = questionsHTML;
+        }
+
+        // 生成准备计划
+        function generatePlan() {
+            const targetJob = document.getElementById('targetJob').value;
+            const interviewDate = document.getElementById('interviewDate').value;
+            const interviewType = document.getElementById('interviewType').value;
+            const prepHours = document.getElementById('prepHours').value;
+            
+            if (!targetJob || !interviewDate) {
+                showNotification('请填写目标职位和面试日期', 'warning');
+                return;
+            }
+            
+            const planContent = document.getElementById('planContent');
+            
+            // 计算剩余天数
+            const today = new Date();
+            const interview = new Date(interviewDate);
+            const daysLeft = Math.ceil((interview - today) / (1000 * 60 * 60 * 24));
+            
+            if (daysLeft < 1) {
+                showNotification('面试日期必须在今天之后', 'warning');
+                return;
+            }
+            
+            // 生成准备计划
+            let planHTML = `
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 16px;">面试准备计划</h4>
+                    <div style="margin-bottom: 16px;">
+                        <strong>目标职位:</strong> ${targetJob}<br>
+                        <strong>面试日期:</strong> ${interviewDate}<br>
+                        <strong>剩余天数:</strong> ${daysLeft} 天<br>
+                        <strong>计划准备时间:</strong> ${prepHours} 小时
+                    </div>
+                    
+                    <h5 style="margin-top: 24px; margin-bottom: 16px;">每日准备计划</h5>
+                    <div style="border: 1px solid var(--border-color); border-radius: var(--border-radius); overflow: hidden;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: rgba(24, 144, 255, 0.1);">
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color);">日期</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color);">准备内容</th>
+                                    <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--border-color);">时间（小时）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            // 每天的准备内容
+            const dailyHours = prepHours / daysLeft;
+            const activities = [
+                '研究公司背景和业务',
+                '复习职位要求和技能',
+                '准备常见面试问题答案',
+                '练习技术题（如果是技术面试）',
+                '模拟面试练习',
+                '准备自我介绍',
+                '研究行业趋势',
+                '准备问题向面试官提问'
+            ];
+            
+            for (let i = 1; i <= daysLeft; i++) {
+                const date = new Date();
+                date.setDate(today.getDate() + i);
+                const dateStr = date.toISOString().split('T')[0];
+                const activity = activities[i % activities.length];
+                
+                planHTML += `
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border-color);">${dateStr}</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border-color);">${activity}</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border-color);">${dailyHours.toFixed(1)}</td>
+                    </tr>
+                `;
+            }
+            
+            planHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            planContent.innerHTML = planHTML;
+            showNotification('准备计划生成成功', 'success');
+        }
+
+        // 分析简历
+        function analyzeResume() {
+            const resumeSelect = document.getElementById('resumeSelect').value;
+            const jobDescription = document.getElementById('jobDescription').value;
+            
+            if (!resumeSelect || !jobDescription) {
+                showNotification('请选择简历并填写职位描述', 'warning');
+                return;
+            }
+            
+            const analysisResult = document.getElementById('analysisResult');
+            
+            // 模拟分析结果
+            const analysisHTML = `
+                <div style="margin-bottom: 24px;">
+                    <h4 style="margin-bottom: 16px;">分析结果</h4>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h5 style="margin-bottom: 12px;">可能被问到的问题</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>技术问题:</strong> 请详细描述您在项目中使用的前端技术栈和遇到的挑战
+                            </li>
+                            <li class="list-group-item">
+                                <strong>行为问题:</strong> 请分享一个您在团队中解决冲突的例子
+                            </li>
+                            <li class="list-group-item">
+                                <strong>项目问题:</strong> 请详细介绍您简历中提到的主要项目，包括您的角色和贡献
+                            </li>
+                            <li class="list-group-item">
+                                <strong>技能问题:</strong> 您如何保持对新技术的学习和更新？
+                            </li>
+                            <li class="list-group-item">
+                                <strong>职业规划:</strong> 您未来3-5年的职业规划是什么？
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h5 style="margin-bottom: 12px;">简历优势</h5>
+                        <div class="tag">技术栈匹配度高</div>
+                        <div class="tag">项目经验丰富</div>
+                        <div class="tag">专业技能突出</div>
+                        <div class="tag">教育背景相关</div>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h5 style="margin-bottom: 12px;">潜在问题点</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                简历中缺少具体的项目成果和量化数据
+                            </li>
+                            <li class="list-group-item">
+                                技能描述较为笼统，建议更加具体
+                            </li>
+                            <li class="list-group-item">
+                                工作经历之间的关联性不够清晰
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-bottom: 24px;">
+                        <h5 style="margin-bottom: 12px;">改进建议</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                使用STAR法则描述项目经验，突出具体成果
+                            </li>
+                            <li class="list-group-item">
+                                增加量化数据，如项目规模、用户数量、性能提升等
+                            </li>
+                            <li class="list-group-item">
+                                针对目标职位，强调相关技能和经验
+                            </li>
+                            <li class="list-group-item">
+                                准备详细的项目案例，包括技术挑战和解决方案
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            
+            analysisResult.innerHTML = analysisHTML;
+            showNotification('简历分析完成', 'success');
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            // 创建通知元素
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span class="notification-icon">${getNotificationIcon(type)}</span>
+                    <span class="notification-message">${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            
+            // 添加到页面
+            document.body.appendChild(notification);
+            
+            // 自动移除
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        // 获取通知图标
+        function getNotificationIcon(type) {
+            switch(type) {
+                case 'success': return '✅';
+                case 'warning': return '⚠️';
+                case 'error': return '❌';
+                default: return 'ℹ️';
+            }
+        }
+    </script>
+</body>
+</html>
