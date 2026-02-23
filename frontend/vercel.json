@@ -1,12 +1,4 @@
 {
   "version": 2,
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "framework": null,
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/real-app-final.html"
-    }
-  ]
+  "public": true
 }
