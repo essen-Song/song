@@ -3,7 +3,12 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic',
+      jsxImportSource: 'react'
+    })
+  ],
   server: {
     host: '0.0.0.0',
     port: 3000,
@@ -17,15 +22,6 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'ui-vendor': ['lucide-react'],
-          'utils': ['axios', 'react-hot-toast']
-        }
-      }
-    }
+    sourcemap: true
   }
 })

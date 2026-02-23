@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "framework": null,
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/",
+      "dest": "/real-app-final.html"
     }
-  ],
-  "env": {
-    "VITE_API_URL": "https://resumeflow.vercel.app"
-  }
+  ]
 }
