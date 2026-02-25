@@ -1,0 +1,1523 @@
+{
+  "users": {},
+  "resumes": {
+    "1": {
+      "id": 1,
+      "created_at": "2026-02-17T10:33:49.392Z",
+      "updated_at": "2026-02-17T10:33:49.392Z",
+      "user_id": 1,
+      "file_name": "1771324429391_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771324429391_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[\"Go\"],\"rawText\":\"W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o\",\"metadata\":{\"totalLength\":5000,\"lines\":1,\"chineseChars\":21,\"englishWords\":1697},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":1}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "2": {
+      "id": 2,
+      "created_at": "2026-02-17T10:36:30.693Z",
+      "updated_at": "2026-02-17T10:36:30.693Z",
+      "user_id": 1,
+      "file_name": "1771324590692_1_test.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771324590692_1_test.pdf",
+      "file_size": 4,
+      "original_content": "test",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"test\",\"metadata\":{\"totalLength\":4,\"lines\":1,\"chineseChars\":0,\"englishWords\":1},\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "3": {
+      "id": 3,
+      "created_at": "2026-02-17T10:39:31.269Z",
+      "updated_at": "2026-02-17T10:39:31.269Z",
+      "user_id": 1,
+      "file_name": "1771324771269_1_张三_简历.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771324771269_1_张三_简历.pdf",
+      "file_size": 4,
+      "original_content": "test",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"test\",\"metadata\":{\"totalLength\":4,\"lines\":1,\"chineseChars\":0,\"englishWords\":1},\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "4": {
+      "id": 4,
+      "created_at": "2026-02-17T10:40:46.670Z",
+      "updated_at": "2026-02-17T10:40:46.670Z",
+      "user_id": 1,
+      "file_name": "1771324846670_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771324846670_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[\"Go\"],\"rawText\":\"W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o\",\"metadata\":{\"totalLength\":5000,\"lines\":1,\"chineseChars\":21,\"englishWords\":1697},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":1}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "5": {
+      "id": 5,
+      "created_at": "2026-02-17T10:45:12.314Z",
+      "updated_at": "2026-02-17T10:45:12.314Z",
+      "user_id": 1,
+      "file_name": "1771325112313_1_李小明_简历.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325112313_1_李小明_简历.pdf",
+      "file_size": 4,
+      "original_content": "test",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"test\",\"metadata\":{\"totalLength\":4,\"lines\":1,\"chineseChars\":0,\"englishWords\":1},\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "6": {
+      "id": 6,
+      "created_at": "2026-02-17T10:47:08.194Z",
+      "updated_at": "2026-02-17T10:47:08.194Z",
+      "user_id": 1,
+      "file_name": "1771325228193_1_李小明_简历.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325228193_1_李小明_简历.pdf",
+      "file_size": 4,
+      "original_content": "test",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"test\",\"metadata\":{\"totalLength\":4,\"lines\":1,\"chineseChars\":0,\"englishWords\":1},\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "7": {
+      "id": 7,
+      "created_at": "2026-02-17T10:50:28.494Z",
+      "updated_at": "2026-02-17T10:50:28.494Z",
+      "user_id": 1,
+      "file_name": "1771325428493_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325428493_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[\"Go\"],\"rawText\":\"W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o\",\"metadata\":{\"totalLength\":5000,\"lines\":1,\"chineseChars\":21,\"englishWords\":1697},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":1}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "8": {
+      "id": 8,
+      "created_at": "2026-02-17T10:53:28.092Z",
+      "updated_at": "2026-02-17T10:53:28.092Z",
+      "user_id": 1,
+      "file_name": "1771325608091_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325608091_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o",
+      "parsed_content": "{\"name\":\"待确认\",\"email\":\"\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[\"Go\"],\"rawText\":\"W k k ? A EUk G R Z y 9 2n 2 .F L q p!Ro L H v ? s s0 w hh 7 k t V I h 7 P G ? 0 s k6 B m eK V E o z H B 9 v P Gr 7 V Y 6 J D 6 S BW HUD U AH Q vq K !Z . fWP XA B ,en hY Db O c d b l N a h ?I P m YM m q z 6o8 r x pm; p K3 . u e v u7 W; 0 DBJiF I R gL . 6 v p ! T 4 P O c v 7 Q 搛 08Ude n W sp G 6 S ; ? 9 m X x E endstream endobj 7 0 obj Type XObject Subtype Image Width 64 Height 64 ColorSpace DeviceGray BitsPerComponent 8 Filter FlateDecode Length 493 stream x K DQ 3 , E GY J i 6 b 2 b , 6 bc y 0 ; ; s a ?8i t oq q d?L w Wf t d w m O D 9 v o K 4 0 9; 5 3 :g K K R S u R d6 l W P S P V 92XT x V A 8. U B FW5 v I ! nA 0 Wg y n2 4 mj p h 7x e N 3 3 ? 3: !g,r ; a g M 7 J N kU? h v o x A , ? Z j c kf 6 6 B O o f k Adf 17 u 3 H f 7 m P J4 H2 3m ; m m B 5 m k p 9K ?EA 7b r E 3 ? Cq3 ;e WG uz Z ; Bg Bl U . yQ qY f h 6a y q hn 9 f : j U Y B :6 R S 6 B sL q T v uJ4 70 V 眈 : O 8 m J J s v K s !X p v B D s Lz x g c MO I9 x D 0 T1 6 t Vb 3 L 5 KK. 0u ; l L U k? V H s k D 3X 7 u WB 3 6 pT b tCHz r 3 T o\",\"metadata\":{\"totalLength\":5000,\"lines\":1,\"chineseChars\":21,\"englishWords\":1697},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":1}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "9": {
+      "id": 9,
+      "created_at": "2026-02-17T10:57:57.314Z",
+      "updated_at": "2026-02-17T10:57:57.314Z",
+      "user_id": 1,
+      "file_name": "1771325877313_1_李小明_高级软件工程师_简历.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325877313_1_李小明_高级软件工程师_简历.pdf",
+      "file_size": 4,
+      "original_content": "姓名：李小明\n邮箱：liming@example.com\n电话：13812345678\n期望岗位：高级软件工程师\n\n教育背景：\n清华大学 计算机科学与技术 硕士 (2018-2021)\n北京大学 计算机科学 学士 (2014-2018)\n\n工作经历：\n腾讯科技 高级软件工程师 (2021-至今)\n- 负责核心产品后端架构设计和开发\n- 带领5人团队完成系统重构，性能提升300%\n- 使用Java、Spring Boot、MySQL技术栈\n\n专业技能：\n编程语言：Java、Python、JavaScript、Go\n框架技术：Spring Boot、React、Vue.js、Node.js\n数据库：MySQL、Redis、MongoDB、Elasticsearch",
+      "parsed_content": "{\"name\":\"李小明\",\"email\":\"邮箱liming@example.com\",\"phone\":\"13812345678\",\"education\":[{\"institution\":\"清华大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65},{\"institution\":\"北京大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65}],\"workExperience\":[{\"company\":\"腾讯科技\",\"position\":\"高级软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65},{\"company\":\"腾讯\",\"position\":\"软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65}],\"skills\":[\"JavaScript\",\"Python\",\"Java\",\"Go\",\"React\",\"Vue.js\",\"Node.js\",\"Spring\",\"MySQL\",\"MongoDB\",\"Redis\",\"Elasticsearch\"],\"rawText\":\"姓名：李小明\\n邮箱：liming@example.com\\n电话：13812345678\\n期望岗位：高级软件工程师\\n\\n教育背景：\\n清华大学 计算机科学与技术 硕士 (2018-2021)\\n北京大学 计算机科学 学士 (2014-2018)\\n\\n工作经历：\\n腾讯科技 高级软件工程师 (2021-至今)\\n- 负责核心产品后端架构设计和开发\\n- 带领5人团队完成系统重构，性能提升300%\\n- 使用Java、Spring Boot、MySQL技术栈\\n\\n专业技能：\\n编程语言：Java、Python、JavaScript、Go\\n框架技术：Spring Boot、React、Vue.js、Node.js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"metadata\":{\"totalLength\":334,\"lines\":19,\"chineseChars\":116,\"englishWords\":22},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":true,\"hasEmail\":true,\"hasPhone\":true,\"educationCount\":2,\"workCount\":2,\"skillCount\":12}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "10": {
+      "id": 10,
+      "created_at": "2026-02-17T10:59:52.024Z",
+      "updated_at": "2026-02-17T10:59:52.024Z",
+      "user_id": 1,
+      "file_name": "1771325992024_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771325992024_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "姓名：李小明\n邮箱：liming@example.com\n电话：13812345678\n期望岗位：高级软件工程师\n\n教育背景：\n清华大学 计算机科学与技术 硕士 (2018-2021)\n北京大学 计算机科学 学士 (2014-2018)\n\n工作经历：\n腾讯科技 高级软件工程师 (2021-至今)\n- 负责核心产品后端架构设计和开发\n- 带领5人团队完成系统重构，性能提升300%\n- 使用Java、Spring Boot、MySQL技术栈\n\n专业技能：\n编程语言：Java、Python、JavaScript、Go\n框架技术：Spring Boot、React、Vue.js、Node.js\n数据库：MySQL、Redis、MongoDB、Elasticsearch",
+      "parsed_content": "{\"name\":\"李小明\",\"email\":\"邮箱liming@example.com\",\"phone\":\"13812345678\",\"education\":[{\"institution\":\"清华大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65},{\"institution\":\"北京大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65}],\"workExperience\":[{\"company\":\"腾讯科技\",\"position\":\"高级软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65},{\"company\":\"腾讯\",\"position\":\"软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65}],\"skills\":[\"JavaScript\",\"Python\",\"Java\",\"Go\",\"React\",\"Vue.js\",\"Node.js\",\"Spring\",\"MySQL\",\"MongoDB\",\"Redis\",\"Elasticsearch\"],\"rawText\":\"姓名：李小明\\n邮箱：liming@example.com\\n电话：13812345678\\n期望岗位：高级软件工程师\\n\\n教育背景：\\n清华大学 计算机科学与技术 硕士 (2018-2021)\\n北京大学 计算机科学 学士 (2014-2018)\\n\\n工作经历：\\n腾讯科技 高级软件工程师 (2021-至今)\\n- 负责核心产品后端架构设计和开发\\n- 带领5人团队完成系统重构，性能提升300%\\n- 使用Java、Spring Boot、MySQL技术栈\\n\\n专业技能：\\n编程语言：Java、Python、JavaScript、Go\\n框架技术：Spring Boot、React、Vue.js、Node.js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"metadata\":{\"totalLength\":334,\"lines\":19,\"chineseChars\":116,\"englishWords\":22},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":true,\"hasEmail\":true,\"hasPhone\":true,\"educationCount\":2,\"workCount\":2,\"skillCount\":12}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "11": {
+      "id": 11,
+      "created_at": "2026-02-17T11:00:21.543Z",
+      "updated_at": "2026-02-17T11:00:21.543Z",
+      "user_id": 1,
+      "file_name": "1771326021543_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771326021543_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "姓名：李小明\n邮箱：liming@example.com\n电话：13812345678\n期望岗位：高级软件工程师\n\n教育背景：\n清华大学 计算机科学与技术 硕士 (2018-2021)\n北京大学 计算机科学 学士 (2014-2018)\n\n工作经历：\n腾讯科技 高级软件工程师 (2021-至今)\n- 负责核心产品后端架构设计和开发\n- 带领5人团队完成系统重构，性能提升300%\n- 使用Java、Spring Boot、MySQL技术栈\n\n专业技能：\n编程语言：Java、Python、JavaScript、Go\n框架技术：Spring Boot、React、Vue.js、Node.js\n数据库：MySQL、Redis、MongoDB、Elasticsearch",
+      "parsed_content": "{\"name\":\"李小明\",\"email\":\"邮箱liming@example.com\",\"phone\":\"13812345678\",\"education\":[{\"institution\":\"清华大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65},{\"institution\":\"北京大学\",\"major\":\"\",\"degree\":\"本科\",\"duration\":\"\",\"year\":\"\",\"confidence\":65}],\"workExperience\":[{\"company\":\"腾讯科技\",\"position\":\"高级软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65},{\"company\":\"腾讯\",\"position\":\"软件工程师\",\"duration\":\"\",\"description\":\"js、Node js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"confidence\":65}],\"skills\":[\"JavaScript\",\"Python\",\"Java\",\"Go\",\"React\",\"Vue.js\",\"Node.js\",\"Spring\",\"MySQL\",\"MongoDB\",\"Redis\",\"Elasticsearch\"],\"rawText\":\"姓名：李小明\\n邮箱：liming@example.com\\n电话：13812345678\\n期望岗位：高级软件工程师\\n\\n教育背景：\\n清华大学 计算机科学与技术 硕士 (2018-2021)\\n北京大学 计算机科学 学士 (2014-2018)\\n\\n工作经历：\\n腾讯科技 高级软件工程师 (2021-至今)\\n- 负责核心产品后端架构设计和开发\\n- 带领5人团队完成系统重构，性能提升300%\\n- 使用Java、Spring Boot、MySQL技术栈\\n\\n专业技能：\\n编程语言：Java、Python、JavaScript、Go\\n框架技术：Spring Boot、React、Vue.js、Node.js\\n数据库：MySQL、Redis、MongoDB、Elasticsearch\",\"metadata\":{\"totalLength\":334,\"lines\":19,\"chineseChars\":116,\"englishWords\":22},\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":true,\"hasEmail\":true,\"hasPhone\":true,\"educationCount\":2,\"workCount\":2,\"skillCount\":12}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "12": {
+      "id": 12,
+      "created_at": "2026-02-17T11:08:33.414Z",
+      "updated_at": "2026-02-17T11:08:33.414Z",
+      "user_id": 1,
+      "file_name": "1771326513413_1_test.txt",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771326513413_1_test.txt",
+      "file_size": 42,
+      "original_content": "name: 李人号\nemail: liming@example.com\n",
+      "parsed_content": "{\"name\":null,\"email\":\"liming@example.com\",\"phone\":null,\"education\":[],\"workExperience\":[],\"rawText\":\"name: 李人号\\nemail: liming@example.com\\n\",\"parseQuality\":{\"score\":100,\"completeness\":100,\"details\":{\"hasName\":false,\"hasEmail\":true,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0}}}",
+      "parse_quality": 100,
+      "parse_status": "success"
+    },
+    "13": {
+      "id": 13,
+      "created_at": "2026-02-17T11:08:55.626Z",
+      "updated_at": "2026-02-17T11:08:55.626Z",
+      "user_id": 1,
+      "file_name": "1771326535626_1_李小明_简历.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771326535626_1_李小明_简历.pdf",
+      "file_size": 4,
+      "original_content": "⚠️ 当前系统无法解析此文件格式的内容",
+      "parsed_content": "{\"name\":\"李小明（猜测）\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"示例大学\",\"major\":\"相关专业\",\"degree\":\"学士\",\"note\":\"示例数据\"}],\"workExperience\":[{\"company\":\"示例公司\",\"position\":\"相关职位\",\"duration\":\"2020-至今\",\"note\":\"示例数据\"}],\"skills\":[],\"rawText\":\"⚠️ 当前系统无法解析此文件格式的内容\",\"isExampleData\":true,\"transparencyNote\":\"⚠️ 以下为基于文件名的示例数据，非真实解析结果\",\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isExample\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "14": {
+      "id": 14,
+      "created_at": "2026-02-17T11:10:38.453Z",
+      "updated_at": "2026-02-17T11:10:38.453Z",
+      "user_id": 1,
+      "file_name": "1771326638453_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771326638453_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "⚠️ 当前系统无法解析此文件格式的内容",
+      "parsed_content": "{\"name\":\"宋文学（猜测）\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"示例大学\",\"major\":\"相关专业\",\"degree\":\"学士\",\"note\":\"示例数据\"}],\"workExperience\":[{\"company\":\"示例公司\",\"position\":\"相关职位\",\"duration\":\"2020-至今\",\"note\":\"示例数据\"}],\"skills\":[],\"rawText\":\"⚠️ 当前系统无法解析此文件格式的内容\",\"isExampleData\":true,\"transparencyNote\":\"⚠️ 以下为基于文件名的示例数据，非真实解析结果\",\"parseQuality\":{\"score\":0,\"completeness\":0,\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isExample\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "15": {
+      "id": 15,
+      "created_at": "2026-02-17T11:19:53.519Z",
+      "updated_at": "2026-02-17T11:19:53.519Z",
+      "user_id": 1,
+      "file_name": "1771327193518_1_张三_简历.txt",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771327193518_1_张三_简历.txt",
+      "file_size": 133,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"李人号\",\"email\":\"zhangsan@example.com\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"新浪大学\",\"major\":\"\",\"degree\":\"本科\",\"confidence\":70},{\"institution\":\"清华大学\",\"major\":\"\",\"degree\":\"本科\",\"confidence\":70}],\"workExperience\":[],\"skills\":[],\"rawText\":\"\",\"parseQuality\":{\"score\":85,\"completeness\":\"完整\",\"details\":{\"hasName\":true,\"hasEmail\":true,\"hasPhone\":true,\"educationCount\":2,\"workCount\":0,\"skillCount\":0,\"modelConfidence\":75}}}",
+      "parse_quality": 85,
+      "parse_status": "success"
+    },
+    "16": {
+      "id": 16,
+      "created_at": "2026-02-17T11:40:30.756Z",
+      "updated_at": "2026-02-17T11:40:30.756Z",
+      "user_id": 1,
+      "file_name": "1771328430736_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771328430736_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"宋文学\",\"email\":\"%5@j.es\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[\"c#\",\"C#\",\"gO\",\"go\",\"Go\",\"GO\"],\"rawText\":\"\",\"parseQuality\":{\"score\":85,\"completeness\":\"完整\",\"details\":{\"hasName\":true,\"hasEmail\":true,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":6,\"modelConfidence\":40}}}",
+      "parse_quality": 85,
+      "parse_status": "success"
+    },
+    "17": {
+      "id": 17,
+      "created_at": "2026-02-17T11:52:51.336Z",
+      "updated_at": "2026-02-17T11:52:51.336Z",
+      "user_id": 1,
+      "file_name": "1771329171335_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771329171335_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"宋文学\",\"email\":\"%5@j.es\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"宋文学\",\"email\":\"%5@j.es\",\"phone\":\"\"},\"education\":[],\"workExperience\":[],\"skills\":[],\"summary\":\"回退解析结果 - 建议检查AI模型配置\",\"isFallback\":true},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "18": {
+      "id": 18,
+      "created_at": "2026-02-17T11:54:02.776Z",
+      "updated_at": "2026-02-17T11:54:02.776Z",
+      "user_id": 1,
+      "file_name": "1771329242775_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771329242775_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"宋文学\",\"email\":\"%5@j.es\",\"phone\":\"\",\"education\":[],\"workExperience\":[],\"skills\":[],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"宋文学\",\"email\":\"%5@j.es\",\"phone\":\"\"},\"education\":[],\"workExperience\":[],\"skills\":[],\"summary\":\"回退解析结果 - 建议检查AI模型配置\",\"isFallback\":true},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "19": {
+      "id": 19,
+      "created_at": "2026-02-17T12:38:36.798Z",
+      "updated_at": "2026-02-17T12:38:36.798Z",
+      "user_id": 1,
+      "file_name": "1771331916797_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771331916797_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":934,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "20": {
+      "id": 20,
+      "created_at": "2026-02-17T12:44:03.102Z",
+      "updated_at": "2026-02-17T12:44:03.102Z",
+      "user_id": 1,
+      "file_name": "1771332243101_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771332243101_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":758,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "21": {
+      "id": 21,
+      "created_at": "2026-02-17T13:10:57.757Z",
+      "updated_at": "2026-02-17T13:10:57.757Z",
+      "user_id": 1,
+      "file_name": "1771333857756_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771333857756_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":965,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "22": {
+      "id": 22,
+      "created_at": "2026-02-17T13:27:11.457Z",
+      "updated_at": "2026-02-17T13:27:11.457Z",
+      "user_id": 1,
+      "file_name": "1771334831457_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771334831457_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":1420,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "23": {
+      "id": 23,
+      "created_at": "2026-02-17T13:31:56.519Z",
+      "updated_at": "2026-02-17T13:31:56.519Z",
+      "user_id": 1,
+      "file_name": "1771335116518_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771335116518_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":501,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "24": {
+      "id": 24,
+      "created_at": "2026-02-17T13:38:16.685Z",
+      "updated_at": "2026-02-17T13:38:16.685Z",
+      "user_id": 1,
+      "file_name": "1771335496684_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771335496684_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":1341,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "25": {
+      "id": 25,
+      "created_at": "2026-02-17T13:43:06.758Z",
+      "updated_at": "2026-02-17T13:43:06.758Z",
+      "user_id": 1,
+      "file_name": "1771335786757_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771335786757_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":1244,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "26": {
+      "id": 26,
+      "created_at": "2026-02-17T13:43:51.663Z",
+      "updated_at": "2026-02-17T13:43:51.663Z",
+      "user_id": 1,
+      "file_name": "1771335831662_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771335831662_1_宋文学-产品经理.pdf",
+      "file_size": 256,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":1108,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "27": {
+      "id": 27,
+      "created_at": "2026-02-17T13:50:02.292Z",
+      "updated_at": "2026-02-17T13:50:02.292Z",
+      "user_id": 1,
+      "file_name": "1771336202291_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771336202291_1_宋文学-产品经理.pdf",
+      "file_size": 256,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"example@email.com\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":1067,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    },
+    "28": {
+      "id": 28,
+      "created_at": "2026-02-17T13:52:22.080Z",
+      "updated_at": "2026-02-17T13:52:22.080Z",
+      "user_id": 1,
+      "file_name": "1771336342079_1_宋文学-产品经理.pdf",
+      "file_path": "/Users/hangzhouchenyixun/Documents/trae_projects/QiuZhi/resume-flow/uploads/1771336342079_1_宋文学-产品经理.pdf",
+      "file_size": 232177,
+      "original_content": "",
+      "parsed_content": "{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"rawText\":\"\",\"aiData\":{\"personalInfo\":{\"name\":\"张三\",\"email\":\"%5@j.es\",\"phone\":\"13800000000\",\"location\":\"北京\"},\"education\":[{\"institution\":\"清华大学\",\"degree\":\"本科\",\"major\":\"计算机科学\",\"duration\":\"2018-2022\"}],\"workExperience\":[{\"company\":\"示例科技有限公司\",\"position\":\"软件工程师\",\"duration\":\"2022-至今\",\"description\":\"负责后端系统开发和维护\"}],\"skills\":[\"JavaScript\",\"Python\",\"React\",\"Node.js\"],\"summary\":\"张三的简历解析结果 - 模拟AI生成\",\"responseTime\":839,\"isMock\":true,\"note\":\"这是模拟AI生成的结果，用于演示目的\"},\"isAIParsed\":true,\"parseQuality\":{\"score\":0,\"completeness\":\"不完整\",\"details\":{\"hasName\":false,\"hasEmail\":false,\"hasPhone\":false,\"educationCount\":0,\"workCount\":0,\"skillCount\":0,\"isFallback\":true}}}",
+      "parse_quality": 0,
+      "parse_status": "success"
+    }
+  },
+  "personal_info": {
+    "1": {
+      "id": 1,
+      "created_at": "2026-02-17T10:33:49.393Z",
+      "updated_at": "2026-02-17T10:33:49.393Z",
+      "resume_id": 1,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "2": {
+      "id": 2,
+      "created_at": "2026-02-17T10:36:30.693Z",
+      "updated_at": "2026-02-17T10:36:30.693Z",
+      "resume_id": 2,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "3": {
+      "id": 3,
+      "created_at": "2026-02-17T10:39:31.269Z",
+      "updated_at": "2026-02-17T10:39:31.269Z",
+      "resume_id": 3,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "4": {
+      "id": 4,
+      "created_at": "2026-02-17T10:40:46.671Z",
+      "updated_at": "2026-02-17T10:40:46.671Z",
+      "resume_id": 4,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "5": {
+      "id": 5,
+      "created_at": "2026-02-17T10:45:12.315Z",
+      "updated_at": "2026-02-17T10:45:12.315Z",
+      "resume_id": 5,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "6": {
+      "id": 6,
+      "created_at": "2026-02-17T10:47:08.194Z",
+      "updated_at": "2026-02-17T10:47:08.194Z",
+      "resume_id": 6,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "7": {
+      "id": 7,
+      "created_at": "2026-02-17T10:50:28.494Z",
+      "updated_at": "2026-02-17T10:50:28.494Z",
+      "resume_id": 7,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "8": {
+      "id": 8,
+      "created_at": "2026-02-17T10:53:28.093Z",
+      "updated_at": "2026-02-17T10:53:28.093Z",
+      "resume_id": 8,
+      "full_name": "待确认",
+      "email": "",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "9": {
+      "id": 9,
+      "created_at": "2026-02-17T10:57:57.314Z",
+      "updated_at": "2026-02-17T10:57:57.314Z",
+      "resume_id": 9,
+      "full_name": "李小明",
+      "email": "邮箱liming@example.com",
+      "phone": "13812345678",
+      "expected_position": "待确认"
+    },
+    "10": {
+      "id": 10,
+      "created_at": "2026-02-17T10:59:52.025Z",
+      "updated_at": "2026-02-17T10:59:52.025Z",
+      "resume_id": 10,
+      "full_name": "李小明",
+      "email": "邮箱liming@example.com",
+      "phone": "13812345678",
+      "expected_position": "待确认"
+    },
+    "11": {
+      "id": 11,
+      "created_at": "2026-02-17T11:00:21.544Z",
+      "updated_at": "2026-02-17T11:00:21.544Z",
+      "resume_id": 11,
+      "full_name": "李小明",
+      "email": "邮箱liming@example.com",
+      "phone": "13812345678",
+      "expected_position": "待确认"
+    },
+    "12": {
+      "id": 12,
+      "created_at": "2026-02-17T11:08:33.414Z",
+      "updated_at": "2026-02-17T11:08:33.414Z",
+      "resume_id": 12,
+      "full_name": null,
+      "email": "liming@example.com",
+      "phone": null,
+      "expected_position": "待确认"
+    },
+    "13": {
+      "id": 13,
+      "created_at": "2026-02-17T11:08:55.627Z",
+      "updated_at": "2026-02-17T11:08:55.627Z",
+      "resume_id": 13,
+      "full_name": "李小明（猜测）",
+      "email": "example@email.com",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "14": {
+      "id": 14,
+      "created_at": "2026-02-17T11:10:38.454Z",
+      "updated_at": "2026-02-17T11:10:38.454Z",
+      "resume_id": 14,
+      "full_name": "宋文学（猜测）",
+      "email": "example@email.com",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "15": {
+      "id": 15,
+      "created_at": "2026-02-17T11:19:53.520Z",
+      "updated_at": "2026-02-17T11:19:53.520Z",
+      "resume_id": 15,
+      "full_name": "李人号",
+      "email": "zhangsan@example.com",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "16": {
+      "id": 16,
+      "created_at": "2026-02-17T11:40:30.776Z",
+      "updated_at": "2026-02-17T11:40:30.776Z",
+      "resume_id": 16,
+      "full_name": "宋文学",
+      "email": "%5@j.es",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "17": {
+      "id": 17,
+      "created_at": "2026-02-17T11:52:51.337Z",
+      "updated_at": "2026-02-17T11:52:51.337Z",
+      "resume_id": 17,
+      "full_name": "宋文学",
+      "email": "%5@j.es",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "18": {
+      "id": 18,
+      "created_at": "2026-02-17T11:54:02.777Z",
+      "updated_at": "2026-02-17T11:54:02.777Z",
+      "resume_id": 18,
+      "full_name": "宋文学",
+      "email": "%5@j.es",
+      "phone": "",
+      "expected_position": "待确认"
+    },
+    "19": {
+      "id": 19,
+      "created_at": "2026-02-17T12:38:36.800Z",
+      "updated_at": "2026-02-17T12:38:36.800Z",
+      "resume_id": 19,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "20": {
+      "id": 20,
+      "created_at": "2026-02-17T12:44:03.103Z",
+      "updated_at": "2026-02-17T12:44:03.103Z",
+      "resume_id": 20,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "21": {
+      "id": 21,
+      "created_at": "2026-02-17T13:10:57.760Z",
+      "updated_at": "2026-02-17T13:10:57.760Z",
+      "resume_id": 21,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "22": {
+      "id": 22,
+      "created_at": "2026-02-17T13:27:11.458Z",
+      "updated_at": "2026-02-17T13:27:11.458Z",
+      "resume_id": 22,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "23": {
+      "id": 23,
+      "created_at": "2026-02-17T13:31:56.520Z",
+      "updated_at": "2026-02-17T13:31:56.520Z",
+      "resume_id": 23,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "24": {
+      "id": 24,
+      "created_at": "2026-02-17T13:38:16.686Z",
+      "updated_at": "2026-02-17T13:38:16.686Z",
+      "resume_id": 24,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "25": {
+      "id": 25,
+      "created_at": "2026-02-17T13:43:06.759Z",
+      "updated_at": "2026-02-17T13:43:06.759Z",
+      "resume_id": 25,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "26": {
+      "id": 26,
+      "created_at": "2026-02-17T13:43:51.664Z",
+      "updated_at": "2026-02-17T13:43:51.664Z",
+      "resume_id": 26,
+      "full_name": "张三",
+      "email": "example@email.com",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "27": {
+      "id": 27,
+      "created_at": "2026-02-17T13:50:02.292Z",
+      "updated_at": "2026-02-17T13:50:02.293Z",
+      "resume_id": 27,
+      "full_name": "张三",
+      "email": "example@email.com",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    },
+    "28": {
+      "id": 28,
+      "created_at": "2026-02-17T13:52:22.081Z",
+      "updated_at": "2026-02-17T13:52:22.081Z",
+      "resume_id": 28,
+      "full_name": "张三",
+      "email": "%5@j.es",
+      "phone": "13800000000",
+      "expected_position": "待确认"
+    }
+  },
+  "education": {
+    "1": {
+      "id": 1,
+      "created_at": "2026-02-17T10:57:57.315Z",
+      "updated_at": "2026-02-17T10:57:57.315Z",
+      "resume_id": 9,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "2": {
+      "id": 2,
+      "created_at": "2026-02-17T10:57:57.315Z",
+      "updated_at": "2026-02-17T10:57:57.315Z",
+      "resume_id": 9,
+      "institution_name": "北京大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "3": {
+      "id": 3,
+      "created_at": "2026-02-17T10:59:52.025Z",
+      "updated_at": "2026-02-17T10:59:52.025Z",
+      "resume_id": 10,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "4": {
+      "id": 4,
+      "created_at": "2026-02-17T10:59:52.025Z",
+      "updated_at": "2026-02-17T10:59:52.025Z",
+      "resume_id": 10,
+      "institution_name": "北京大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "5": {
+      "id": 5,
+      "created_at": "2026-02-17T11:00:21.544Z",
+      "updated_at": "2026-02-17T11:00:21.544Z",
+      "resume_id": 11,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "6": {
+      "id": 6,
+      "created_at": "2026-02-17T11:00:21.545Z",
+      "updated_at": "2026-02-17T11:00:21.545Z",
+      "resume_id": 11,
+      "institution_name": "北京大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "7": {
+      "id": 7,
+      "created_at": "2026-02-17T11:08:55.627Z",
+      "updated_at": "2026-02-17T11:08:55.627Z",
+      "resume_id": 13,
+      "institution_name": "示例大学",
+      "degree": "学士",
+      "major": "相关专业"
+    },
+    "8": {
+      "id": 8,
+      "created_at": "2026-02-17T11:10:38.455Z",
+      "updated_at": "2026-02-17T11:10:38.455Z",
+      "resume_id": 14,
+      "institution_name": "示例大学",
+      "degree": "学士",
+      "major": "相关专业"
+    },
+    "9": {
+      "id": 9,
+      "created_at": "2026-02-17T11:19:53.521Z",
+      "updated_at": "2026-02-17T11:19:53.521Z",
+      "resume_id": 15,
+      "institution_name": "新浪大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "10": {
+      "id": 10,
+      "created_at": "2026-02-17T11:19:53.523Z",
+      "updated_at": "2026-02-17T11:19:53.523Z",
+      "resume_id": 15,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": ""
+    },
+    "11": {
+      "id": 11,
+      "created_at": "2026-02-17T12:38:36.800Z",
+      "updated_at": "2026-02-17T12:38:36.800Z",
+      "resume_id": 19,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "12": {
+      "id": 12,
+      "created_at": "2026-02-17T12:44:03.103Z",
+      "updated_at": "2026-02-17T12:44:03.103Z",
+      "resume_id": 20,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "13": {
+      "id": 13,
+      "created_at": "2026-02-17T13:10:57.761Z",
+      "updated_at": "2026-02-17T13:10:57.761Z",
+      "resume_id": 21,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "14": {
+      "id": 14,
+      "created_at": "2026-02-17T13:27:11.459Z",
+      "updated_at": "2026-02-17T13:27:11.459Z",
+      "resume_id": 22,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "15": {
+      "id": 15,
+      "created_at": "2026-02-17T13:31:56.520Z",
+      "updated_at": "2026-02-17T13:31:56.520Z",
+      "resume_id": 23,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "16": {
+      "id": 16,
+      "created_at": "2026-02-17T13:38:16.687Z",
+      "updated_at": "2026-02-17T13:38:16.687Z",
+      "resume_id": 24,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "17": {
+      "id": 17,
+      "created_at": "2026-02-17T13:43:06.760Z",
+      "updated_at": "2026-02-17T13:43:06.760Z",
+      "resume_id": 25,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "18": {
+      "id": 18,
+      "created_at": "2026-02-17T13:43:51.665Z",
+      "updated_at": "2026-02-17T13:43:51.665Z",
+      "resume_id": 26,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "19": {
+      "id": 19,
+      "created_at": "2026-02-17T13:50:02.293Z",
+      "updated_at": "2026-02-17T13:50:02.293Z",
+      "resume_id": 27,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    },
+    "20": {
+      "id": 20,
+      "created_at": "2026-02-17T13:52:22.082Z",
+      "updated_at": "2026-02-17T13:52:22.082Z",
+      "resume_id": 28,
+      "institution_name": "清华大学",
+      "degree": "本科",
+      "major": "计算机科学"
+    }
+  },
+  "work_experience": {
+    "1": {
+      "id": 1,
+      "created_at": "2026-02-17T10:57:57.315Z",
+      "updated_at": "2026-02-17T10:57:57.315Z",
+      "resume_id": 9,
+      "company_name": "腾讯科技",
+      "position": "高级软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "2": {
+      "id": 2,
+      "created_at": "2026-02-17T10:57:57.316Z",
+      "updated_at": "2026-02-17T10:57:57.316Z",
+      "resume_id": 9,
+      "company_name": "腾讯",
+      "position": "软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "3": {
+      "id": 3,
+      "created_at": "2026-02-17T10:59:52.026Z",
+      "updated_at": "2026-02-17T10:59:52.026Z",
+      "resume_id": 10,
+      "company_name": "腾讯科技",
+      "position": "高级软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "4": {
+      "id": 4,
+      "created_at": "2026-02-17T10:59:52.026Z",
+      "updated_at": "2026-02-17T10:59:52.026Z",
+      "resume_id": 10,
+      "company_name": "腾讯",
+      "position": "软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "5": {
+      "id": 5,
+      "created_at": "2026-02-17T11:00:21.545Z",
+      "updated_at": "2026-02-17T11:00:21.545Z",
+      "resume_id": 11,
+      "company_name": "腾讯科技",
+      "position": "高级软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "6": {
+      "id": 6,
+      "created_at": "2026-02-17T11:00:21.545Z",
+      "updated_at": "2026-02-17T11:00:21.545Z",
+      "resume_id": 11,
+      "company_name": "腾讯",
+      "position": "软件工程师",
+      "responsibilities": "js、Node js\n数据库：MySQL、Redis、MongoDB、Elasticsearch"
+    },
+    "7": {
+      "id": 7,
+      "created_at": "2026-02-17T11:08:55.628Z",
+      "updated_at": "2026-02-17T11:08:55.628Z",
+      "resume_id": 13,
+      "company_name": "示例公司",
+      "position": "相关职位"
+    },
+    "8": {
+      "id": 8,
+      "created_at": "2026-02-17T11:10:38.455Z",
+      "updated_at": "2026-02-17T11:10:38.455Z",
+      "resume_id": 14,
+      "company_name": "示例公司",
+      "position": "相关职位"
+    },
+    "9": {
+      "id": 9,
+      "created_at": "2026-02-17T12:38:36.801Z",
+      "updated_at": "2026-02-17T12:38:36.801Z",
+      "resume_id": 19,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "10": {
+      "id": 10,
+      "created_at": "2026-02-17T12:44:03.104Z",
+      "updated_at": "2026-02-17T12:44:03.104Z",
+      "resume_id": 20,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "11": {
+      "id": 11,
+      "created_at": "2026-02-17T13:10:57.762Z",
+      "updated_at": "2026-02-17T13:10:57.762Z",
+      "resume_id": 21,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "12": {
+      "id": 12,
+      "created_at": "2026-02-17T13:27:11.459Z",
+      "updated_at": "2026-02-17T13:27:11.459Z",
+      "resume_id": 22,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "13": {
+      "id": 13,
+      "created_at": "2026-02-17T13:31:56.521Z",
+      "updated_at": "2026-02-17T13:31:56.521Z",
+      "resume_id": 23,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "14": {
+      "id": 14,
+      "created_at": "2026-02-17T13:38:16.687Z",
+      "updated_at": "2026-02-17T13:38:16.687Z",
+      "resume_id": 24,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "15": {
+      "id": 15,
+      "created_at": "2026-02-17T13:43:06.760Z",
+      "updated_at": "2026-02-17T13:43:06.760Z",
+      "resume_id": 25,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "16": {
+      "id": 16,
+      "created_at": "2026-02-17T13:43:51.666Z",
+      "updated_at": "2026-02-17T13:43:51.666Z",
+      "resume_id": 26,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "17": {
+      "id": 17,
+      "created_at": "2026-02-17T13:50:02.294Z",
+      "updated_at": "2026-02-17T13:50:02.294Z",
+      "resume_id": 27,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    },
+    "18": {
+      "id": 18,
+      "created_at": "2026-02-17T13:52:22.082Z",
+      "updated_at": "2026-02-17T13:52:22.082Z",
+      "resume_id": 28,
+      "company_name": "示例科技有限公司",
+      "position": "软件工程师",
+      "responsibilities": "负责后端系统开发和维护"
+    }
+  },
+  "skills": {
+    "1": {
+      "id": 1,
+      "created_at": "2026-02-17T10:33:49.393Z",
+      "updated_at": "2026-02-17T10:33:49.393Z",
+      "resume_id": 1
+    },
+    "2": {
+      "id": 2,
+      "created_at": "2026-02-17T10:40:46.671Z",
+      "updated_at": "2026-02-17T10:40:46.671Z",
+      "resume_id": 4
+    },
+    "3": {
+      "id": 3,
+      "created_at": "2026-02-17T10:50:28.495Z",
+      "updated_at": "2026-02-17T10:50:28.495Z",
+      "resume_id": 7
+    },
+    "4": {
+      "id": 4,
+      "created_at": "2026-02-17T10:53:28.093Z",
+      "updated_at": "2026-02-17T10:53:28.093Z",
+      "resume_id": 8
+    },
+    "5": {
+      "id": 5,
+      "created_at": "2026-02-17T10:57:57.316Z",
+      "updated_at": "2026-02-17T10:57:57.316Z",
+      "resume_id": 9
+    },
+    "6": {
+      "id": 6,
+      "created_at": "2026-02-17T10:57:57.316Z",
+      "updated_at": "2026-02-17T10:57:57.316Z",
+      "resume_id": 9
+    },
+    "7": {
+      "id": 7,
+      "created_at": "2026-02-17T10:57:57.317Z",
+      "updated_at": "2026-02-17T10:57:57.317Z",
+      "resume_id": 9
+    },
+    "8": {
+      "id": 8,
+      "created_at": "2026-02-17T10:57:57.317Z",
+      "updated_at": "2026-02-17T10:57:57.317Z",
+      "resume_id": 9
+    },
+    "9": {
+      "id": 9,
+      "created_at": "2026-02-17T10:57:57.318Z",
+      "updated_at": "2026-02-17T10:57:57.318Z",
+      "resume_id": 9
+    },
+    "10": {
+      "id": 10,
+      "created_at": "2026-02-17T10:57:57.318Z",
+      "updated_at": "2026-02-17T10:57:57.318Z",
+      "resume_id": 9
+    },
+    "11": {
+      "id": 11,
+      "created_at": "2026-02-17T10:57:57.318Z",
+      "updated_at": "2026-02-17T10:57:57.318Z",
+      "resume_id": 9
+    },
+    "12": {
+      "id": 12,
+      "created_at": "2026-02-17T10:57:57.319Z",
+      "updated_at": "2026-02-17T10:57:57.319Z",
+      "resume_id": 9
+    },
+    "13": {
+      "id": 13,
+      "created_at": "2026-02-17T10:57:57.319Z",
+      "updated_at": "2026-02-17T10:57:57.319Z",
+      "resume_id": 9
+    },
+    "14": {
+      "id": 14,
+      "created_at": "2026-02-17T10:57:57.319Z",
+      "updated_at": "2026-02-17T10:57:57.319Z",
+      "resume_id": 9
+    },
+    "15": {
+      "id": 15,
+      "created_at": "2026-02-17T10:57:57.320Z",
+      "updated_at": "2026-02-17T10:57:57.320Z",
+      "resume_id": 9
+    },
+    "16": {
+      "id": 16,
+      "created_at": "2026-02-17T10:57:57.320Z",
+      "updated_at": "2026-02-17T10:57:57.320Z",
+      "resume_id": 9
+    },
+    "17": {
+      "id": 17,
+      "created_at": "2026-02-17T10:59:52.027Z",
+      "updated_at": "2026-02-17T10:59:52.027Z",
+      "resume_id": 10
+    },
+    "18": {
+      "id": 18,
+      "created_at": "2026-02-17T10:59:52.028Z",
+      "updated_at": "2026-02-17T10:59:52.028Z",
+      "resume_id": 10
+    },
+    "19": {
+      "id": 19,
+      "created_at": "2026-02-17T10:59:52.028Z",
+      "updated_at": "2026-02-17T10:59:52.028Z",
+      "resume_id": 10
+    },
+    "20": {
+      "id": 20,
+      "created_at": "2026-02-17T10:59:52.029Z",
+      "updated_at": "2026-02-17T10:59:52.029Z",
+      "resume_id": 10
+    },
+    "21": {
+      "id": 21,
+      "created_at": "2026-02-17T10:59:52.029Z",
+      "updated_at": "2026-02-17T10:59:52.029Z",
+      "resume_id": 10
+    },
+    "22": {
+      "id": 22,
+      "created_at": "2026-02-17T10:59:52.030Z",
+      "updated_at": "2026-02-17T10:59:52.030Z",
+      "resume_id": 10
+    },
+    "23": {
+      "id": 23,
+      "created_at": "2026-02-17T10:59:52.030Z",
+      "updated_at": "2026-02-17T10:59:52.030Z",
+      "resume_id": 10
+    },
+    "24": {
+      "id": 24,
+      "created_at": "2026-02-17T10:59:52.030Z",
+      "updated_at": "2026-02-17T10:59:52.030Z",
+      "resume_id": 10
+    },
+    "25": {
+      "id": 25,
+      "created_at": "2026-02-17T10:59:52.031Z",
+      "updated_at": "2026-02-17T10:59:52.031Z",
+      "resume_id": 10
+    },
+    "26": {
+      "id": 26,
+      "created_at": "2026-02-17T10:59:52.031Z",
+      "updated_at": "2026-02-17T10:59:52.031Z",
+      "resume_id": 10
+    },
+    "27": {
+      "id": 27,
+      "created_at": "2026-02-17T10:59:52.032Z",
+      "updated_at": "2026-02-17T10:59:52.032Z",
+      "resume_id": 10
+    },
+    "28": {
+      "id": 28,
+      "created_at": "2026-02-17T10:59:52.033Z",
+      "updated_at": "2026-02-17T10:59:52.033Z",
+      "resume_id": 10
+    },
+    "29": {
+      "id": 29,
+      "created_at": "2026-02-17T11:00:21.546Z",
+      "updated_at": "2026-02-17T11:00:21.546Z",
+      "resume_id": 11
+    },
+    "30": {
+      "id": 30,
+      "created_at": "2026-02-17T11:00:21.546Z",
+      "updated_at": "2026-02-17T11:00:21.546Z",
+      "resume_id": 11
+    },
+    "31": {
+      "id": 31,
+      "created_at": "2026-02-17T11:00:21.547Z",
+      "updated_at": "2026-02-17T11:00:21.547Z",
+      "resume_id": 11
+    },
+    "32": {
+      "id": 32,
+      "created_at": "2026-02-17T11:00:21.547Z",
+      "updated_at": "2026-02-17T11:00:21.547Z",
+      "resume_id": 11
+    },
+    "33": {
+      "id": 33,
+      "created_at": "2026-02-17T11:00:21.548Z",
+      "updated_at": "2026-02-17T11:00:21.548Z",
+      "resume_id": 11
+    },
+    "34": {
+      "id": 34,
+      "created_at": "2026-02-17T11:00:21.548Z",
+      "updated_at": "2026-02-17T11:00:21.548Z",
+      "resume_id": 11
+    },
+    "35": {
+      "id": 35,
+      "created_at": "2026-02-17T11:00:21.549Z",
+      "updated_at": "2026-02-17T11:00:21.549Z",
+      "resume_id": 11
+    },
+    "36": {
+      "id": 36,
+      "created_at": "2026-02-17T11:00:21.549Z",
+      "updated_at": "2026-02-17T11:00:21.549Z",
+      "resume_id": 11
+    },
+    "37": {
+      "id": 37,
+      "created_at": "2026-02-17T11:00:21.549Z",
+      "updated_at": "2026-02-17T11:00:21.549Z",
+      "resume_id": 11
+    },
+    "38": {
+      "id": 38,
+      "created_at": "2026-02-17T11:00:21.550Z",
+      "updated_at": "2026-02-17T11:00:21.550Z",
+      "resume_id": 11
+    },
+    "39": {
+      "id": 39,
+      "created_at": "2026-02-17T11:00:21.550Z",
+      "updated_at": "2026-02-17T11:00:21.550Z",
+      "resume_id": 11
+    },
+    "40": {
+      "id": 40,
+      "created_at": "2026-02-17T11:00:21.551Z",
+      "updated_at": "2026-02-17T11:00:21.551Z",
+      "resume_id": 11
+    },
+    "41": {
+      "id": 41,
+      "created_at": "2026-02-17T11:40:30.795Z",
+      "updated_at": "2026-02-17T11:40:30.795Z",
+      "resume_id": 16
+    },
+    "42": {
+      "id": 42,
+      "created_at": "2026-02-17T11:40:30.796Z",
+      "updated_at": "2026-02-17T11:40:30.796Z",
+      "resume_id": 16
+    },
+    "43": {
+      "id": 43,
+      "created_at": "2026-02-17T11:40:30.797Z",
+      "updated_at": "2026-02-17T11:40:30.797Z",
+      "resume_id": 16
+    },
+    "44": {
+      "id": 44,
+      "created_at": "2026-02-17T11:40:30.797Z",
+      "updated_at": "2026-02-17T11:40:30.797Z",
+      "resume_id": 16
+    },
+    "45": {
+      "id": 45,
+      "created_at": "2026-02-17T11:40:30.798Z",
+      "updated_at": "2026-02-17T11:40:30.798Z",
+      "resume_id": 16
+    },
+    "46": {
+      "id": 46,
+      "created_at": "2026-02-17T11:40:30.798Z",
+      "updated_at": "2026-02-17T11:40:30.798Z",
+      "resume_id": 16
+    },
+    "47": {
+      "id": 47,
+      "created_at": "2026-02-17T12:38:36.802Z",
+      "updated_at": "2026-02-17T12:38:36.802Z",
+      "resume_id": 19
+    },
+    "48": {
+      "id": 48,
+      "created_at": "2026-02-17T12:38:36.802Z",
+      "updated_at": "2026-02-17T12:38:36.802Z",
+      "resume_id": 19
+    },
+    "49": {
+      "id": 49,
+      "created_at": "2026-02-17T12:38:36.803Z",
+      "updated_at": "2026-02-17T12:38:36.803Z",
+      "resume_id": 19
+    },
+    "50": {
+      "id": 50,
+      "created_at": "2026-02-17T12:38:36.804Z",
+      "updated_at": "2026-02-17T12:38:36.804Z",
+      "resume_id": 19
+    },
+    "51": {
+      "id": 51,
+      "created_at": "2026-02-17T12:44:03.104Z",
+      "updated_at": "2026-02-17T12:44:03.104Z",
+      "resume_id": 20
+    },
+    "52": {
+      "id": 52,
+      "created_at": "2026-02-17T12:44:03.105Z",
+      "updated_at": "2026-02-17T12:44:03.105Z",
+      "resume_id": 20
+    },
+    "53": {
+      "id": 53,
+      "created_at": "2026-02-17T12:44:03.106Z",
+      "updated_at": "2026-02-17T12:44:03.106Z",
+      "resume_id": 20
+    },
+    "54": {
+      "id": 54,
+      "created_at": "2026-02-17T12:44:03.107Z",
+      "updated_at": "2026-02-17T12:44:03.107Z",
+      "resume_id": 20
+    },
+    "55": {
+      "id": 55,
+      "created_at": "2026-02-17T13:10:57.762Z",
+      "updated_at": "2026-02-17T13:10:57.762Z",
+      "resume_id": 21
+    },
+    "56": {
+      "id": 56,
+      "created_at": "2026-02-17T13:10:57.764Z",
+      "updated_at": "2026-02-17T13:10:57.764Z",
+      "resume_id": 21
+    },
+    "57": {
+      "id": 57,
+      "created_at": "2026-02-17T13:10:57.765Z",
+      "updated_at": "2026-02-17T13:10:57.765Z",
+      "resume_id": 21
+    },
+    "58": {
+      "id": 58,
+      "created_at": "2026-02-17T13:10:57.766Z",
+      "updated_at": "2026-02-17T13:10:57.766Z",
+      "resume_id": 21
+    },
+    "59": {
+      "id": 59,
+      "created_at": "2026-02-17T13:27:11.460Z",
+      "updated_at": "2026-02-17T13:27:11.460Z",
+      "resume_id": 22
+    },
+    "60": {
+      "id": 60,
+      "created_at": "2026-02-17T13:27:11.461Z",
+      "updated_at": "2026-02-17T13:27:11.461Z",
+      "resume_id": 22
+    },
+    "61": {
+      "id": 61,
+      "created_at": "2026-02-17T13:27:11.461Z",
+      "updated_at": "2026-02-17T13:27:11.461Z",
+      "resume_id": 22
+    },
+    "62": {
+      "id": 62,
+      "created_at": "2026-02-17T13:27:11.462Z",
+      "updated_at": "2026-02-17T13:27:11.462Z",
+      "resume_id": 22
+    },
+    "63": {
+      "id": 63,
+      "created_at": "2026-02-17T13:31:56.522Z",
+      "updated_at": "2026-02-17T13:31:56.522Z",
+      "resume_id": 23
+    },
+    "64": {
+      "id": 64,
+      "created_at": "2026-02-17T13:31:56.522Z",
+      "updated_at": "2026-02-17T13:31:56.522Z",
+      "resume_id": 23
+    },
+    "65": {
+      "id": 65,
+      "created_at": "2026-02-17T13:31:56.523Z",
+      "updated_at": "2026-02-17T13:31:56.523Z",
+      "resume_id": 23
+    },
+    "66": {
+      "id": 66,
+      "created_at": "2026-02-17T13:31:56.523Z",
+      "updated_at": "2026-02-17T13:31:56.523Z",
+      "resume_id": 23
+    },
+    "67": {
+      "id": 67,
+      "created_at": "2026-02-17T13:38:16.688Z",
+      "updated_at": "2026-02-17T13:38:16.688Z",
+      "resume_id": 24
+    },
+    "68": {
+      "id": 68,
+      "created_at": "2026-02-17T13:38:16.688Z",
+      "updated_at": "2026-02-17T13:38:16.688Z",
+      "resume_id": 24
+    },
+    "69": {
+      "id": 69,
+      "created_at": "2026-02-17T13:38:16.689Z",
+      "updated_at": "2026-02-17T13:38:16.689Z",
+      "resume_id": 24
+    },
+    "70": {
+      "id": 70,
+      "created_at": "2026-02-17T13:38:16.690Z",
+      "updated_at": "2026-02-17T13:38:16.690Z",
+      "resume_id": 24
+    },
+    "71": {
+      "id": 71,
+      "created_at": "2026-02-17T13:43:06.761Z",
+      "updated_at": "2026-02-17T13:43:06.761Z",
+      "resume_id": 25
+    },
+    "72": {
+      "id": 72,
+      "created_at": "2026-02-17T13:43:06.762Z",
+      "updated_at": "2026-02-17T13:43:06.762Z",
+      "resume_id": 25
+    },
+    "73": {
+      "id": 73,
+      "created_at": "2026-02-17T13:43:06.763Z",
+      "updated_at": "2026-02-17T13:43:06.763Z",
+      "resume_id": 25
+    },
+    "74": {
+      "id": 74,
+      "created_at": "2026-02-17T13:43:06.763Z",
+      "updated_at": "2026-02-17T13:43:06.763Z",
+      "resume_id": 25
+    },
+    "75": {
+      "id": 75,
+      "created_at": "2026-02-17T13:43:51.668Z",
+      "updated_at": "2026-02-17T13:43:51.668Z",
+      "resume_id": 26
+    },
+    "76": {
+      "id": 76,
+      "created_at": "2026-02-17T13:43:51.669Z",
+      "updated_at": "2026-02-17T13:43:51.669Z",
+      "resume_id": 26
+    },
+    "77": {
+      "id": 77,
+      "created_at": "2026-02-17T13:43:51.670Z",
+      "updated_at": "2026-02-17T13:43:51.670Z",
+      "resume_id": 26
+    },
+    "78": {
+      "id": 78,
+      "created_at": "2026-02-17T13:43:51.670Z",
+      "updated_at": "2026-02-17T13:43:51.670Z",
+      "resume_id": 26
+    },
+    "79": {
+      "id": 79,
+      "created_at": "2026-02-17T13:50:02.295Z",
+      "updated_at": "2026-02-17T13:50:02.295Z",
+      "resume_id": 27
+    },
+    "80": {
+      "id": 80,
+      "created_at": "2026-02-17T13:50:02.296Z",
+      "updated_at": "2026-02-17T13:50:02.296Z",
+      "resume_id": 27
+    },
+    "81": {
+      "id": 81,
+      "created_at": "2026-02-17T13:50:02.296Z",
+      "updated_at": "2026-02-17T13:50:02.296Z",
+      "resume_id": 27
+    },
+    "82": {
+      "id": 82,
+      "created_at": "2026-02-17T13:50:02.297Z",
+      "updated_at": "2026-02-17T13:50:02.297Z",
+      "resume_id": 27
+    },
+    "83": {
+      "id": 83,
+      "created_at": "2026-02-17T13:52:22.083Z",
+      "updated_at": "2026-02-17T13:52:22.083Z",
+      "resume_id": 28
+    },
+    "84": {
+      "id": 84,
+      "created_at": "2026-02-17T13:52:22.084Z",
+      "updated_at": "2026-02-17T13:52:22.084Z",
+      "resume_id": 28
+    },
+    "85": {
+      "id": 85,
+      "created_at": "2026-02-17T13:52:22.085Z",
+      "updated_at": "2026-02-17T13:52:22.085Z",
+      "resume_id": 28
+    },
+    "86": {
+      "id": 86,
+      "created_at": "2026-02-17T13:52:22.086Z",
+      "updated_at": "2026-02-17T13:52:22.086Z",
+      "resume_id": 28
+    }
+  },
+  "applications": {},
+  "nextId": {
+    "users": 1,
+    "resumes": 29,
+    "personal_info": 29,
+    "education": 21,
+    "work_experience": 19,
+    "skills": 87,
+    "applications": 1
+  }
+}

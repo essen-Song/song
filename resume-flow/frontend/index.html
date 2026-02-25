@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeFlow Pro - 重定向页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid rgba(76, 175, 80, 0.5);
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border: 1px solid rgba(244, 67, 54, 0.5);
+        }
+        .info {
+            background: rgba(33, 150, 243, 0.2);
+            border: 1px solid rgba(33, 150, 243, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ResumeFlow Pro</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">真实AI求职助手平台 - 不是PPT演示</p>
+        
+        <div id="backendStatus" class="status info">正在检查后端服务状态...</div>
+        <div id="frontendStatus" class="status info">正在检查前端应用状态...</div>
+        
+        <div style="margin: 40px 0;">
+            <h3>📋 请选择正确的应用版本：</h3>
+            
+            <div style="margin: 20px 0;">
+                <a href="/real-app-final.html" class="btn" onclick="openRealApp()">
+                    🎯 打开真实应用 (推荐)
+                </a>
+                <br>
+                <small style="opacity: 0.8;">功能完整的真实平台，不是演示</small>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <a href="/test.html" class="btn" onclick="openTestPage()">
+                    🧪 打开测试页面
+                </a>
+                <br>
+                <small style="opacity: 0.8;">验证API连接和功能测试</small>
+            </div>
+            
+            <div style="margin: 20px 0;">
+                <a href="/demo.html" class="btn" onclick="openDemo()" style="background: #ff9800; color: white;">
+                    ⚠️ 旧版演示 (不推荐)
+                </a>
+                <br>
+                <small style="opacity: 0.8;">这是旧的演示版本，功能有限</small>
+            </div>
+        </div>
+        
+        <div class="status info">
+            <h4>💡 重要提示：</h4>
+            <p>您当前看到的是重定向页面。请点击上面的 <strong>"打开真实应用"</strong> 按钮来体验我们新开发的完整功能平台。</p>
+            <p>真实应用包含：</p>
+            <ul style="text-align: left; display: inline-block;">
+                <li>✅ 真实文件解析算法</li>
+                <li>✅ 智能AI优化引擎</li>
+                <li>✅ 多平台投递系统</li>
+                <li>✅ 专业面试评估</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 检查后端服务状态
+        async function checkBackendStatus() {
+            const statusDiv = document.getElementById('backendStatus');
+            
+            try {
+                const response = await fetch('http://localhost:3002/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `✅ 后端服务正常 - 版本: ${data.version}`;
+                    statusDiv.className = 'status success';
+                    
+                    // 自动跳转到真实应用
+                    setTimeout(() => {
+                        window.location.href = '/real-app-final.html';
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('HTTP状态异常');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `❌ 后端服务连接失败: ${error.message}`;
+                statusDiv.className = 'status error';
+                
+                // 显示错误解决方案
+                setTimeout(() => {
+                    alert('后端服务连接失败！\n\n请确保：\n1. 后端服务器已启动\n2. 端口3002未被占用\n\n将使用模拟数据演示功能。');
+                }, 1000);
+            }
+        }
+
+        // 检查前端文件状态
+        async function checkFrontendStatus() {
+            const statusDiv = document.getElementById('frontendStatus');
+            
+            try {
+                const response = await fetch('/real-app-final.html');
+                if (response.ok) {
+                    statusDiv.innerHTML = '✅ 真实应用文件可用';
+                    statusDiv.className = 'status success';
+                } else {
+                    throw new Error('文件不存在');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `❌ 真实应用文件缺失: ${error.message}`;
+                statusDiv.className = 'status error';
+            }
+        }
+
+        // 打开真实应用
+        function openRealApp() {
+            window.location.href = '/real-app-final.html';
+        }
+
+        // 打开测试页面
+        function openTestPage() {
+            window.location.href = '/test.html';
+        }
+
+        // 打开演示页面
+        function openDemo() {
+            if (confirm('⚠️ 这是旧的演示版本，功能有限。\n\n推荐使用新的真实应用版本，包含完整功能。\n\n确定要打开旧版演示吗？')) {
+                window.location.href = '/demo.html';
+            }
+        }
+
+        // 页面加载时检查状态
+        document.addEventListener('DOMContentLoaded', function() {
+            checkBackendStatus();
+            checkFrontendStatus();
+        });
+    </script>
+</body>
+</html>

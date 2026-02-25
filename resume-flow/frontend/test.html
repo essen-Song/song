@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeFlow Pro - 测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 ResumeFlow Pro 真实平台测试</h1>
+        
+        <div class="status info">
+            💡 这是一个真实可用的AI求职助手平台，不是PPT演示
+        </div>
+
+        <div id="backendStatus" class="status">正在检查后端服务...</div>
+        <div id="frontendStatus" class="status">正在检查前端服务...</div>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn" onclick="testBackend()">测试后端API</button>
+            <button class="btn" onclick="openRealApp()">打开真实应用</button>
+            <button class="btn" onclick="testAllFeatures()">全面功能测试</button>
+        </div>
+
+        <div id="testResults" style="display: none;">
+            <h3>测试结果：</h3>
+            <pre id="resultContent"></pre>
+        </div>
+
+        <div class="status info">
+            <h3>📋 平台功能说明：</h3>
+            <ul>
+                <li><strong>📄 智能简历解析</strong> - 真实PDF/Word文件解析</li>
+                <li><strong>🤖 AI简历优化</strong> - 智能关键词匹配和优化建议</li>
+                <li><strong>🎯 智能投递系统</strong> - 多平台真实投递逻辑</li>
+                <li><strong>🎤 AI面试教练</strong> - STAR法则多维度评估</li>
+            </ul>
+            
+            <h3>🔗 访问地址：</h3>
+            <ul>
+                <li><strong>后端API</strong>: http://localhost:3002</li>
+                <li><strong>前端应用</strong>: http://localhost:3000/real-app-final.html</li>
+                <li><strong>测试页面</strong>: http://localhost:3000/test.html</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 检查后端服务状态
+        async function checkBackendStatus() {
+            const statusDiv = document.getElementById('backendStatus');
+            
+            try {
+                const response = await fetch('http://localhost:3002/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    statusDiv.innerHTML = `✅ 后端服务正常 - 版本: ${data.version}`;
+                    statusDiv.className = 'status success';
+                    return true;
+                } else {
+                    throw new Error('HTTP状态异常');
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `❌ 后端服务连接失败: ${error.message}`;
+                statusDiv.className = 'status error';
+                return false;
+            }
+        }
+
+        // 检查前端服务状态
+        function checkFrontendStatus() {
+            const statusDiv = document.getElementById('frontendStatus');
+            
+            try {
+                // 检查前端文件是否存在
+                fetch('http://localhost:3000/real-app-final.html')
+                    .then(response => {
+                        if (response.ok) {
+                            statusDiv.innerHTML = '✅ 前端服务正常';
+                            statusDiv.className = 'status success';
+                        } else {
+                            throw new Error('文件不存在');
+                        }
+                    })
+                    .catch(error => {
+                        statusDiv.innerHTML = `❌ 前端服务异常: ${error.message}`;
+                        statusDiv.className = 'status error';
+                    });
+            } catch (error) {
+                statusDiv.innerHTML = `❌ 前端服务检查失败: ${error.message}`;
+                statusDiv.className = 'status error';
+            }
+        }
+
+        // 测试后端API
+        async function testBackend() {
+            const resultsDiv = document.getElementById('testResults');
+            const contentDiv = document.getElementById('resultContent');
+            
+            resultsDiv.style.display = 'block';
+            contentDiv.innerHTML = '正在测试后端API...\n';
+            
+            try {
+                // 测试健康检查
+                contentDiv.innerHTML += '1. 测试健康检查...';
+                const healthResponse = await fetch('http://localhost:3002/health');
+                const healthData = await healthResponse.json();
+                contentDiv.innerHTML += ' ✅ 成功\n';
+                
+                // 测试简历解析
+                contentDiv.innerHTML += '2. 测试简历解析...';
+                const parseResponse = await fetch('http://localhost:3002/api/resume/parse-text', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        text: '姓名：张三\n邮箱：zhangsan@example.com\n电话：13800000000\n学历：本科\n专业：计算机科学'
+                    })
+                });
+                const parseData = await parseResponse.json();
+                contentDiv.innerHTML += ' ✅ 成功\n';
+                
+                // 测试AI优化
+                contentDiv.innerHTML += '3. 测试AI优化...';
+                const optimizeResponse = await fetch('http://localhost:3002/api/optimize/resume', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        resumeText: '前端开发工程师，3年经验，精通React和Vue.js',
+                        jobDescription: '招聘前端开发工程师，要求精通React，有Vue.js经验者优先'
+                    })
+                });
+                const optimizeData = await optimizeResponse.json();
+                contentDiv.innerHTML += ' ✅ 成功\n';
+                
+                // 测试面试评估
+                contentDiv.innerHTML += '4. 测试面试评估...';
+                const interviewResponse = await fetch('http://localhost:3002/api/interview/evaluate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        question: '请描述一个你解决过的技术难题',
+                        answer: '在项目中遇到了性能问题，通过代码优化和缓存策略解决了问题'
+                    })
+                });
+                const interviewData = await interviewResponse.json();
+                contentDiv.innerHTML += ' ✅ 成功\n\n';
+                
+                contentDiv.innerHTML += '🎉 所有API测试通过！\n\n';
+                contentDiv.innerHTML += '后端服务状态：\n';
+                contentDiv.innerHTML += JSON.stringify(healthData, null, 2) + '\n\n';
+                contentDiv.innerHTML += '简历解析结果：\n';
+                contentDiv.innerHTML += JSON.stringify(parseData, null, 2) + '\n\n';
+                contentDiv.innerHTML += 'AI优化结果：\n';
+                contentDiv.innerHTML += JSON.stringify(optimizeData, null, 2) + '\n\n';
+                contentDiv.innerHTML += '面试评估结果：\n';
+                contentDiv.innerHTML += JSON.stringify(interviewData, null, 2);
+                
+            } catch (error) {
+                contentDiv.innerHTML += ` ❌ 失败: ${error.message}\n`;
+            }
+        }
+
+        // 打开真实应用
+        function openRealApp() {
+            window.open('http://localhost:3000/real-app-final.html', '_blank');
+        }
+
+        // 全面功能测试
+        async function testAllFeatures() {
+            const backendOk = await checkBackendStatus();
+            checkFrontendStatus();
+            
+            if (backendOk) {
+                setTimeout(() => {
+                    testBackend();
+                }, 1000);
+            }
+        }
+
+        // 页面加载时自动检查状态
+        document.addEventListener('DOMContentLoaded', function() {
+            checkBackendStatus();
+            checkFrontendStatus();
+        });
+    </script>
+</body>
+</html>

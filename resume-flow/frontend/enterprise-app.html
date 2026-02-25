@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智聘AI - 企业级智能求职平台</title>
+    <style>
+        /* 企业级CSS重置和基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* 企业级色彩系统 */
+            --primary-color: #1890ff;
+            --primary-hover: #40a9ff;
+            --success-color: #52c41a;
+            --warning-color: #faad14;
+            --error-color: #f5222d;
+            --text-primary: #262626;
+            --text-secondary: #595959;
+            --text-tertiary: #8c8c8c;
+            --border-color: #d9d9d9;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --header-height: 64px;
+            --sidebar-width: 240px;
+            --border-radius: 6px;
+            --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* 企业级头部导航 */
+        .header {
+            height: var(--header-height);
+            background: var(--card-background);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 主内容区域 */
+        .main-container {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+            display: flex;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--card-background);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 0;
+            position: fixed;
+            top: var(--header-height);
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-item {
+            padding: 12px 24px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+            border-left-color: var(--primary-color);
+        }
+
+        .sidebar-item .icon {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 24px;
+        }
+
+        /* 企业级卡片设计 */
+        .card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: var(--box-shadow-hover);
+        }
+
+        .card-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* 企业级表单控件 */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            transition: all 0.3s;
+            background: var(--card-background);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* 企业级按钮 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* 网格布局 */
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .col-full {
+            grid-column: 1 / -1;
+        }
+
+        /* 状态指示器 */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-success {
+            background: rgba(82, 196, 26, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-warning {
+            background: rgba(250, 173, 20, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-error {
+            background: rgba(245, 34, 45, 0.1);
+            color: var(--error-color);
+        }
+
+        /* 文件上传区域 */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.02);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary-color);
+            background: rgba(24, 144, 255, 0.06);
+        }
+
+        .upload-icon {
+            font-size: 48px;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+
+        /* 结果展示 */
+        .result-section {
+            margin-top: 24px;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .metric-card {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* 加载动画 */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 占位内容样式 */
+        .placeholder-content {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .placeholder-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+
+        .placeholder-content h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .placeholder-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .placeholder-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            opacity: 0.8;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+            }
+            
+            .row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        /* 专业的数据表格 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background: rgba(0, 0, 0, 0.02);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .data-table tr:hover {
+            background: rgba(24, 144, 255, 0.02);
+        }
+
+        /* 专业的分页器 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .page-item {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-item.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .page-item:hover:not(.active) {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- 企业级头部导航 -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">智</div>
+            <span>智聘AI</span>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" onclick="navigateTo('home', event)">首页</a>
+            <a href="#" class="nav-item" onclick="navigateTo('resume', event)">简历管理</a>
+            <a href="#" class="nav-item" onclick="navigateTo('jobs', event)">职位匹配</a>
+            <a href="#" class="nav-item" onclick="navigateTo('analytics', event)">数据分析</a>
+            <a href="model-config.html" class="nav-item" onclick="navigateTo('config', event)">模型配置</a>
+            <a href="#" class="nav-item" onclick="navigateTo('settings', event)">系统设置</a>
+        </nav>
+        
+        <div class="user-info">
+            <div class="status status-success">
+                <span class="loading"></span>
+                服务正常
+            </div>
+            <div>管理员</div>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <div class="main-container">
+        <!-- 侧边栏菜单 -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active">
+                    <span class="icon">📊</span>
+                    智能简历解析
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🤖</span>
+                    AI简历优化
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🎯</span>
+                    智能职位投递
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">🎤</span>
+                    AI面试教练
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">📈</span>
+                    数据分析报告
+                </li>
+                <li class="sidebar-item">
+                    <span class="icon">⚙️</span>
+                    系统设置
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 主要内容 -->
+        <main class="content">
+            <!-- 页面标题 -->
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="card-body">
+                    <h1 style="font-size: 24px; margin-bottom: 8px;">智能简历解析系统</h1>
+                    <p style="color: var(--text-secondary);">上传简历文件，系统将自动解析并提取关键信息</p>
+                </div>
+            </div>
+
+            <!-- 功能卡片网格 -->
+            <div class="row">
+                <!-- 简历上传卡片 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📄 简历上传</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">选择简历文件</label>
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-icon">📎</div>
+                                <div style="font-weight: 500; margin-bottom: 8px;">拖拽文件到此处</div>
+                                <div style="color: var(--text-tertiary); font-size: 12px;">
+                                    支持 PDF、Word 格式，最大 10MB
+                                </div>
+                                <input type="file" id="fileInput" accept=".pdf,.doc,.docx" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 12px; margin-top: 16px;">
+                            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                选择文件
+                            </button>
+                            <button class="btn btn-secondary" onclick="clearFile()">
+                                清除
+                            </button>
+                        </div>
+
+                        <div id="fileInfo" style="display: none; margin-top: 16px;">
+                            <div style="background: rgba(82, 196, 26, 0.1); padding: 12px; border-radius: var(--border-radius);">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <span>📄</span>
+                                    <div>
+                                        <div style="font-weight: 500;" id="fileName"></div>
+                                        <div style="font-size: 12px; color: var(--text-tertiary);" id="fileDetails"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI模型配置管理卡片 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🤖 AI模型配置</div>
+                    </div>
+                    <div class="card-body">
+                        <div style="text-align: center; padding: 20px 0;">
+                            <div style="font-size: 48px; margin-bottom: 15px;">⚙️</div>
+                            <h3 style="margin-bottom: 10px; color: var(--text-primary);">模型配置管理</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                                配置和管理AI大模型集群，优化简历解析和面试评估效果
+                            </p>
+                            <a href="model-config.html" class="btn btn-primary" style="text-decoration: none; display: inline-block;">
+                                🔧 进入配置界面
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px;">
+                            <div style="font-weight: 600; margin-bottom: 10px; color: var(--text-primary);">
+                                📊 当前配置状态
+                            </div>
+                            <div id="modelConfigStatus" style="font-size: 13px; color: var(--text-secondary);">
+                                <div class="loading" style="display: inline-block;"></div> 加载中...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 解析结果卡片 -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🔍 解析结果</div>
+                    </div>
+                    <div class="card-body">
+                        <div id="parseResult" style="text-align: center; color: var(--text-tertiary);">
+                            请上传简历文件查看解析结果
+                        </div>
+                        
+                        <div id="resultContent" style="display: none;">
+                            <div class="result-grid">
+                                <div class="metric-card">
+                                    <div class="metric-value" id="qualityScore">0%</div>
+                                    <div class="metric-label">解析质量</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-value" id="infoCount">0</div>
+                                    <div class="metric-label">提取信息</div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-value" id="skillCount">0</div>
+                                    <div class="metric-label">技能标签</div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 16px;">
+                                <h4 style="margin-bottom: 12px;">基本信息</h4>
+                                <table class="data-table">
+                                    <tr>
+                                        <td>姓名</td>
+                                        <td id="resumeName">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>联系方式</td>
+                                        <td id="resumeContact">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>教育背景</td>
+                                        <td id="resumeEducation">-</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI优化卡片 -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">🤖 AI简历优化</div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="form-label">目标职位描述</label>
+                        <textarea class="form-control" id="jobDescription" placeholder="请输入详细的职位描述，包括岗位职责、任职要求、技能要求等..."></textarea>
+                    </div>
+                    
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary" id="optimizeBtn" onclick="optimizeResume()">
+                            开始优化分析
+                        </button>
+                        <button class="btn btn-secondary" onclick="clearOptimization()">
+                            重置
+                        </button>
+                    </div>
+
+                    <div id="optimizeResult" style="display: none; margin-top: 24px;">
+                        <h4 style="margin-bottom: 16px;">优化建议</h4>
+                        <div id="optimizeContent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系统状态卡片 -->
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📊 系统状态</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="result-grid">
+                            <div class="metric-card">
+                                <div class="metric-value">98.5%</div>
+                                <div class="metric-label">服务可用性</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">256</div>
+                                <div class="metric-label">今日解析</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">89%</div>
+                                <div class="metric-label">平均匹配度</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">⚡ 快速操作</div>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <button class="btn btn-primary" onclick="navigateTo('jobs', event)">
+                                🎯 智能职位匹配
+                            </button>
+                            <button class="btn btn-secondary" onclick="navigateTo('analytics', event)">
+                                📈 生成分析报告
+                            </button>
+                            <button class="btn btn-secondary" onclick="navigateTo('settings', event)">
+                                ⚙️ 系统设置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 职位匹配页面 -->
+            <div id="jobsSection" class="page-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔍 智能职位匹配</h2>
+                        <p>基于AI算法的精准职位推荐</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🚧</div>
+                            <h3>职位匹配功能开发中</h3>
+                            <p>我们正在开发基于AI的智能职位匹配算法，将根据您的简历和技能为您推荐最合适的职位。</p>
+                            <div class="placeholder-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎯</span>
+                                    <span>精准匹配算法</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">📊</span>
+                                    <span>实时数据分析</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">💼</span>
+                                    <span>职位推荐引擎</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 数据分析页面 -->
+            <div id="analyticsSection" class="page-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📈 数据分析面板</h2>
+                        <p>求职数据深度分析和可视化</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">📊</div>
+                            <h3>数据分析功能开发中</h3>
+                            <p>我们正在构建强大的数据分析系统，为您提供求职过程中的关键洞察和趋势分析。</p>
+                            <div class="placeholder-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">📈</span>
+                                    <span>求职趋势分析</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎯</span>
+                                    <span>技能匹配度分析</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">💰</span>
+                                    <span>薪资水平预测</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 系统设置页面 -->
+            <div id="settingsSection" class="page-section" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>⚙️ 系统设置</h2>
+                        <p>个性化配置和系统管理</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="placeholder-content">
+                            <div class="placeholder-icon">🔧</div>
+                            <h3>系统设置功能开发中</h3>
+                            <p>我们正在完善系统设置功能，让您能够个性化配置平台的各种参数和选项。</p>
+                            <div class="placeholder-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">👤</span>
+                                    <span>个人资料管理</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🔔</span>
+                                    <span>通知设置</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🔒</span>
+                                    <span>隐私和安全</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 企业级JavaScript逻辑
+        const API_BASE = 'http://localhost:3002';
+        let currentResumeData = null;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDragDrop();
+            checkSystemStatus();
+            loadModelConfigStatus();
+        });
+
+        // 文件拖拽处理
+        function initializeDragDrop() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleFileSelect(files[0]);
+                }
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    handleFileSelect(e.target.files[0]);
+                }
+            });
+        }
+
+        // 文件选择处理
+        function handleFileSelect(file) {
+            // 验证文件
+            const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+            const maxSize = 10 * 1024 * 1024; // 10MB
+
+            if (!allowedTypes.includes(file.type) && !file.name.toLowerCase().match(/\.(pdf|doc|docx)$/)) {
+                showNotification('请选择PDF或Word格式的文件', 'error');
+                return;
+            }
+
+            if (file.size > maxSize) {
+                showNotification('文件大小不能超过10MB', 'error');
+                return;
+            }
+
+            // 显示文件信息
+            const fileInfo = document.getElementById('fileInfo');
+            const fileName = document.getElementById('fileName');
+            const fileDetails = document.getElementById('fileDetails');
+            
+            fileName.textContent = file.name;
+            fileDetails.textContent = `大小: ${(file.size / 1024 / 1024).toFixed(2)}MB | 类型: ${file.type.includes('pdf') ? 'PDF' : 'Word'}`;
+            fileInfo.style.display = 'block';
+
+            // 开始解析
+            parseResumeFile(file);
+        }
+
+        // 解析简历文件
+        async function parseResumeFile(file) {
+            const resultDiv = document.getElementById('parseResult');
+            resultDiv.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; gap: 8px;"><span class="loading"></span>正在解析简历文件...</div>';
+
+            try {
+                // 读取文件内容
+                const fileContent = await readFileAsBase64(file);
+                
+                console.log('开始上传文件:', file.name, file.type, file.size);
+                
+                const response = await fetch(`${API_BASE}/api/resume/upload`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fileName: file.name,
+                        fileSize: file.size,
+                        fileType: file.type,
+                        fileContent: fileContent
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('后端返回结果:', result);
+                
+                if (result.success) {
+                    currentResumeData = result.data;
+                    displayParseResult(result.data);
+                    showNotification('简历解析完成', 'success');
+                } else {
+                    throw new Error(result.error || '解析失败');
+                }
+
+            } catch (error) {
+                console.error('解析失败:', error);
+                resultDiv.innerHTML = `<div style="color: var(--error-color);">解析失败: ${error.message}</div>`;
+                showNotification('解析失败，请重试', 'error');
+            }
+        }
+
+        // 显示解析结果
+        function displayParseResult(data) {
+            console.log('解析结果数据:', data); // 调试日志
+            const resultDiv = document.getElementById('parseResult');
+            const resultContent = document.getElementById('resultContent');
+            const { parsedData, parseQuality, fileInfo } = data;
+
+            // 更新指标
+            document.getElementById('qualityScore').textContent = `${parseQuality.score}%`;
+            
+            // 修复信息计数逻辑
+            const educationCount = Array.isArray(parsedData.education) ? parsedData.education.length : 0;
+            const workCount = Array.isArray(parsedData.workExperience) ? parsedData.workExperience.length : 0;
+            const skillCount = Array.isArray(parsedData.skills) ? parsedData.skills.length : 0;
+            
+            document.getElementById('infoCount').textContent = educationCount + workCount + skillCount;
+            document.getElementById('skillCount').textContent = skillCount;
+
+            // 更新基本信息 - 添加更智能的显示逻辑
+            let nameText = '未识别';
+            if (parsedData.name && parsedData.name !== '待确认') {
+                nameText = parsedData.name;
+            } else if (fileInfo && fileInfo.fileName) {
+                // 如果无法识别姓名，使用文件名作为标识
+                const fileName = fileInfo.fileName.replace('.pdf', '').replace('.doc', '').replace('.docx', '');
+                nameText = `简历: ${fileName}`;
+            }
+            document.getElementById('resumeName').textContent = nameText;
+            
+            // 联系方式显示
+            let contactText = '未识别';
+            if (parsedData.email || parsedData.phone) {
+                contactText = `${parsedData.email || '邮箱未识别'} | ${parsedData.phone || '电话未识别'}`;
+            }
+            document.getElementById('resumeContact').textContent = contactText;
+            
+            // 教育信息显示
+            let educationText = '未识别';
+            if (Array.isArray(parsedData.education) && parsedData.education.length > 0) {
+                educationText = parsedData.education.map(edu => {
+                    if (typeof edu === 'string') return edu;
+                    return edu.institution || edu.school || '未知学校';
+                }).join('、');
+            } else if (parsedData.rawText && parsedData.rawText.length > 0) {
+                // 如果无法提取具体教育信息，显示部分原始文本
+                educationText = parsedData.rawText.substring(0, 100) + '...';
+            }
+            document.getElementById('resumeEducation').textContent = educationText;
+
+            // 显示文件信息
+            if (fileInfo) {
+                const fileInfoElement = document.createElement('div');
+                fileInfoElement.innerHTML = `
+                    <div style="margin-top: 16px; padding: 12px; background: rgba(24, 144, 255, 0.05); border-radius: var(--border-radius);">
+                        <strong>文件信息:</strong><br>
+                        格式: ${fileInfo.format} | 页数: ${fileInfo.pages} | 大小: ${(fileInfo.size / 1024).toFixed(1)}KB
+                    </div>
+                `;
+                resultContent.appendChild(fileInfoElement);
+            }
+
+            // 显示数据库存储状态
+            if (data.databaseId) {
+                const dbInfoElement = document.createElement('div');
+                let dbStatusText = '';
+                let dbStatusClass = '';
+                
+                if (data.databaseStatus === 'stored') {
+                    dbStatusText = `✅ 已存储到数据库，简历ID: ${data.databaseId}`;
+                    dbStatusClass = 'rgba(82, 196, 26, 0.05)';
+                } else if (data.databaseStatus === 'failed') {
+                    dbStatusText = `⚠️ 数据库存储失败: ${data.databaseError || '未知错误'}`;
+                    dbStatusClass = 'rgba(245, 34, 45, 0.05)';
+                } else {
+                    dbStatusText = `❓ 数据库状态未知`;
+                    dbStatusClass = 'rgba(250, 173, 20, 0.05)';
+                }
+                
+                dbInfoElement.innerHTML = `
+                    <div style="margin-top: 8px; padding: 8px; background: ${dbStatusClass}; border-radius: var(--border-radius); font-size: 12px;">
+                        ${dbStatusText}
+                    </div>
+                `;
+                resultContent.appendChild(dbInfoElement);
+            }
+            
+            // 显示AI模型信息
+            if (data.modelName) {
+                const modelInfoElement = document.createElement('div');
+                modelInfoElement.innerHTML = `
+                    <div style="margin-top: 8px; padding: 8px; background: rgba(24, 144, 255, 0.05); border-radius: var(--border-radius); font-size: 12px;">
+                        🤖 使用模型: ${data.modelName} | 类型: ${data.modelType} | 成本: ${data.cost}
+                    </div>
+                `;
+                resultContent.appendChild(modelInfoElement);
+            }
+
+            // 显示结果内容
+            resultContent.style.display = 'block';
+            resultDiv.style.display = 'none';
+        }
+
+        // AI简历优化
+        async function optimizeResume() {
+            const jobDescription = document.getElementById('jobDescription').value.trim();
+            const optimizeBtn = document.getElementById('optimizeBtn');
+            const optimizeResult = document.getElementById('optimizeResult');
+
+            if (!jobDescription) {
+                showNotification('请输入目标职位描述', 'warning');
+                return;
+            }
+
+            if (!currentResumeData) {
+                showNotification('请先上传并解析简历', 'warning');
+                return;
+            }
+
+            optimizeBtn.disabled = true;
+            optimizeBtn.innerHTML = '<span class="loading"></span>分析中...';
+
+            optimizeResult.style.display = 'block';
+            document.getElementById('optimizeContent').innerHTML = '<div style="text-align: center;"><span class="loading"></span> AI正在分析职位要求...</div>';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/optimize/resume`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        resumeText: currentResumeData.parsedData.rawText,
+                        jobDescription: jobDescription
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayOptimizationResult(result.data);
+                    showNotification('优化分析完成', 'success');
+                } else {
+                    throw new Error(result.error || '优化失败');
+                }
+
+            } catch (error) {
+                console.error('优化失败:', error);
+                document.getElementById('optimizeContent').innerHTML = 
+                    `<div style="color: var(--error-color);">优化失败: ${error.message}</div>`;
+                showNotification('优化分析失败', 'error');
+            } finally {
+                optimizeBtn.disabled = false;
+                optimizeBtn.innerHTML = '开始优化分析';
+            }
+        }
+
+        // 显示优化结果
+        function displayOptimizationResult(data) {
+            const content = document.getElementById('optimizeContent');
+            
+            let html = `
+                <div class="result-grid" style="margin-bottom: 16px;">
+                    <div class="metric-card">
+                        <div class="metric-value">${data.keywordMatchRate}%</div>
+                        <div class="metric-label">关键词匹配度</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${data.missingKeywords.length}</div>
+                        <div class="metric-label">缺失关键词</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                    <h5>优化建议</h5>
+                    <div style="background: rgba(250, 173, 20, 0.1); padding: 12px; border-radius: var(--border-radius);">
+                        ${data.suggestions.map(s => s.content).join('<br>')}
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+
+        // 系统状态检查
+        async function checkSystemStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                if (response.ok) {
+                    const statusElement = document.querySelector('.status');
+                    statusElement.innerHTML = '✅ 服务正常';
+                    statusElement.className = 'status status-success';
+                }
+            } catch (error) {
+                const statusElement = document.querySelector('.status');
+                statusElement.innerHTML = '❌ 服务异常';
+                statusElement.className = 'status status-error';
+            }
+        }
+
+        // 加载模型配置状态
+        async function loadModelConfigStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/config/status`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const statusElement = document.getElementById('modelConfigStatus');
+                    const system = data.system;
+                    
+                    let statusHtml = '';
+                    
+                    if (system.healthRate === 0) {
+                        statusHtml = `
+                            <div style="color: #e74c3c;">
+                                ❌ 所有集群未配置
+                            </div>
+                            <div style="font-size: 12px; margin-top: 5px;">
+                                集群总数: ${system.totalClusters} | 健康集群: ${system.healthyClusters}
+                            </div>
+                        `;
+                    } else if (system.healthRate < 50) {
+                        statusHtml = `
+                            <div style="color: #f39c12;">
+                                ⚠️ 部分集群已配置 (${system.healthRate}%)
+                            </div>
+                            <div style="font-size: 12px; margin-top: 5px;">
+                                集群总数: ${system.totalClusters} | 健康集群: ${system.healthyClusters}
+                            </div>
+                        `;
+                    } else {
+                        statusHtml = `
+                            <div style="color: #27ae60;">
+                                ✅ 配置状态良好 (${system.healthRate}%)
+                            </div>
+                            <div style="font-size: 12px; margin-top: 5px;">
+                                集群总数: ${system.totalClusters} | 健康集群: ${system.healthyClusters}
+                            </div>
+                        `;
+                    }
+                    
+                    statusElement.innerHTML = statusHtml;
+                } else {
+                    document.getElementById('modelConfigStatus').innerHTML = `
+                        <div style="color: #e74c3c;">❌ 配置状态加载失败</div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('modelConfigStatus').innerHTML = `
+                    <div style="color: #e74c3c;">❌ 网络连接错误</div>
+                `;
+            }
+        }
+
+        // 通知函数
+        function showNotification(message, type = 'info') {
+            // 简单的通知实现
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 24px;
+                padding: 12px 16px;
+                border-radius: var(--border-radius);
+                color: white;
+                z-index: 1000;
+                background: ${type === 'success' ? 'var(--success-color)' : 
+                          type === 'error' ? 'var(--error-color)' : 
+                          type === 'warning' ? 'var(--warning-color)' : 'var(--primary-color)'};
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // 清除文件
+        function clearFile() {
+            document.getElementById('fileInput').value = '';
+            document.getElementById('fileInfo').style.display = 'none';
+            document.getElementById('parseResult').style.display = 'block';
+            document.getElementById('resultContent').style.display = 'none';
+            currentResumeData = null;
+        }
+
+        // 清除优化
+        function clearOptimization() {
+            document.getElementById('jobDescription').value = '';
+            document.getElementById('optimizeResult').style.display = 'none';
+        }
+
+        // 读取文件为Base64
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    // 移除data URL前缀，只保留Base64内容
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // 导航功能
+        function navigateTo(page, event) {
+            console.log('导航到:', page);
+            
+            // 确保event对象存在
+            const target = event ? event.target : null;
+            
+            // 移除所有active类
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // 添加当前active类
+            if (target) {
+                target.classList.add('active');
+            }
+            
+            // 根据页面显示不同内容
+            switch(page) {
+                case 'home':
+                    showHomePage();
+                    break;
+                case 'resume':
+                    showResumePage();
+                    break;
+                case 'jobs':
+                    showJobsPage();
+                    break;
+                case 'analytics':
+                    showAnalyticsPage();
+                    break;
+                case 'config':
+                    // 模型配置页面会跳转到新页面
+                    break;
+                case 'settings':
+                    showSettingsPage();
+                    break;
+            }
+        }
+
+        function showHomePage() {
+            setElementDisplay('uploadSection', 'block');
+            setElementDisplay('optimizationSection', 'block');
+            setElementDisplay('resumeListSection', 'block');
+            setElementDisplay('jobsSection', 'none');
+            setElementDisplay('analyticsSection', 'none');
+            setElementDisplay('settingsSection', 'none');
+            
+            // 显示欢迎信息
+            showNotification('欢迎使用智聘AI智能求职平台', 'success');
+        }
+
+        function showResumePage() {
+            setElementDisplay('uploadSection', 'block');
+            setElementDisplay('optimizationSection', 'block');
+            setElementDisplay('resumeListSection', 'block');
+            setElementDisplay('jobsSection', 'none');
+            setElementDisplay('analyticsSection', 'none');
+            setElementDisplay('settingsSection', 'none');
+            
+            showNotification('简历管理页面已打开', 'info');
+        }
+
+        // 安全的元素获取函数
+        function getElementSafe(id) {
+            const element = document.getElementById(id);
+            if (!element) {
+                console.warn(`元素未找到: ${id}`);
+                return null;
+            }
+            return element;
+        }
+
+        // 安全的样式设置函数
+        function setElementDisplay(id, displayValue) {
+            const element = getElementSafe(id);
+            if (element) {
+                element.style.display = displayValue;
+            }
+        }
+
+        // 事件委托处理函数
+        function handleButtonClick(event) {
+            const target = event.target;
+            
+            // 检查是否是按钮或链接
+            if (target.tagName === 'BUTTON' || (target.tagName === 'A' && target.classList.contains('nav-item'))) {
+                console.log('按钮点击:', target.textContent.trim());
+                
+                // 防止默认行为
+                event.preventDefault();
+                
+                // 这里可以添加额外的事件处理逻辑
+            }
+        }
+
+        // DOM加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成，初始化页面...');
+            
+            // 添加事件委托
+            document.addEventListener('click', handleButtonClick);
+            
+            // 确保初始页面正确显示
+            showHomePage();
+            
+            console.log('页面初始化完成！');
+        });
+
+        function showJobsPage() {
+            setElementDisplay('uploadSection', 'none');
+            setElementDisplay('optimizationSection', 'none');
+            setElementDisplay('resumeListSection', 'none');
+            setElementDisplay('jobsSection', 'block');
+            setElementDisplay('analyticsSection', 'none');
+            setElementDisplay('settingsSection', 'none');
+            
+            showNotification('职位匹配功能开发中...', 'warning');
+        }
+
+        function showAnalyticsPage() {
+            setElementDisplay('uploadSection', 'none');
+            setElementDisplay('optimizationSection', 'none');
+            setElementDisplay('resumeListSection', 'none');
+            setElementDisplay('jobsSection', 'none');
+            setElementDisplay('analyticsSection', 'block');
+            setElementDisplay('settingsSection', 'none');
+            
+            showNotification('数据分析功能开发中...', 'warning');
+        }
+
+        function showSettingsPage() {
+            setElementDisplay('uploadSection', 'none');
+            setElementDisplay('optimizationSection', 'none');
+            setElementDisplay('resumeListSection', 'none');
+            setElementDisplay('jobsSection', 'none');
+            setElementDisplay('analyticsSection', 'none');
+            setElementDisplay('settingsSection', 'block');
+            
+            showNotification('系统设置功能开发中...', 'warning');
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            // 创建通知元素
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <span class="notification-icon">${getNotificationIcon(type)}</span>
+                    <span class="notification-message">${message}</span>
+                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+                </div>
+            `;
+            
+            // 添加到页面
+            document.body.appendChild(notification);
+            
+            // 自动移除
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        function getNotificationIcon(type) {
+            switch(type) {
+                case 'success': return '✅';
+                case 'warning': return '⚠️';
+                case 'error': return '❌';
+                default: return 'ℹ️';
+            }
+        }
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加通知样式
+            const style = document.createElement('style');
+            style.textContent = `
+                .notification {
+                    position: fixed;
+                    top: 80px;
+                    right: 20px;
+                    background: white;
+                    border-radius: 6px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    z-index: 9999;
+                    min-width: 300px;
+                    border-left: 4px solid #1890ff;
+                }
+                .notification-success { border-left-color: #52c41a; }
+                .notification-warning { border-left-color: #faad14; }
+                .notification-error { border-left-color: #f5222d; }
+                .notification-content {
+                    padding: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .notification-close {
+                    background: none;
+                    border: none;
+                    font-size: 18px;
+                    cursor: pointer;
+                    margin-left: auto;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // 默认显示首页
+            showHomePage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI模型配置管理 - ResumeFlow Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header h1::before {
+            content: "⚙️";
+            font-size: 1.2em;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .system-status {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .status-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .status-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-healthy { background: #2ecc71; }
+        .status-warning { background: #f39c12; }
+        .status-error { background: #e74c3c; }
+        .status-disabled { background: #95a5a6; }
+        
+        .clusters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .cluster-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cluster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .cluster-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cluster-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .cluster-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .status-badge-healthy { background: #d5f4e6; color: #27ae60; }
+        .status-badge-warning { background: #fdebd0; color: #f39c12; }
+        .status-badge-error { background: #fadbd8; color: #e74c3c; }
+        .status-badge-disabled { background: #ecf0f1; color: #7f8c8d; }
+        
+        .models-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .model-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .model-info {
+            flex: 1;
+        }
+        
+        .model-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .model-type {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .model-status {
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        
+        .status-enabled { background: #d5f4e6; color: #27ae60; }
+        .status-disabled { background: #ecf0f1; color: #7f8c8d; }
+        
+        .config-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .config-section h2 {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .alert-success {
+            background: #d5f4e6;
+            color: #27ae60;
+            border: 1px solid #a3e4c7;
+        }
+        
+        .alert-error {
+            background: #fadbd8;
+            color: #e74c3c;
+            border: 1px solid #f5b7b1;
+        }
+        
+        .alert-warning {
+            background: #fdebd0;
+            color: #f39c12;
+            border: 1px solid #f8c471;
+        }
+        
+        .tab-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: #ecf0f1;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .model-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .api-key-input {
+            position: relative;
+        }
+        
+        .api-key-input input {
+            padding-right: 100px;
+        }
+        
+        .toggle-visibility {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .clusters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div>
+                    <h1>🤖 AI模型配置管理</h1>
+                    <p>专业的企业级AI模型集群配置界面 - 支持训练师对模型进行配置和训练</p>
+                </div>
+                <div>
+                    <a href="enterprise-app.html" class="btn btn-primary" style="text-decoration: none;">
+                        🏠 返回首页
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统状态仪表板 -->
+        <div class="dashboard">
+            <div class="system-status">
+                <h2>📊 系统概览</h2>
+                <div id="systemOverview">
+                    <div class="loading"></div> 加载系统状态...
+                </div>
+            </div>
+            
+            <div class="system-status">
+                <h2>⚡ 快速操作</h2>
+                <div class="actions">
+                    <button class="btn btn-primary" onclick="refreshStatus()">
+                        🔄 刷新状态
+                    </button>
+                    <button class="btn btn-secondary" onclick="exportConfig()">
+                        📤 导出配置
+                    </button>
+                    <button class="btn btn-danger" onclick="resetConfig()">
+                        🔄 重置配置
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 集群状态 -->
+        <div class="config-section">
+            <h2>🏗️ AI模型集群</h2>
+            <div class="clusters-grid" id="clustersContainer">
+                <div class="loading"></div> 加载集群信息...
+            </div>
+        </div>
+
+        <!-- 配置管理 -->
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('config')">🔧 模型配置</button>
+                <button class="tab" onclick="switchTab('training')">🎯 训练管理</button>
+                <button class="tab" onclick="switchTab('monitoring')">📈 性能监控</button>
+            </div>
+            
+            <!-- 模型配置标签页 -->
+            <div class="tab-content active" id="config-tab">
+                <div class="config-section">
+                    <h2>➕ 添加新模型</h2>
+                    <form id="addModelForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="clusterSelect">选择集群 *</label>
+                                <select id="clusterSelect" required>
+                                    <option value="">请选择集群...</option>
+                                    <option value="resumeParser">简历解析集群</option>
+                                    <option value="resumeOptimizer">简历优化集群</option>
+                                    <option value="interviewCoach">面试教练集群</option>
+                                    <option value="jobMatcher">职位匹配集群</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="modelName">模型名称 *</label>
+                                <input type="text" id="modelName" placeholder="例如: GPT-4 Resume Expert" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="modelType">模型类型 *</label>
+                                <select id="modelType" required>
+                                    <option value="">请选择类型...</option>
+                                    <option value="openai">OpenAI GPT系列</option>
+                                    <option value="claude">Anthropic Claude系列</option>
+                                    <option value="ernie">百度文心一言</option>
+                                    <option value="local">本地模型</option>
+                                    <option value="custom">自定义模型</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="modelEndpoint">API端点 *</label>
+                                <input type="url" id="modelEndpoint" placeholder="https://api.openai.com/v1/chat/completions" required>
+                            </div>
+                            
+                            <div class="form-group api-key-input">
+                                <label for="apiKey">API密钥 *</label>
+                                <input type="password" id="apiKey" placeholder="输入API密钥" required>
+                                <button type="button" class="toggle-visibility" onclick="toggleApiKeyVisibility()">👁️</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="modelWeight">权重 (1.0-2.0)</label>
+                                <input type="number" id="modelWeight" min="0.1" max="3.0" step="0.1" value="1.0">
+                            </div>
+                        </div>
+                        
+                        <div class="actions">
+                            <button type="submit" class="btn btn-success">
+                                💾 保存配置
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">
+                                🗑️ 清空表单
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- 训练管理标签页 -->
+            <div class="tab-content" id="training-tab">
+                <div class="config-section">
+                    <h2>🎯 模型训练管理</h2>
+                    <div id="trainingStatus">
+                        <p>训练管理功能正在开发中...</p>
+                        <div class="alert alert-warning">
+                            <strong>注意：</strong> 模型训练功能需要专门的训练数据和计算资源。请联系系统管理员获取训练权限。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 性能监控标签页 -->
+            <div class="tab-content" id="monitoring-tab">
+                <div class="config-section">
+                    <h2>📈 性能监控</h2>
+                    <div id="performanceMetrics">
+                        <p>性能监控功能正在开发中...</p>
+                        <div class="alert alert-info">
+                            <strong>提示：</strong> 监控功能将显示模型响应时间、成功率、错误率等关键指标。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 消息提示区域 -->
+        <div id="messageArea"></div>
+    </div>
+
+    <script>
+        // 全局变量
+        let currentConfig = null;
+        let apiKeyVisible = false;
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSystemStatus();
+            loadClusters();
+            setupEventListeners();
+        });
+
+        // 设置事件监听器
+        function setupEventListeners() {
+            // 表单提交
+            document.getElementById('addModelForm').addEventListener('submit', handleAddModel);
+            
+            // 集群选择变化
+            document.getElementById('clusterSelect').addEventListener('change', updateModelTemplates);
+            
+            // 模型类型变化
+            document.getElementById('modelType').addEventListener('change', updateEndpointTemplate);
+        }
+
+        // 加载系统状态
+        async function loadSystemStatus() {
+            try {
+                const response = await fetch('http://localhost:3002/api/config/status');
+                const data = await response.json();
+                
+                if (data.success) {
+                    currentConfig = data.system;
+                    renderSystemOverview(data.system);
+                } else {
+                    showMessage('系统状态加载失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('网络错误: ' + error.message, 'error');
+            }
+        }
+
+        // 加载集群信息
+        async function loadClusters() {
+            try {
+                const response = await fetch('http://localhost:3002/api/config/clusters');
+                const data = await response.json();
+                
+                if (data.success) {
+                    renderClusters(data.clusters);
+                } else {
+                    showMessage('集群信息加载失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('网络错误: ' + error.message, 'error');
+            }
+        }
+
+        // 渲染系统概览
+        function renderSystemOverview(system) {
+            const container = document.getElementById('systemOverview');
+            const healthRate = system.healthRate || 0;
+            
+            let statusClass = 'status-error';
+            let statusText = '异常';
+            
+            if (healthRate >= 80) {
+                statusClass = 'status-healthy';
+                statusText = '健康';
+            } else if (healthRate >= 50) {
+                statusClass = 'status-warning';
+                statusText = '警告';
+            }
+            
+            container.innerHTML = `
+                <div class="status-card">
+                    <h3>系统健康状态</h3>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <span class="status-indicator ${statusClass}"></span>
+                        <span style="font-size: 1.5em; font-weight: 600;">${statusText}</span>
+                        <span style="font-size: 2em;">${healthRate}%</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>集群总数: <strong>${system.totalClusters}</strong></div>
+                        <div>健康集群: <strong>${system.healthyClusters}</strong></div>
+                        <div>免费模型: <strong>${system.freeModels?.models || 0}</strong></div>
+                        <div>最后更新: <strong>${new Date(system.lastUpdated).toLocaleString()}</strong></div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                        <div style="font-weight: 600; margin-bottom: 5px;">版本</div>
+                        <div>${system.version}</div>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                        <div style="font-weight: 600; margin-bottom: 5px;">免费模型</div>
+                        <div>${system.freeModels?.enabled ? '已启用' : '已禁用'}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 渲染集群信息
+        function renderClusters(clusters) {
+            const container = document.getElementById('clustersContainer');
+            let html = '';
+            
+            Object.keys(clusters).forEach(clusterKey => {
+                const cluster = clusters[clusterKey];
+                const statusInfo = currentConfig?.clusters?.[clusterKey] || {};
+                
+                let statusClass = 'status-badge-disabled';
+                let statusText = '未配置';
+                
+                if (statusInfo.status === 'healthy') {
+                    statusClass = 'status-badge-healthy';
+                    statusText = '健康';
+                } else if (statusInfo.status === 'warning') {
+                    statusClass = 'status-badge-warning';
+                    statusText = '警告';
+                } else if (statusInfo.status === 'error') {
+                    statusClass = 'status-badge-error';
+                    statusText = '异常';
+                }
+                
+                html += `
+                    <div class="cluster-card">
+                        <div class="cluster-header">
+                            <div class="cluster-title">${cluster.name}</div>
+                            <div class="cluster-status ${statusClass}">${statusText}</div>
+                        </div>
+                        
+                        <div style="margin-bottom: 15px; color: #7f8c8d;">
+                            ${cluster.description}
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                            <span>模型: ${statusInfo.enabledModels || 0}/${statusInfo.totalModels || 0}</span>
+                            <span>配置率: ${statusInfo.configurationRate || 0}%</span>
+                        </div>
+                        
+                        <div class="models-list">
+                            ${cluster.models.map(model => `
+                                <div class="model-item">
+                                    <div class="model-info">
+                                        <div class="model-name">${model.name}</div>
+                                        <div class="model-type">${model.type} • ${model.model}</div>
+                                    </div>
+                                    <div class="model-status ${model.enabled ? 'status-enabled' : 'status-disabled'}">
+                                        ${model.enabled ? '已启用' : '已禁用'}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <button class="btn btn-primary" onclick="configureCluster('${clusterKey}')" style="width: 100%;">
+                                ⚙️ 配置集群
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // 切换标签页
+        function switchTab(tabName) {
+            // 隐藏所有标签内容
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 移除所有标签的激活状态
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 显示选中的标签内容
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // 激活选中的标签
+            event.target.classList.add('active');
+        }
+
+        // 切换API密钥可见性
+        function toggleApiKeyVisibility() {
+            const apiKeyInput = document.getElementById('apiKey');
+            const toggleButton = document.querySelector('.toggle-visibility');
+            
+            apiKeyVisible = !apiKeyVisible;
+            apiKeyInput.type = apiKeyVisible ? 'text' : 'password';
+            toggleButton.textContent = apiKeyVisible ? '🙈' : '👁️';
+        }
+
+        // 更新模型模板
+        function updateModelTemplates() {
+            const cluster = document.getElementById('clusterSelect').value;
+            const modelType = document.getElementById('modelType').value;
+            
+            if (cluster && modelType) {
+                // 根据集群和类型设置推荐的模型名称
+                const modelName = document.getElementById('modelName');
+                const endpoint = document.getElementById('modelEndpoint');
+                
+                const templates = {
+                    'resumeParser': {
+                        'openai': { name: 'GPT-4 Resume Expert', endpoint: 'https://api.openai.com/v1/chat/completions' },
+                        'claude': { name: 'Claude Resume Analyzer', endpoint: 'https://api.anthropic.com/v1/messages' },
+                        'ernie': { name: '文心一言简历解析', endpoint: 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions' }
+                    },
+                    'resumeOptimizer': {
+                        'openai': { name: 'GPT-4 Optimizer Pro', endpoint: 'https://api.openai.com/v1/chat/completions' },
+                        'claude': { name: 'Claude Writing Expert', endpoint: 'https://api.anthropic.com/v1/messages' },
+                        'ernie': { name: '文心一言优化专家', endpoint: 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions' }
+                    }
+                };
+                
+                const template = templates[cluster]?.[modelType];
+                if (template) {
+                    modelName.value = template.name;
+                    endpoint.value = template.endpoint;
+                }
+            }
+        }
+
+        // 更新端点模板
+        function updateEndpointTemplate() {
+            const modelType = document.getElementById('modelType').value;
+            const endpoint = document.getElementById('modelEndpoint');
+            
+            const endpoints = {
+                'openai': 'https://api.openai.com/v1/chat/completions',
+                'claude': 'https://api.anthropic.com/v1/messages',
+                'ernie': 'https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/completions',
+                'local': 'http://localhost:11434/v1/chat/completions'
+            };
+            
+            if (endpoints[modelType]) {
+                endpoint.value = endpoints[modelType];
+            }
+        }
+
+        // 处理添加模型
+        async function handleAddModel(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const cluster = document.getElementById('clusterSelect').value;
+            
+            const modelConfig = {
+                name: document.getElementById('modelName').value,
+                type: document.getElementById('modelType').value,
+                endpoint: document.getElementById('modelEndpoint').value,
+                apiKey: document.getElementById('apiKey').value,
+                model: 'custom-model', // 可以根据类型设置默认值
+                weight: parseFloat(document.getElementById('modelWeight').value) || 1.0,
+                maxTokens: 2000,
+                timeout: 30000,
+                specialty: '自定义配置'
+            };
+            
+            try {
+                const response = await fetch(`http://localhost:3002/api/config/models/${cluster}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(modelConfig)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('✅ 模型添加成功！', 'success');
+                    clearForm();
+                    // 刷新状态
+                    loadSystemStatus();
+                    loadClusters();
+                } else {
+                    showMessage('❌ 模型添加失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ 网络错误: ' + error.message, 'error');
+            }
+        }
+
+        // 清空表单
+        function clearForm() {
+            document.getElementById('addModelForm').reset();
+            apiKeyVisible = false;
+            document.getElementById('apiKey').type = 'password';
+            document.querySelector('.toggle-visibility').textContent = '👁️';
+        }
+
+        // 配置集群
+        function configureCluster(clusterKey) {
+            showMessage(`正在配置 ${clusterKey} 集群...`, 'info');
+            // 这里可以跳转到集群详细配置页面
+        }
+
+        // 刷新状态
+        function refreshStatus() {
+            showMessage('🔄 正在刷新系统状态...', 'info');
+            loadSystemStatus();
+            loadClusters();
+            setTimeout(() => {
+                showMessage('✅ 状态刷新完成！', 'success');
+            }, 1000);
+        }
+
+        // 导出配置
+        async function exportConfig() {
+            try {
+                const response = await fetch('http://localhost:3002/api/config/export');
+                const data = await response.json();
+                
+                if (data.success) {
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `model-config-${new Date().toISOString().split('T')[0]}.json`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    showMessage('✅ 配置导出成功！', 'success');
+                } else {
+                    showMessage('❌ 配置导出失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ 网络错误: ' + error.message, 'error');
+            }
+        }
+
+        // 重置配置
+        async function resetConfig() {
+            if (!confirm('⚠️ 确定要重置所有配置吗？此操作不可撤销！')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://localhost:3002/api/config/reset', {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('✅ 配置重置成功！', 'success');
+                    // 刷新状态
+                    loadSystemStatus();
+                    loadClusters();
+                } else {
+                    showMessage('❌ 配置重置失败: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('❌ 网络错误: ' + error.message, 'error');
+            }
+        }
+
+        // 显示消息
+        function showMessage(message, type) {
+            const messageArea = document.getElementById('messageArea');
+            const alertClass = `alert alert-${type}`;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = alertClass;
+            messageDiv.innerHTML = message;
+            
+            messageArea.appendChild(messageDiv);
+            
+            // 3秒后自动消失
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
